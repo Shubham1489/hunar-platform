@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar Employer - Review &amp; Post</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#341100",
+              "on-surface-variant": "#444651",
+              "on-secondary-container": "#5c2400",
+              "primary-fixed": "#dce1ff",
+              "tertiary": "#00312c",
+              "primary-container": "#1e3a8a",
+              "surface": "#f6fafe",
+              "secondary-container": "#fd761a",
+              "inverse-on-surface": "#edf1f5",
+              "tertiary-container": "#004942",
+              "on-tertiary-fixed-variant": "#005049",
+              "surface-tint": "#4059aa",
+              "on-surface": "#171c1f",
+              "on-background": "#171c1f",
+              "inverse-surface": "#2c3134",
+              "inverse-primary": "#b6c4ff",
+              "background": "#f6fafe",
+              "outline": "#757682",
+              "tertiary-fixed": "#89f5e7",
+              "surface-dim": "#d6dade",
+              "surface-container-highest": "#dfe3e7",
+              "surface-variant": "#dfe3e7",
+              "primary-fixed-dim": "#b6c4ff",
+              "surface-bright": "#f6fafe",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-fixed-variant": "#264191",
+              "on-primary-container": "#90a8ff",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "on-primary-fixed": "#00164e",
+              "secondary-fixed-dim": "#ffb690",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e4e9ed",
+              "outline-variant": "#c5c5d3",
+              "surface-container": "#eaeef2",
+              "surface-container-low": "#f0f4f8",
+              "on-secondary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary-fixed-variant": "#783200",
+              "secondary-fixed": "#ffdbca",
+              "on-tertiary-container": "#4ebdb0",
+              "on-error": "#ffffff",
+              "on-primary": "#ffffff",
+              "primary": "#00236f",
+              "error-container": "#ffdad6",
+              "secondary": "#9d4300",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-effect {
+            background: rgba(246, 250, 254, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6fafe;
+            color: #171c1f;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24">
+<!-- Top Navigation (Shell Component - Read Only Identity) -->
+<nav class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/20 px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-8">
+<span class="text-primary font-headline font-extrabold text-xl tracking-tight">Hunar Employer</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium text-sm" href="#">Dashboard</a>
+<a class="text-primary font-semibold text-sm" href="#">My Jobs</a>
+<a class="text-on-surface-variant font-medium text-sm" href="#">Messages</a>
+<a class="text-on-surface-variant font-medium text-sm" href="#">Candidates</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Employer Profile" class="w-full h-full object-cover" data-alt="Professional portrait of a business owner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1HP76Hv76PniJ_1IJP-4Q5ClLXqqCxPQf4OwrHTVE50hUVSZVSzoddL0gDp8xlY0hyiUQcjn5m42LusYt9K2ERLkIGf0ZAaPaY3UOqaOrWacofiQjQtCBR12yKyoEo8KRzmVHqHu8aviH_Jh4UHqPKcypRLkpmPcjgrKkfu4egdKPmWMYTWYqN3uJJ32x0HqK6qAE69oSnVwCPVLf2Snv5twgvbweIE-IgR5CU3i9aCNyJufmf8aGlEt6IXP3-O5EF7fzJlLk7XI"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Linear Flow Header (ProgressBar) -->
+<header class="max-w-3xl mx-auto px-6 pt-12">
+<div class="mb-8">
+<div class="flex justify-between items-end mb-4">
+<div>
+<span class="text-secondary font-bold text-xs uppercase tracking-widest block mb-1">Final Step</span>
+<h1 class="text-display-sm font-headline font-bold text-3xl text-on-background">Review &amp; Post</h1>
+</div>
+<div class="text-right">
+<span class="text-on-surface-variant font-medium text-sm block">Step 3 of 3</span>
+<span class="text-primary font-bold text-sm">Review Summary</span>
+</div>
+</div>
+<!-- ProgressBar Implementation -->
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full signature-gradient transition-all duration-500" style="width: 100%"></div>
+</div>
+<p class="mt-3 text-on-surface-variant text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+                Please verify all details before making your job live to candidates.
+            </p>
+</div>
+</header>
+<main class="max-w-3xl mx-auto px-6 space-y-8">
+<!-- Job Information Section -->
+<section class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000"></div>
+<div class="relative bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(23,28,31,0.04)]">
+<div class="flex justify-between items-start mb-6">
+<h2 class="headline-md font-bold text-xl flex items-center gap-3">
+<span class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="work" data-weight="fill" style="font-variation-settings: 'FILL' 1;">work</span>
+</span>
+                        Job Information
+                    </h2>
+<button class="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                        Edit Details
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-12">
+<div>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Job Title</p>
+<p class="text-on-surface font-semibold text-lg">Senior Precision Welder</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Location</p>
+<p class="text-on-surface font-semibold text-lg">Pune, Maharashtra</p>
+</div>
+<div class="md:col-span-2">
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Description</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Seeking a skilled welder with experience in TIG and MIG welding for high-precision industrial components. Must be able to read complex blueprints and maintain safety standards.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Requirements Section -->
+<section class="bg-surface-container-low p-8 rounded-xl">
+<div class="flex justify-between items-start mb-6">
+<h2 class="headline-md font-bold text-xl flex items-center gap-3">
+<span class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+</span>
+                    Requirements
+                </h2>
+<button class="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                    Edit Details
+                </button>
+</div>
+<div class="space-y-6">
+<div>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-3">Skills Needed</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-1.5 bg-surface-container-highest text-on-surface font-medium text-xs rounded-full">TIG Welding</span>
+<span class="px-4 py-1.5 bg-surface-container-highest text-on-surface font-medium text-xs rounded-full">Blueprinting</span>
+<span class="px-4 py-1.5 bg-surface-container-highest text-on-surface font-medium text-xs rounded-full">Safety Protocols</span>
+<span class="px-4 py-1.5 bg-surface-container-highest text-on-surface font-medium text-xs rounded-full">Metal Fabrication</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Experience</p>
+<p class="text-on-surface font-semibold">5+ Years</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Education</p>
+<p class="text-on-surface font-semibold">ITI Certified Welder</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Compensation Section -->
+<section class="bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(23,28,31,0.04)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-6">
+<h2 class="headline-md font-bold text-xl flex items-center gap-3">
+<span class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</span>
+                    Compensation
+                </h2>
+<button class="text-primary font-semibold text-sm hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+                    Edit Details
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-4 rounded-xl bg-surface-container-low">
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Salary Range</p>
+<p class="text-primary font-extrabold text-xl">₹35k - ₹50k</p>
+<p class="text-[10px] text-on-surface-variant">Per Month</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low">
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Job Type</p>
+<p class="text-on-surface font-semibold text-lg">Full-time</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low">
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-wider mb-1">Benefits</p>
+<p class="text-on-surface font-semibold text-lg">Health + ESIC</p>
+</div>
+</div>
+</section>
+<!-- Action Buttons -->
+<div class="flex flex-col md:flex-row items-center gap-4 pt-4">
+<button class="w-full md:w-auto px-10 py-4 signature-gradient text-on-primary font-headline font-bold text-lg rounded-xl shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-3">
+                Post Job Now
+                <span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+</button>
+<button class="w-full md:w-auto px-10 py-4 bg-surface-container-high text-on-surface font-headline font-semibold text-lg rounded-xl hover:bg-surface-container-highest transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                Save as Draft
+            </button>
+</div>
+<!-- Privacy Assurance -->
+<p class="text-center text-on-surface-variant text-xs mt-8">
+            By posting, you agree to Hunar's <a class="underline" href="#">Terms of Service</a> and <a class="underline" href="#">Privacy Policy</a>.
+        </p>
+</main>
+<!-- Bottom Navigation (Shell Component) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 glass-effect border-t border-outline-variant/20 px-4 py-2 md:hidden">
+<div class="flex justify-around items-center">
+<button class="flex flex-col items-center gap-1 p-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2 text-primary">
+<span class="material-symbols-outlined" data-icon="work" data-weight="fill" style="font-variation-settings: 'FILL' 1;">work</span>
+<span class="text-[10px] font-bold">Jobs</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chat">chat</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Messages</span>
+</button>
+<button class="flex flex-col items-center gap-1 p-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+<span class="text-[10px] font-medium text-on-surface-variant">Profile</span>
+</button>
+</div>
+</nav>
+</body></html>

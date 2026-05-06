@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registration Success - Hunar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d6dade",
+              "inverse-on-surface": "#edf1f5",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#264191",
+              "inverse-surface": "#2c3134",
+              "tertiary-container": "#004942",
+              "primary-container": "#1e3a8a",
+              "on-background": "#171c1f",
+              "surface-variant": "#dfe3e7",
+              "surface-container": "#eaeef2",
+              "surface-bright": "#f6fafe",
+              "secondary-container": "#fd761a",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-primary-fixed": "#00164e",
+              "on-tertiary-container": "#4ebdb0",
+              "on-surface-variant": "#444651",
+              "secondary-fixed-dim": "#ffb690",
+              "surface": "#f6fafe",
+              "primary-fixed": "#dce1ff",
+              "surface-container-low": "#f0f4f8",
+              "on-primary-container": "#90a8ff",
+              "tertiary": "#00312c",
+              "on-error": "#ffffff",
+              "surface-tint": "#4059aa",
+              "on-surface": "#171c1f",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#dfe3e7",
+              "on-secondary-container": "#5c2400",
+              "secondary-fixed": "#ffdbca",
+              "on-secondary-fixed": "#341100",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "secondary": "#9d4300",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c5c5d3",
+              "on-secondary-fixed-variant": "#783200",
+              "tertiary-fixed": "#89f5e7",
+              "surface-container-high": "#e4e9ed",
+              "error-container": "#ffdad6",
+              "background": "#f6fafe",
+              "on-tertiary-fixed-variant": "#005049",
+              "inverse-primary": "#b6c4ff",
+              "primary": "#00236f",
+              "outline": "#757682"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 12px 32px rgba(23, 28, 31, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface" data-icon="arrow_back">arrow_back</span>
+<h1 class="text-xl font-bold text-primary font-headline">Hunar</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-on-surface" data-icon="close">close</span>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center px-6 py-12 max-w-4xl mx-auto w-full">
+<!-- Registration Progress -->
+<div class="w-full max-w-md mb-12">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-semibold text-primary uppercase tracking-wider font-label">Step 1 of 4</span>
+<span class="text-xs text-on-surface-variant font-label">Registration Progress</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 25%;"></div>
+</div>
+</div>
+<!-- Success Hero Section (Asymmetric Layout) -->
+<div class="relative w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<!-- Visual Element -->
+<div class="md:col-span-5 relative order-2 md:order-1">
+<div class="aspect-square rounded-3xl overflow-hidden ambient-shadow relative z-10">
+<img alt="Smiling artisan professional" class="w-full h-full object-cover" data-alt="Happy professional worker shaking hands smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDwdkDWHUpo_QMQp9lVPUIMqt1ECpg0-mMowTB39bwwfkan057oerjcpnlS5Zk3VLVMfGvQDRHvwmIWseaQCyUYVzQPDkb_wYKr14iqOrkLNoVtviaRMdplRb8YDCRcqxaRxC9FwocS0cuJHqGAa66bY4MfMIi3AnAzse-cGBl80GfZJARNKkjdQpdpi2bdT_uvfDbCrY1juTMa9zEuwMyRl_AhnoKxhLW_u9VJybjfIyoEyVJMJeV9EAj-TIZvjcTolyXmCFzOSo"/>
+</div>
+<!-- Decorative Layer -->
+<div class="absolute -top-4 -right-4 w-32 h-32 bg-secondary-fixed rounded-2xl -z-0 opacity-50"></div>
+<div class="absolute -bottom-6 -left-6 w-48 h-48 bg-tertiary-fixed-dim rounded-full -z-0 opacity-20"></div>
+</div>
+<!-- Content Area -->
+<div class="md:col-span-7 flex flex-col space-y-6 order-1 md:order-2">
+<div>
+<span class="inline-flex items-center gap-2 px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-full text-xs font-bold font-label mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        ACCOUNT CREATED
+                    </span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-on-background font-headline leading-tight tracking-tight">
+                        You're all set! <br/><span class="text-primary">Welcome to Hunar.</span>
+</h2>
+<p class="text-on-surface-variant text-lg mt-4 max-w-lg leading-relaxed">
+                        Your profile is ready. You can now connect with top-tier professionals or save your favorites for later.
+                    </p>
+</div>
+<!-- Action Cards (Bento Style) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-6 bg-surface-container-lowest rounded-xl ambient-shadow flex flex-col justify-between group cursor-pointer hover:bg-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-secondary text-3xl mb-4 group-hover:text-white" data-icon="search">search</span>
+<div>
+<h3 class="text-lg font-bold font-headline mb-1 group-hover:text-white">Book a Pro now</h3>
+<p class="text-xs text-on-surface-variant group-hover:text-white/80">Find verified experts near you.</p>
+</div>
+</div>
+<div class="p-6 bg-surface-container-lowest rounded-xl ambient-shadow flex flex-col justify-between group cursor-pointer hover:bg-tertiary transition-colors duration-300">
+<span class="material-symbols-outlined text-primary text-3xl mb-4 group-hover:text-white" data-icon="favorite">favorite</span>
+<div>
+<h3 class="text-lg font-bold font-headline mb-1 group-hover:text-white">Save your favorite pros</h3>
+<p class="text-xs text-on-surface-variant group-hover:text-white/80">Build your trusted network.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Suggestions -->
+<section class="w-full mt-20">
+<div class="flex items-center justify-between mb-8">
+<h4 class="text-2xl font-bold font-headline">Recommended for you</h4>
+<button class="text-primary font-bold text-sm font-label flex items-center gap-1">
+                    View all <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Pro Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-5 group">
+<div class="relative mb-4">
+<img alt="Electrician at work" class="w-full h-40 object-cover rounded-lg" data-alt="Professional electrician working on a panel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsYvZGIbL3crVlFv7SF2zksv2aELUw5OcL6TS8ZUh_UXNok-4MVLo4hBszuvGp1JHMa7ccJGH7R_IdrF4uLy05SYwOQvL2xgS-8JkjbWLqkpNc7Tc0c8tO-PZF_8n1pAuZP8l4adIih69aCECR3olHn1DqQi-oscr0oR6XqB0D-WtOci7-TaU-ptKIJriViF-GePtNxLgdBtttzgY4hVdE3BJ0-zXJavbI_eMOasRHm9s1-juMwsZcgmWLtSEN0zQ0yL7yn73Y4No"/>
+<span class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/90 backdrop-blur rounded-full ambient-shadow">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-bold text-lg font-headline">Alex Rivier</h5>
+<p class="text-xs text-on-surface-variant mb-3">Master Electrician</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-0.5 rounded text-xs font-bold">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.9
+                        </div>
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 bg-surface-container-highest text-[10px] rounded uppercase font-bold tracking-tighter">Wiring</span>
+<span class="px-2 py-1 bg-surface-container-highest text-[10px] rounded uppercase font-bold tracking-tighter">Repair</span>
+</div>
+</div>
+<!-- Pro Card 2 -->
+<div class="bg-surface-container-low rounded-xl p-5 group">
+<div class="relative mb-4">
+<img alt="Interior Designer" class="w-full h-40 object-cover rounded-lg" data-alt="Professional cleaner in a modern apartment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtzoOzfaT_Vio0rK0NjtVeL71CeHNIYvGg21CXn2vH2xzrwzxLkHQR5nC4W3iveSHyfrljtB0Kaw18I41t4nTt4RTxtAr1s4PMToP1rarylW1nTAbxBJ7dWeLITAx0Px9VNX8JB7GVbW98Cn-MkMZzTPLfVdGUR2QlPg27_WK1ycmCmkveGU76QAurKnAsKTWCz_LXpNzPIR05XCR4A-vmNLtEyuj2cqTR4FRyuOh46qfY0fAMO2cLHgb6YFUW6LcS9QeBSncE1DI"/>
+<span class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/90 backdrop-blur rounded-full ambient-shadow">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-bold text-lg font-headline">Sarah Chen</h5>
+<p class="text-xs text-on-surface-variant mb-3">Interior Specialist</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-0.5 rounded text-xs font-bold">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            5.0
+                        </div>
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 bg-surface-container-highest text-[10px] rounded uppercase font-bold tracking-tighter">Design</span>
+<span class="px-2 py-1 bg-surface-container-highest text-[10px] rounded uppercase font-bold tracking-tighter">Eco-Friendly</span>
+</div>
+</div>
+<!-- Pro Card 3 -->
+<div class="bg-surface-container-low rounded-xl p-5 group">
+<div class="relative mb-4">
+<img alt="Plumbing Expert" class="w-full h-40 object-cover rounded-lg" data-alt="Professional plumber fixing a kitchen sink" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8L2Sc8RuABa5yOTTxGkLYYFYl8xEiGWtkdfQs3W6O0kncHdbYihQb9ew2t_zsb0UJvorYk3MRT3ru2CReVSJbyLXOeNzu1wr4YjUZz4UJ8LS6rmUNA1CD1TwyulujdDi8A2MaJ9zzg2glyXNOj9EmvNFlufhqCi2y6lb5MEu-YkSKj94vrUweSh4CdPxy6K2rSvoI_3WNDIeX02-w6DcCgVlmyMBVri5DMpbAxAgAyHcqYPxccmuYDFSP6Jed7BCG05LpA7v9Hl0"/>
+<span class="absolute top-2 right-2 p-1.5 bg-surface-container-lowest/90 backdrop-blur rounded-full ambient-shadow">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="bookmark">bookmark</span>
+</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-bold text-lg font-headline">Marcus Thorne</h5>
+<p class="text-xs text-on-surface-variant mb-3">Plumbing Expert</p>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-highest px-2 py-0.5 rounded text-xs font-bold">
+<span class="material-symbols-outlined text-xs text-secondary" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                            4.8
+                        </div>
+</div>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 bg-surface-container-highest text-[10px] rounded uppercase font-bold tracking-tighter">Emergency</span>
+<span class="px-2 py-1 bg-surface-container-highest text-[10px] rounded uppercase font-bold tracking-tighter">Installation</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="sticky bottom-0 bg-surface border-t border-surface-container-highest h-20 flex items-center justify-around px-4 z-50">
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="home">home</span>
+<span class="text-[10px] font-bold text-on-surface-variant group-hover:text-primary font-label uppercase">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="work">work</span>
+<span class="text-[10px] font-bold text-on-surface-variant group-hover:text-primary font-label uppercase">Jobs</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-base" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<span class="text-[10px] font-bold text-primary font-label uppercase">Profile</span>
+</div>
+</nav>
+<!-- Fixed Button Group (Overlay style for final CTA) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-full max-w-lg px-6">
+<div class="glass-panel p-4 rounded-full ambient-shadow flex items-center justify-between border border-white/40">
+<button class="px-6 py-3 text-primary font-bold text-sm font-label rounded-full hover:bg-surface-container-high transition-colors">
+                Back
+            </button>
+<button class="px-10 py-3 bg-gradient-to-r from-primary to-primary-container text-white font-bold text-sm font-label rounded-full shadow-lg shadow-primary/20 hover:scale-105 transition-transform active:scale-95">
+                Next
+            </button>
+</div>
+</div>
+</body></html>

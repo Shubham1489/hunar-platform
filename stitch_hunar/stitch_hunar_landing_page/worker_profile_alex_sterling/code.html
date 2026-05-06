@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Worker Profile - Alex Sterling</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#ffb690",
+                        "surface-container-low": "#f0f4f8",
+                        "outline": "#757682",
+                        "outline-variant": "#c5c5d3",
+                        "surface-variant": "#dfe3e7",
+                        "on-tertiary-fixed": "#00201d",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#444651",
+                        "on-surface": "#171c1f",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#4ebdb0",
+                        "on-secondary-fixed": "#341100",
+                        "inverse-surface": "#2c3134",
+                        "inverse-on-surface": "#edf1f5",
+                        "surface-dim": "#d6dade",
+                        "primary-fixed": "#dce1ff",
+                        "tertiary": "#00312c",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eaeef2",
+                        "on-secondary-container": "#5c2400",
+                        "on-primary-fixed": "#00164e",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "surface-container-highest": "#dfe3e7",
+                        "primary": "#00236f",
+                        "surface-container-high": "#e4e9ed",
+                        "secondary": "#9d4300",
+                        "on-primary-fixed-variant": "#264191",
+                        "secondary-fixed": "#ffdbca",
+                        "surface": "#f6fafe",
+                        "surface-tint": "#4059aa",
+                        "secondary-container": "#fd761a",
+                        "on-background": "#171c1f",
+                        "tertiary-container": "#004942",
+                        "on-secondary-fixed-variant": "#783200",
+                        "tertiary-fixed": "#89f5e7",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1e3a8a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f6fafe",
+                        "background": "#f6fafe",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b6c4ff",
+                        "on-primary-container": "#90a8ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6fafe;
+            color: #171c1f;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface mb-20">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer" data-icon="arrow_back">arrow_back</span>
+<span class="font-headline font-bold text-xl tracking-tight">Hunar</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer" data-icon="share">share</span>
+<span class="material-symbols-outlined text-on-surface cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<main class="max-w-5xl mx-auto px-4 pt-6">
+<!-- Hero Section -->
+<section class="relative mb-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+<!-- Profile Image & Badge -->
+<div class="lg:col-span-4 relative group">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl bg-surface-container-highest">
+<img alt="Alex Sterling" class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500" data-alt="Professional portrait of a male master craftsman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoeMv9omRp2uuthDQ7k7ZJajInNvqnucRx7o7PpwvPoRrn-fsOog8noEMA8lUPeYlc2LE74RhJrqAjRuYvFepQ8s-y10V5L6KCq4oPrvCunJieAeotuRTaZuqQLy8DBEpxbzJ-yg2FS60qJVCaGOwGhqNKaX8etvgylm4OmW43O8fVWGpDQmWMMVsUfqzzJWdB2TxAMsoeMFLuO5BKk8Hw9QHMUpQZs6Fa5niet9pMOUCwqFDq3ZddrkWz9uw5r8rEbg3HGeGNnQo"/>
+</div>
+<!-- Verified Badge Overlay -->
+<div class="absolute -bottom-4 -right-4 bg-tertiary text-on-tertiary px-6 py-3 rounded-xl shadow-lg flex items-center gap-2 border-4 border-surface">
+<span class="material-symbols-outlined text-tertiary-fixed text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-headline text-sm font-bold tracking-wide uppercase">Verified</span>
+</div>
+</div>
+<!-- Profile Info -->
+<div class="lg:col-span-8 space-y-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="text-secondary font-headline font-bold text-sm uppercase tracking-widest">Master Craftsman</span>
+<div class="h-px w-8 bg-outline-variant/30"></div>
+<span class="text-on-surface-variant font-label text-sm">12+ Years Exp</span>
+</div>
+<h1 class="text-display-lg text-5xl md:text-6xl font-extrabold text-primary leading-tight">Alex Sterling</h1>
+<div class="flex flex-wrap items-center gap-6 mt-4">
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="location_on">location_on</span>
+<span class="font-medium">Bangalore</span>
+</div>
+<div class="flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-secondary">4.9</span>
+<span class="text-on-surface-variant text-sm">(124 Reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="signature-gradient text-on-primary px-10 py-4 rounded-xl font-headline font-bold text-lg shadow-xl hover:scale-[1.02] transition-transform flex items-center justify-center gap-3">
+                            Hire Now
+                            <span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+<button class="bg-surface-container-lowest text-primary border border-primary/10 px-10 py-4 rounded-xl font-headline font-bold text-lg shadow-sm hover:bg-surface-container-low transition-colors flex items-center justify-center gap-3">
+                            Send Message
+                            <span class="material-symbols-outlined" data-icon="mail">mail</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Sections -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+<!-- About Section -->
+<div class="md:col-span-7 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(23,28,31,0.04)]">
+<h2 class="text-headline-md text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="w-2 h-8 bg-secondary rounded-full"></span>
+                    About the Artisan
+                </h2>
+<p class="text-body-md text-on-surface-variant leading-relaxed text-lg mb-6">
+                    Specializing in the intersection of traditional woodworking and modern functional art. With over a decade of experience, I bring precision and soul to every piece of custom cabinetry and furniture restoration. Based in Bangalore, I serve clients who value heirloom quality and sustainable hardwood practices.
+                </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low rounded-lg">
+<p class="text-sm text-on-surface-variant mb-1">Response Time</p>
+<p class="font-bold text-primary">&lt; 2 Hours</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg">
+<p class="text-sm text-on-surface-variant mb-1">Completion Rate</p>
+<p class="font-bold text-primary">98%</p>
+</div>
+</div>
+</div>
+<!-- Skills Section -->
+<div class="md:col-span-5 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(23,28,31,0.04)]">
+<h2 class="text-headline-md text-2xl font-bold mb-6">Expertise</h2>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-medium text-sm">Cabinetry</span>
+<span class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-medium text-sm">Furniture Restoration</span>
+<span class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-medium text-sm">Hardwood Flooring</span>
+<span class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-medium text-sm">Custom Lathe Work</span>
+<span class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-medium text-sm">Architectural Joinery</span>
+<span class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-medium text-sm">Teak Specialist</span>
+</div>
+<div class="mt-8 pt-8 border-t border-surface-container-high">
+<div class="flex items-center justify-between mb-2">
+<span class="font-bold">Project Load</span>
+<span class="text-secondary font-bold">Available</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-1/3 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Project Gallery -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-headline-md text-3xl font-extrabold text-primary">Mastery Showcase</h2>
+<button class="text-primary font-bold flex items-center gap-2 hover:underline">
+                    View Portfolio
+                    <span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="col-span-2 row-span-2 rounded-xl overflow-hidden shadow-lg group relative">
+<img alt="Cabinetry Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Modern custom wooden kitchen cabinetry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdU5OLEthkgyTpSBbvUeGkDZpmoLWaf4NMBG-WI5hEj156xlExYPz8eaH_S4FkKDfAldd8ZxEm26JQk17Zkj-QoWrMAVSryj3CaNfb2Z4MB38JwQOcoMBUQNlxpjKHITOl3t9zO1rY3NShUa5c7WQdvyfWoqpPD-KbWA3Da0MXum71YmXLS8yJ1aStSRLf_51RS0cXkW8QqpcUXxanBygMLtxwZ_2j2xoHXkY7rraRvxkSqYcNyW2b0f-6ZNU6Fv_8Hbdi-sxw3qc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<p class="text-white font-bold">Oak Minimalist Kitchen</p>
+</div>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg group relative">
+<img alt="Furniture detail" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close up of fine woodworking joint" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBck5Lq-QBzUV3ENcQM_2LP0T4vz0U-bIbECJntsd1xLCYSb9434WfRadH0BLarOQ-7c4-nB8k3q655z294njbNRisGqF3zh-z9bz0997PLx8Tdjon3FFBHNr0IPg99j1ZMGr0wkqRvftm4ggOnl3sc7PbeJsEaAr3Gd6mjrW9tPyLvlrVO_Lqc1ktQKxIYAsRYCJT42-p4gocVAiyZVetP5FJRKLmXx_gIn9sPskE9Vwd_qwZyPJKyXQK4nBpfG6xhUieLh3PngF4"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg group relative">
+<img alt="Workshop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Artisan workshop with woodworking tools" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLmQLLBy5_6YD9l7UcC8lkZ8m9B5NLDhJASCN0xG2FBbzafCI31Strecs4-W3Wx9wridvd3BK7GSIXuUs__jYKzDNQqDFIlMSYDybBWhnLhuwuhjD95PPFpqyoAG5ZTSYiU8ZGqoZuczmjUBN4fLKIydqEgNHeSM59Gu3Jp63Mzg80Q-I04y9-2G0NHtciLhnWs4m1Zib5OyQVUmVKwsp8I0gSU9Gba8FDLsg-5DypGyXeqi_OAZeCol18tiHlDaW4fL7bYXdOvvQ"/>
+</div>
+<div class="col-span-2 aspect-[2/1] rounded-xl overflow-hidden shadow-lg group relative">
+<img alt="Restoration" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Restored antique dining table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnC2APXa5Waxzwjd62rtvqmpOLzcBWl2TDrgwVeBomQ_7RPkq3fgBbeddgvgqZMU1ePJD8nWQe6YnGMaNqUZ7m0b2gbkETnF6j2trV_9QXqlQVVF5obVyjGsTzARDrz6JFScNeOgcGuM772k34hsggnA_C6fNkpeMbjidLT6jTdJDSQlya8WTxGmqYJP8rogVbbXZDdUqIgikIZv5WFye2GXC-dXBLoD8J46djAXRUFp68un6ejF5Sxl74-q3kGVToMh7oKwCo3nQ"/>
+</div>
+</div>
+</section>
+<!-- Reviews Section -->
+<section class="mb-20">
+<h2 class="text-headline-md text-3xl font-extrabold text-primary mb-8">Voices of Trust</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Review 1 -->
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden">
+<span class="material-symbols-outlined absolute -top-4 -right-2 text-8xl text-surface-container-highest/50 rotate-12" data-icon="format_quote">format_quote</span>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed overflow-hidden">
+<img alt="Rohan" class="w-full h-full object-cover" data-alt="Customer portrait for testimonial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0B42CDJYYAQew5uWvbBo-9BT2xE-3kZ691QGGaIREbOaoXy73ufCew8J4O6gYe__yEaNq2j8Obb7gyKUb1P3VtzW9fTc3IX5KsAR77ccuOxb7nKKUDO14Pl-BDak_df7V_3cGabE4AsFqQzt5Cx9Dy_HsAndV4ocqL4oSNSQLn5MLw_sjI_7RlQ06Arx9mQ-83BByCt9IIj7HCU0c7rj6HWlA4dSvifdLbxYCuoCoFt1mQAn3PzxVR86TkKxjBKzkPMyznThiYOw"/>
+</div>
+<div>
+<p class="font-bold">Meera Krishnan</p>
+<div class="flex text-secondary scale-75 -ml-4">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<p class="text-on-surface-variant italic leading-relaxed">"Alex is a true artist. He restored a 50-year-old family dining table that we thought was beyond repair. The attention to detail and choice of finish was spectacular."</p>
+<p class="text-xs text-outline mt-4">2 weeks ago • Verified Service</p>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden">
+<span class="material-symbols-outlined absolute -top-4 -right-2 text-8xl text-surface-container-highest/50 rotate-12" data-icon="format_quote">format_quote</span>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed overflow-hidden">
+<img alt="Rohan" class="w-full h-full object-cover" data-alt="Customer portrait for testimonial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs6PT_GT-RASZhomT7A7JAtEdbyYW0OFFjlyk9mokf3_UKJIWOUmtZx7EuLALPqncAWK91Bbp7YYvDWiYyTOqNHb8TBjFhJy8D0eRj950bzwJqniizktEbBBL2Nd37RnY0t2PiVa4EsfBDjUBTotCoi8s3fTGdb76DKNE8abeaX7F8f85yGxUg5dY2BpAgm6qMs8CQVWjyiM5IgytS_E7A1QFJTsiWXfGEoO5_UCALUrapM2AcgpZmqFVNVm_MNKGrH593vCNGiwo"/>
+</div>
+<div>
+<p class="font-bold">Rohan Mehta</p>
+<div class="flex text-secondary scale-75 -ml-4">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star_half" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+</div>
+</div>
+<p class="text-on-surface-variant italic leading-relaxed">"Hired Alex for custom office cabinetry. He was punctual, professional, and the work quality exceeded my expectations. Bangalore is lucky to have craftsmen like him."</p>
+<p class="text-xs text-outline mt-4">1 month ago • Verified Service</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-surface-container-high px-6 py-2 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1 text-on-surface-variant cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-label font-medium uppercase tracking-tighter">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[10px] font-label font-medium uppercase tracking-tighter">Search</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+<span class="text-[10px] font-label font-medium uppercase tracking-tighter">My Jobs</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary cursor-pointer group">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-label font-bold uppercase tracking-tighter">Profile</span>
+</div>
+</nav>
+</body></html>

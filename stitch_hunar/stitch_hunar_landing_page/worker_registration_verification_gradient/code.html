@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar - Identity Verification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#171c1f",
+              "surface-container-highest": "#dfe3e7",
+              "background": "#f6fafe",
+              "on-error-container": "#93000a",
+              "surface-variant": "#dfe3e7",
+              "secondary-fixed-dim": "#ffb690",
+              "tertiary": "#00312c",
+              "surface-container-low": "#f0f4f8",
+              "inverse-primary": "#b6c4ff",
+              "primary": "#00236f",
+              "secondary-container": "#fd761a",
+              "on-tertiary-container": "#4ebdb0",
+              "on-secondary-fixed-variant": "#783200",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#00164e",
+              "inverse-surface": "#2c3134",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#341100",
+              "inverse-on-surface": "#edf1f5",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary-fixed": "#00201d",
+              "surface-tint": "#4059aa",
+              "on-primary-container": "#90a8ff",
+              "on-secondary-container": "#5c2400",
+              "on-surface-variant": "#444651",
+              "on-primary-fixed-variant": "#264191",
+              "outline-variant": "#c5c5d3",
+              "surface-container-high": "#e4e9ed",
+              "secondary": "#9d4300",
+              "error-container": "#ffdad6",
+              "outline": "#757682",
+              "surface-container": "#eaeef2",
+              "on-tertiary": "#ffffff",
+              "primary-fixed-dim": "#b6c4ff",
+              "tertiary-container": "#004942",
+              "surface": "#f6fafe",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#005049",
+              "secondary-fixed": "#ffdbca",
+              "tertiary-fixed": "#89f5e7",
+              "on-primary": "#ffffff",
+              "surface-dim": "#d6dade",
+              "surface-bright": "#f6fafe",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "on-error": "#ffffff",
+              "primary-container": "#1e3a8a",
+              "on-surface": "#171c1f"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 12px 32px rgba(23, 28, 31, 0.06);
+        }
+        .hero-pattern {
+            background-color: #f8fbff;
+            background-image: 
+                radial-gradient(at 0% 0%, #dce1ff 0, transparent 50%), 
+                radial-gradient(at 100% 0%, #e0f2fe 0, transparent 50%),
+                radial-gradient(at 50% 100%, #f0f9ff 0, transparent 50%);
+        }
+    </style>
+</head>
+<body class="hero-pattern text-on-surface min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component Render) -->
+<nav class="sticky top-0 z-50 bg-white/60 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-outline-variant/20">
+<div class="flex items-center gap-8">
+<span class="font-headline text-2xl font-bold text-primary tracking-tight">Hunar</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Jobs</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Training</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Help</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 rounded-full font-semibold text-primary hover:bg-primary/5 transition-all">Sign In</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="User Avatar Profile Image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNsusJKDVLCJ1IpIU8QXJKfemDw2IGGwl7PtnxQbdddl_nyjCmwiiM3Ah1VoGOPT_7UbCiGZYpRhpoHnAYIW4Z1KIGlbgzA9zcfSI4RP-cCZ1vBWrqcWmU-yTtwkMbhVIDeHvzTohlXusU7W7Q5BuPGVonywCV1sj_LMw5ShXWq4t_wL1Rsa90C_9isqm-NeAIcMWMNHWnlxCOKMbKxcdOmzuEnYY5jBRyLC2AXUiMA0MxvKgfhNR3MABHmPUf9tKy3DlY_x07x58"/>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex flex-col items-center px-4 py-8 md:py-12 relative z-10">
+<!-- Progress Bar (Shared Component Logic - Modified for Screen State) -->
+<div class="w-full max-w-3xl mb-12">
+<div class="flex justify-between items-end mb-3">
+<div>
+<span class="block text-xs font-bold uppercase tracking-widest text-secondary mb-1">Verification</span>
+<h2 class="text-on-surface font-headline text-xl font-bold">Registration Progress</h2>
+</div>
+<span class="text-sm font-medium text-on-surface-variant">Step 3 of 4</span>
+</div>
+<div class="w-full h-3 bg-surface-container-highest/50 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 75%;"></div>
+</div>
+</div>
+<section class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Content: Instructions & AI Badge -->
+<div class="lg:col-span-5 flex flex-col justify-center">
+<div class="mb-8">
+<h1 class="font-headline text-4xl lg:text-5xl text-primary font-extrabold leading-tight mb-6">
+                    Verify Your <span class="text-secondary">Identity.</span>
+</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8">
+                    To connect you with premium opportunities, we need to verify your documents. Your data is encrypted and handled with industrial-grade security.
+                </p>
+</div>
+<!-- AI Powered Feature Highlight -->
+<div class="bg-primary-container p-6 rounded-2xl relative overflow-hidden ambient-shadow">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+<div class="flex items-start gap-4 relative z-10">
+<div class="bg-surface-container-lowest p-3 rounded-xl text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-headline text-on-primary-container font-bold text-lg mb-1">AI-Powered Verification</h3>
+<p class="text-on-primary-container/80 text-sm">Our AI system scans documents instantly for 99.9% accuracy and faster profile approval.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Content: Upload Areas -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Aadhaar Card Upload -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl ambient-shadow flex flex-col items-center border-2 border-dashed border-outline-variant hover:border-primary/30 transition-all group cursor-pointer">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-3xl text-primary">id_card</span>
+</div>
+<h4 class="font-headline text-lg font-bold mb-1">Aadhaar Card</h4>
+<p class="text-on-surface-variant text-sm mb-6">Drag and drop or click to upload front &amp; back</p>
+<button class="px-8 py-3 bg-primary text-on-primary rounded-full font-semibold text-sm flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined text-lg">upload</span>
+                    Select Files
+                </button>
+</div>
+<!-- Professional Certification Upload -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl ambient-shadow flex flex-col items-center border-2 border-dashed border-outline-variant hover:border-primary/30 transition-all group cursor-pointer">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-3xl text-primary">workspace_premium</span>
+</div>
+<h4 class="font-headline text-lg font-bold mb-1">Professional Certifications</h4>
+<p class="text-on-surface-variant text-sm mb-6">Upload diplomas, trade licenses, or skill certificates</p>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface font-semibold text-sm flex items-center gap-2 transition-transform hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                    Add Certificate
+                </button>
+</div>
+<!-- Footer Actions -->
+<div class="flex items-center justify-between pt-6">
+<button class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Back
+                </button>
+<button class="px-10 py-4 bg-secondary text-on-secondary rounded-full font-headline font-bold text-lg ambient-shadow transition-transform hover:scale-105 active:scale-95">
+                    Submit Documents
+                </button>
+</div>
+</div>
+</section>
+<!-- Trust Badges -->
+<div class="mt-16 flex flex-wrap justify-center gap-8 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-700">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">lock</span>
+<span class="font-bold text-sm">256-bit Encrypted</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-bold text-sm">GDPR Compliant</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-bold text-sm">Identity Secured</span>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-8 text-center border-t border-outline-variant/10 bg-white/30 backdrop-blur-sm">
+<p class="text-on-surface-variant/60 text-xs font-medium">© 2024 Hunar Platform. All rights reserved. Professional Identity Services.</p>
+</footer>
+</body></html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar Modern | Employer Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d6dade",
+              "secondary-fixed": "#ffdbca",
+              "surface-container-high": "#e4e9ed",
+              "primary": "#00236f",
+              "on-error-container": "#93000a",
+              "on-tertiary-container": "#4ebdb0",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#ffb690",
+              "on-surface-variant": "#444651",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "surface-container-highest": "#dfe3e7",
+              "on-tertiary-fixed-variant": "#005049",
+              "on-surface": "#171c1f",
+              "inverse-on-surface": "#edf1f5",
+              "outline-variant": "#c5c5d3",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary-container": "#5c2400",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f6fafe",
+              "primary-fixed": "#dce1ff",
+              "surface-variant": "#dfe3e7",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#fd761a",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2c3134",
+              "surface-tint": "#4059aa",
+              "on-background": "#171c1f",
+              "on-secondary-fixed": "#341100",
+              "tertiary-fixed": "#89f5e7",
+              "primary-container": "#1e3a8a",
+              "outline": "#757682",
+              "surface-container-low": "#f0f4f8",
+              "on-primary-fixed": "#00164e",
+              "on-secondary-fixed-variant": "#783200",
+              "inverse-primary": "#b6c4ff",
+              "on-primary-container": "#90a8ff",
+              "tertiary": "#00312c",
+              "surface": "#f6fafe",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#004942",
+              "on-primary-fixed-variant": "#264191",
+              "surface-container": "#eaeef2",
+              "secondary": "#9d4300",
+              "on-error": "#ffffff",
+              "background": "#f6fafe"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .soft-shadow {
+            box-shadow: 0px 12px 32px rgba(23, 28, 31, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="w-72 bg-surface-container-lowest border-r-0 flex flex-col h-screen sticky top-0 hidden lg:flex">
+<div class="p-8">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="construction" data-weight="fill" style="font-variation-settings: 'FILL' 1;">construction</span>
+</div>
+<div>
+<h1 class="font-headline font-bold text-lg leading-none text-primary">Hunar Modern</h1>
+<p class="text-xs text-outline font-medium tracking-wide mt-1">Employer Portal</p>
+</div>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary text-on-primary font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+                    My Jobs
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+                    Applicants
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+                    Messages
+                </a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</nav>
+</div>
+<div class="mt-auto p-8">
+<div class="bg-surface-container-low rounded-2xl p-4 flex items-center gap-3">
+<img alt="Employer Profile" class="w-10 h-10 rounded-full object-cover" data-alt="Professional male employer portrait in office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUWDEDRsv6QXmDTAe_BQB-JDHASmuiRsJafgzSyUT5dgayfFJ7vc9Bfa7em7_95LvmIUYzR-owcfaR1UoZ-pasJSXqfFhNIAA9VPBigmxdi0P7ZK4rx3EZTuersDzcbcnNXDD8p3t7a3UWlP2UcKs5km4DtheNC-HArhBStc2bgZvvhw9xGFlH8JTqdWiE663Fw8CBidEkwMQeyjsrYwMxWlZKHz-evqjdAzNpn5rY4fALpKp39CPI7ErEsu_fI9K5NbkV-fGXG68"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">BuildCraft Infra</p>
+<p class="text-xs text-outline truncate">Premium Account</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0">
+<!-- TopNavBar (Shared Component) -->
+<header class="h-20 bg-surface/80 backdrop-blur-md sticky top-0 z-30 px-8 flex items-center justify-between">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2.5 pl-12 pr-4 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Search candidates, jobs, or messages..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-8">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-semibold text-primary">Hunar</span>
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-sm">business</span>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 lg:p-12 space-y-12">
+<!-- Greeting -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-secondary font-headline font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Enterprise Overview</span>
+<h2 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface leading-tight">Welcome back,<br/><span class="text-primary">BuildCraft Infra!</span></h2>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-semibold flex items-center gap-2 soft-shadow hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined">add</span>
+                    Post New Job
+                </button>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] soft-shadow group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-12 h-12 bg-primary-fixed rounded-2xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">work</span>
+</div>
+<span class="text-tertiary font-bold text-xs bg-tertiary-fixed/30 px-3 py-1 rounded-full">+2 this week</span>
+</div>
+<h3 class="text-outline font-medium text-sm mb-1">Active Jobs</h3>
+<p class="text-4xl font-headline font-extrabold text-on-surface">8</p>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] soft-shadow group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-12 h-12 bg-secondary-fixed rounded-2xl flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<span class="text-secondary font-bold text-xs bg-secondary-fixed/50 px-3 py-1 rounded-full">+15%</span>
+</div>
+<h3 class="text-outline font-medium text-sm mb-1">Total Applicants</h3>
+<p class="text-4xl font-headline font-extrabold text-on-surface">124</p>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-[2rem] soft-shadow group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-12 h-12 bg-tertiary-fixed rounded-2xl flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<h3 class="text-outline font-medium text-sm mb-1">Hired This Month</h3>
+<p class="text-4xl font-headline font-extrabold text-on-surface">12</p>
+</div>
+</section>
+<!-- Main Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Active Job Postings Table (Bento Style) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-[2.5rem] p-8 soft-shadow">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-2xl font-headline font-bold">Active Job Postings</h3>
+<a class="text-primary font-semibold text-sm hover:underline" href="#">View All</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-outline text-xs uppercase tracking-widest border-b border-surface-container-low">
+<th class="pb-4 font-bold">Job Title</th>
+<th class="pb-4 font-bold">Date Posted</th>
+<th class="pb-4 font-bold">Applicants</th>
+<th class="pb-4 font-bold">Status</th>
+<th class="pb-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-6">
+<div class="font-bold text-on-surface">Master Electrician</div>
+<div class="text-xs text-outline">Industrial Project • Mumbai</div>
+</td>
+<td class="py-6 text-sm text-on-surface-variant">Oct 12, 2023</td>
+<td class="py-6">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full border-2 border-surface-container-lowest bg-surface-container-high text-[10px] flex items-center justify-center font-bold">42</div>
+</div>
+</td>
+<td class="py-6">
+<span class="px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-container text-xs font-bold">Urgent</span>
+</td>
+<td class="py-6 text-right">
+<button class="p-2 text-outline hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-6">
+<div class="font-bold text-on-surface">Civil Site Foreman</div>
+<div class="text-xs text-outline">Infrastructure • Pune</div>
+</td>
+<td class="py-6 text-sm text-on-surface-variant">Oct 15, 2023</td>
+<td class="py-6">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full border-2 border-surface-container-lowest bg-surface-container-high text-[10px] flex items-center justify-center font-bold">18</div>
+</div>
+</td>
+<td class="py-6">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold">Active</span>
+</td>
+<td class="py-6 text-right">
+<button class="p-2 text-outline hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-6">
+<div class="font-bold text-on-surface">Heavy Equipment Operator</div>
+<div class="text-xs text-outline">Mining • Gujarat</div>
+</td>
+<td class="py-6 text-sm text-on-surface-variant">Oct 08, 2023</td>
+<td class="py-6">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full border-2 border-surface-container-lowest bg-surface-container-high text-[10px] flex items-center justify-center font-bold">64</div>
+</div>
+</td>
+<td class="py-6">
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-bold">Active</span>
+</td>
+<td class="py-6 text-right">
+<button class="p-2 text-outline hover:text-primary"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Recent Applicants Sidebar -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-surface-container-lowest rounded-[2.5rem] p-8 soft-shadow">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-xl font-headline font-bold">Recent Applicants</h3>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="space-y-6">
+<!-- Applicant 1 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Rajesh Kumar" class="w-12 h-12 rounded-2xl object-cover" data-alt="Portrait of a smiling skilled worker" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9xzVQ-29hhn_g4fAK3Jhy2VJJ-G2XVG6obD8ltonhC1PwDatncVYN1MSRHxiwGbqEbZeMmU0qDkUlSgc_T2Ex0SKC4qEhwJBjchym2CHx5W-8yBcCxRWlOXIMb0KVa1UfxNsjVhRHiWw4K39KYnG4v_sUdVE9OAwmhtLAhvT2xzYtrX3I5-V2HEsn6hyXfi2bd6cGKT9b-nkO2tUaSeOvIImSLWbfU6Jq0gxzevZBE1V6A8h8OP940aUaEH_iyKt0KoWVyVp06NI"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-tertiary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div>
+<p class="font-bold text-sm">Rajesh Kumar</p>
+<p class="text-xs text-outline font-medium">Pipe Fitter</p>
+</div>
+</div>
+<button class="bg-surface-container-low text-primary px-4 py-2 rounded-xl text-xs font-bold hover:bg-primary hover:text-on-primary transition-all">Review</button>
+</div>
+<!-- Applicant 2 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Anita Sharma" class="w-12 h-12 rounded-2xl object-cover" data-alt="Professional female supervisor headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_0pZD1-VNIrk1bdFZRGklaSs5aRrhp78P4_WkAXymW1uCHLZUkRYO-Sa1INfueJQaJu0PhYJS8kwL8GJz-Mf0sLj5Bv-0Me4CQI8kmsAHKrAhlHB5N7nDNJozvXHBYh31q1wu7fygaeopJd0bnl1HR3ZcdVih3zUnhHpVif7KYxbPXJFK82pW8fN-HQmdTOcVfk8a2LWUhEGomEQrCqqyw3dGESzxPIRQ95wiP5mGd2TMrCZDLDjcJ9Z2TDZ6IRTPhqfS6D3eOPo"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-secondary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div>
+<p class="font-bold text-sm">Anita Sharma</p>
+<p class="text-xs text-outline font-medium">Safety Inspector</p>
+</div>
+</div>
+<button class="bg-surface-container-low text-primary px-4 py-2 rounded-xl text-xs font-bold hover:bg-primary hover:text-on-primary transition-all">Review</button>
+</div>
+<!-- Applicant 3 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Amit Patel" class="w-12 h-12 rounded-2xl object-cover" data-alt="Skilled male technician looking confident" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDe0-33MWJOCYfagtLmyD8VumNwrzUQRvCsdTZ80UXwxKdQz2JP8j51sOJz7MUPTCaV-FE15ycwuebu7qsnuUNTg37wsWRGHipF2KG1S2HaYM1FisxykG2ySWHjQPKfh7IFdr1sSetTBVEFu2DhFk7MCvZnN2yHylYG62MHICkUNnlrnmzzt-3-nMe2ztXPP9sPr15CTDPPhfs6h8rZKxYui4WOVbO2AnE3UmOr4BXZkok-srm9ExCZstk9dqthqQo11MQ6NPhJ1E"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-tertiary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div>
+<p class="font-bold text-sm">Amit Patel</p>
+<p class="text-xs text-outline font-medium">Weld Master</p>
+</div>
+</div>
+<button class="bg-surface-container-low text-primary px-4 py-2 rounded-xl text-xs font-bold hover:bg-primary hover:text-on-primary transition-all">Review</button>
+</div>
+</div>
+<button class="w-full mt-8 py-3 rounded-xl border border-dashed border-outline-variant text-outline text-xs font-bold hover:bg-surface-container-low transition-colors">
+                            Show More Candidates
+                        </button>
+</div>
+<!-- Promo Card / Call to Action -->
+<div class="bg-primary-container rounded-[2.5rem] p-8 text-on-primary relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline font-bold text-xl mb-2">Need specialized talent?</h4>
+<p class="text-sm text-primary-fixed/80 mb-6 leading-relaxed">Let our AI-powered recruitment engine match you with top-tier verified artisans.</p>
+<button class="bg-on-primary text-primary px-6 py-3 rounded-xl font-bold text-sm">Upgrade to AI Plus</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20">
+<span class="material-symbols-outlined text-[120px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

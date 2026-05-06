@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar - Service Interests</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-dim": "#d6dade",
+                "inverse-on-surface": "#edf1f5",
+                "on-tertiary": "#ffffff",
+                "on-primary-fixed-variant": "#264191",
+                "inverse-surface": "#2c3134",
+                "tertiary-container": "#004942",
+                "primary-container": "#1e3a8a",
+                "on-background": "#171c1f",
+                "surface-variant": "#dfe3e7",
+                "surface-container": "#eaeef2",
+                "surface-bright": "#f6fafe",
+                "secondary-container": "#fd761a",
+                "primary-fixed-dim": "#b6c4ff",
+                "on-primary": "#ffffff",
+                "error": "#ba1a1a",
+                "on-primary-fixed": "#00164e",
+                "on-tertiary-container": "#4ebdb0",
+                "on-surface-variant": "#444651",
+                "secondary-fixed-dim": "#ffb690",
+                "surface": "#f6fafe",
+                "primary-fixed": "#dce1ff",
+                "surface-container-low": "#f0f4f8",
+                "on-primary-container": "#90a8ff",
+                "tertiary": "#00312c",
+                "on-error": "#ffffff",
+                "surface-tint": "#4059aa",
+                "on-surface": "#171c1f",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-highest": "#dfe3e7",
+                "on-secondary-container": "#5c2400",
+                "secondary-fixed": "#ffdbca",
+                "on-secondary-fixed": "#341100",
+                "on-error-container": "#93000a",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "secondary": "#9d4300",
+                "on-tertiary-fixed": "#00201d",
+                "on-secondary": "#ffffff",
+                "outline-variant": "#c5c5d3",
+                "on-secondary-fixed-variant": "#783200",
+                "tertiary-fixed": "#89f5e7",
+                "surface-container-high": "#e4e9ed",
+                "error-container": "#ffdad6",
+                "background": "#f6fafe",
+                "on-tertiary-fixed-variant": "#005049",
+                "inverse-primary": "#b6c4ff",
+                "primary": "#00236f",
+                "outline": "#757682"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .ambient-glow {
+            box-shadow: 0px 12px 32px rgba(23, 28, 31, 0.06);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6fafe;
+            color: #171c1f;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Sophisticated deep blue gradient from SCREEN_21 */
+        .hero-pattern {
+            background-color: #f8fbff;
+            background-image: 
+                radial-gradient(at 0% 0%, #dce1ff 0, transparent 50%), 
+                radial-gradient(at 100% 0%, #e0f2fe 0, transparent 50%),
+                radial-gradient(at 50% 100%, #f0f9ff 0, transparent 50%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="hero-pattern text-on-surface min-h-screen flex flex-col">
+<!-- Shared Component: TopAppBar -->
+<header class="sticky top-0 z-50 bg-white/40 backdrop-blur-md border-b border-white/20">
+<div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-white/40 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold text-primary">Hunar</h1>
+</div>
+<button class="p-2 hover:bg-white/40 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</header>
+<main class="flex-grow max-w-5xl mx-auto w-full px-4 py-8">
+<!-- Shared Component: ProgressBar -->
+<div class="mb-12">
+<div class="flex justify-between items-end mb-3">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-secondary mb-1 block">Registration Progress</span>
+<h2 class="text-sm font-semibold text-on-surface-variant">Step 1 of 4</h2>
+</div>
+<span class="text-sm font-bold text-primary">25%</span>
+</div>
+<div class="w-full bg-white/50 h-2 rounded-full overflow-hidden border border-white/20">
+<div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 25%"></div>
+</div>
+</div>
+<!-- Hero Section: Editorial Casing -->
+<section class="mb-12">
+<span class="text-secondary font-bold text-xs uppercase tracking-[0.2em] mb-4 block">Personalization</span>
+<h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-4 leading-tight">
+                What do you need <br/><span class="text-secondary">help with?</span>
+</h1>
+<p class="text-on-surface-variant text-lg max-w-xl leading-relaxed">
+                Select the services you're interested in. This helps us curate the best artisans and experts for your specific needs.
+            </p>
+</section>
+<!-- Bento Grid for Service Selection -->
+<div class="grid grid-cols-1 md:grid-cols-6 gap-6 mb-16">
+<!-- Large Feature Card: Home Repair -->
+<div class="md:col-span-4 group relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 ambient-glow cursor-pointer transition-transform hover:-translate-y-1">
+<div class="relative z-10">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl" data-icon="home_repair_service">home_repair_service</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Home Repair</h3>
+<p class="text-on-surface-variant max-w-xs mb-8">From plumbing to structural fixes, find certified professionals for your home maintenance.</p>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-high rounded-sm text-xs font-medium">Plumbing</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-sm text-xs font-medium">Electrical</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-sm text-xs font-medium">+4 more</span>
+</div>
+</div>
+<!-- Visual Decoration -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Vertical Card: Emergency -->
+<div class="md:col-span-2 group relative overflow-hidden rounded-xl bg-tertiary text-on-tertiary p-8 ambient-glow cursor-pointer transition-transform hover:-translate-y-1">
+<div class="relative z-10 flex flex-col h-full">
+<div class="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center text-white mb-6">
+<span class="material-symbols-outlined text-3xl" data-icon="emergency_home">emergency_home</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Emergency Services</h3>
+<p class="text-white/70 mb-auto">24/7 rapid response for urgent repairs and critical breakdowns.</p>
+<div class="mt-8 flex items-center text-sm font-bold gap-2">
+<span>VIEW OPTIONS</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<!-- Square Card: Appliance -->
+<div class="md:col-span-2 group relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 ambient-glow cursor-pointer transition-transform hover:-translate-y-1">
+<div class="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary mb-6">
+<span class="material-symbols-outlined text-3xl" data-icon="settings_input_component">settings_input_component</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Appliance Installation</h3>
+<p class="text-on-surface-variant text-sm">Professional setup for your kitchen and laundry tech.</p>
+<div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<!-- Square Card: Renovation -->
+<div class="md:col-span-2 group relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 ambient-glow cursor-pointer transition-transform hover:-translate-y-1 border-2 border-primary">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl" data-icon="architecture">architecture</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Modern Renovation</h3>
+<p class="text-on-surface-variant text-sm">Complete space redesign and aesthetic upgrades.</p>
+<!-- Active State -->
+<div class="absolute top-6 right-6 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Square Card: Maintenance -->
+<div class="md:col-span-2 group relative overflow-hidden rounded-xl bg-surface-container-lowest p-8 ambient-glow cursor-pointer transition-transform hover:-translate-y-1">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant mb-6">
+<span class="material-symbols-outlined text-3xl" data-icon="calendar_today">calendar_today</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Routine Care</h3>
+<p class="text-on-surface-variant text-sm">Subscription-based monthly checkups for peace of mind.</p>
+<div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Shared Component: ButtonGroup (Floating Style) -->
+<div class="fixed bottom-8 left-0 right-0 z-40 px-4">
+<div class="max-w-xl mx-auto glass-card rounded-full p-2 flex justify-between items-center shadow-2xl">
+<button class="px-8 py-3 rounded-full text-primary font-bold hover:bg-white/40 transition-colors">
+                    Back
+                </button>
+<button class="bg-primary text-white px-10 py-3 rounded-full font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2">
+                    Next
+                    <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer Space for Scroll -->
+<div class="h-32"></div>
+<!-- Exclusion Protocol: BottomNavBar hidden for focus registration flow -->
+</body></html>

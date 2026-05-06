@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar - Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#171c1f",
+              "surface-container-highest": "#dfe3e7",
+              "background": "#f6fafe",
+              "on-error-container": "#93000a",
+              "surface-variant": "#dfe3e7",
+              "secondary-fixed-dim": "#ffb690",
+              "tertiary": "#00312c",
+              "surface-container-low": "#f0f4f8",
+              "inverse-primary": "#b6c4ff",
+              "primary": "#00236f",
+              "secondary-container": "#fd761a",
+              "on-tertiary-container": "#4ebdb0",
+              "on-secondary-fixed-variant": "#783200",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#00164e",
+              "inverse-surface": "#2c3134",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#341100",
+              "inverse-on-surface": "#edf1f5",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary-fixed": "#00201d",
+              "surface-tint": "#4059aa",
+              "on-primary-container": "#90a8ff",
+              "on-secondary-container": "#5c2400",
+              "on-surface-variant": "#444651",
+              "on-primary-fixed-variant": "#264191",
+              "outline-variant": "#c5c5d3",
+              "surface-container-high": "#e4e9ed",
+              "secondary": "#9d4300",
+              "error-container": "#ffdad6",
+              "outline": "#757682",
+              "surface-container": "#eaeef2",
+              "on-tertiary": "#ffffff",
+              "primary-fixed-dim": "#b6c4ff",
+              "tertiary-container": "#004942",
+              "surface": "#f6fafe",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#005049",
+              "secondary-fixed": "#ffdbca",
+              "tertiary-fixed": "#89f5e7",
+              "on-primary": "#ffffff",
+              "surface-dim": "#d6dade",
+              "surface-bright": "#f6fafe",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "on-error": "#ffffff",
+              "primary-container": "#1e3a8a",
+              "on-surface": "#171c1f"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar (Shell) -->
+<nav class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<span class="font-headline text-2xl font-bold text-primary tracking-tight">Hunar</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Jobs</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Training</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Help</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 text-primary font-semibold text-sm hover:bg-primary-fixed rounded-xl transition-all">Sign In</button>
+</div>
+</nav>
+<!-- Main Content (Creative Canvas) -->
+<main class="flex-grow flex flex-col items-center px-4 py-12">
+<div class="w-full max-w-2xl">
+<!-- ProgressBar Component (Shared) -->
+<div class="mb-12">
+<div class="flex justify-between items-end mb-3">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-secondary font-bold mb-1">Registration Progress</p>
+<h2 class="font-headline text-xl font-bold text-on-background">Step 1 of 4</h2>
+</div>
+<span class="text-primary font-bold">25%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- Form Section with Intentional Asymmetry & Layering -->
+<div class="relative">
+<!-- Decorative element -->
+<div class="absolute -top-6 -right-6 w-32 h-32 bg-secondary-fixed opacity-20 rounded-full blur-3xl -z-10"></div>
+<div class="bg-surface-container-lowest p-8 md:p-12 rounded-[2rem] shadow-[0px_12px_32px_rgba(23,28,31,0.06)] relative overflow-hidden">
+<div class="mb-10">
+<h1 class="font-headline text-3xl md:text-4xl font-bold text-on-background leading-tight">
+                            Tell us about <span class="text-primary">yourself.</span>
+</h1>
+<p class="text-on-surface-variant mt-3 max-w-md">Join India's most trusted network for skilled professionals and artisans.</p>
+</div>
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant ml-1">Full Name</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline" placeholder="e.g. Rahul Sharma" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-primary/40">person</span>
+</div>
+</div>
+<!-- Phone Number -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant ml-1">Phone Number</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline" placeholder="+91 00000-00000" type="tel"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-primary/40">call</span>
+</div>
+</div>
+<!-- Email Address -->
+<div class="space-y-2 md:col-span-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant ml-1">Email Address</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl px-4 py-4 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline" placeholder="name@example.com" type="email"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-primary/40">mail</span>
+</div>
+</div>
+<!-- City Selection -->
+<div class="space-y-2 md:col-span-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant ml-1">Select City</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+<button class="py-3 px-4 rounded-xl bg-primary text-on-primary font-medium text-sm text-center transition-all ring-2 ring-primary" type="button">Mumbai</button>
+<button class="py-3 px-4 rounded-xl bg-surface-container-high text-on-surface-variant font-medium text-sm text-center hover:bg-surface-variant transition-all" type="button">Delhi</button>
+<button class="py-3 px-4 rounded-xl bg-surface-container-high text-on-surface-variant font-medium text-sm text-center hover:bg-surface-variant transition-all" type="button">Bangalore</button>
+<button class="py-3 px-4 rounded-xl bg-surface-container-high text-on-surface-variant font-medium text-sm text-center hover:bg-surface-variant transition-all" type="button">Hyderabad</button>
+<button class="py-3 px-4 rounded-xl bg-surface-container-high text-on-surface-variant font-medium text-sm text-center hover:bg-surface-variant transition-all" type="button">Pune</button>
+<button class="py-3 px-4 rounded-xl bg-surface-container-high text-on-surface-variant font-medium text-sm text-center hover:bg-surface-variant transition-all" type="button">Chennai</button>
+<button class="py-3 px-4 rounded-xl bg-surface-container-high text-on-surface-variant font-medium text-sm text-center hover:bg-surface-variant transition-all" type="button">Kolkata</button>
+<button class="py-3 px-4 rounded-xl bg-surface-container-high text-on-surface-variant font-medium text-sm text-center hover:bg-surface-variant transition-all" type="button">Ahmedabad</button>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<p class="text-xs text-on-surface-variant italic">By continuing, you agree to Hunar's Terms of Service.</p>
+<button class="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                                Next
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Contextual Information Card -->
+<div class="mt-8 flex gap-4 p-6 bg-tertiary/5 rounded-2xl">
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center flex-shrink-0 text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h4 class="font-bold text-tertiary">Your privacy matters</h4>
+<p class="text-sm text-on-surface-variant">We never share your contact details with employers without your explicit permission during an application.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Shell - Target: Profile context) -->
+<footer class="md:hidden sticky bottom-0 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/20 px-4 py-3">
+<div class="flex items-center justify-around">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">work</span>
+<span class="text-[10px] font-medium">My Jobs</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</div>
+</footer>
+</body></html>

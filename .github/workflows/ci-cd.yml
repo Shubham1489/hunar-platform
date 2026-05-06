@@ -1,0 +1,234 @@
+# ──────────────────────────────────────────────
+# Hunar Platform — CI/CD Pipeline
+# Targets: Vercel (web), Render (API + AI), GitHub Releases (APK)
+# ──────────────────────────────────────────────
+
+name: CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+  PYTHON_VERSION: '3.11'
+  FLUTTER_VERSION: '3.29.0'
+
+jobs:
+  # ─── Lint & Type Check ─────────────────────
+  lint:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript check — API
+        run: cd apps/api && npx prisma generate && npx tsc --noEmit
+        continue-on-error: true
+
+      - name: Lint — Web
+        run: cd apps/web && npm run lint
+        continue-on-error: true
+
+  # ─── Build & Test API ──────────────────────
+  build-api:
+    name: Build API
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: cd apps/api && npx prisma generate
+
+      - name: Build
+        run: cd apps/api && npx tsc
+
+      - name: Run tests
+        run: cd apps/api && npm test
+        continue-on-error: true
+
+  # ─── Build & Test Web ──────────────────────
+  build-web:
+    name: Build Web
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js
+        run: cd apps/web && npm run build
+        env:
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'https://hunar-api.onrender.com/api/v1' }}
+
+  # ─── Build AI Service ──────────────────────
+  build-ai:
+    name: Build AI Service
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r apps/ai-service/requirements.txt
+
+      - name: Check syntax
+        run: python -m py_compile apps/ai-service/app/main.py
+
+  # ─── Flutter Analyze & Build APK ───────────
+  build-mobile:
+    name: Build Mobile APK
+    runs-on: ubuntu-latest
+    needs: lint
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: cd apps/mobile && flutter pub get
+
+      - name: Analyze
+        run: cd apps/mobile && flutter analyze
+
+      - name: Run tests
+        run: cd apps/mobile && flutter test
+
+      - name: Build APK
+        run: cd apps/mobile && flutter build apk --release
+        env:
+          API_BASE_URL: ${{ vars.API_BASE_URL || 'https://hunar-api.onrender.com/api/v1' }}
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hunar-release-apk
+          path: apps/mobile/build/app/outputs/flutter-apk/app-release.apk
+
+  # ─── Create GitHub Release (with APK) ──────
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: [build-api, build-web, build-ai, build-mobile]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: hunar-release-apk
+          path: ./release
+
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(date +'v%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.VERSION }}
+          name: "Hunar ${{ steps.version.outputs.VERSION }}"
+          body: |
+            ## 📱 Download
+            - **Android APK**: Download `app-release.apk` below
+            
+            ## 🌐 Live URLs
+            - Web: https://hunar-web.vercel.app
+            - API: https://hunar-api.onrender.com/docs
+            - AI: https://hunar-ai.onrender.com/docs
+          files: |
+            ./release/app-release.apk
+          draft: false
+          prerelease: false
+
+  # ─── Docker Build (for self-hosted) ────────
+  docker:
+    name: Docker Build & Push
+    runs-on: ubuntu-latest
+    needs: [build-api, build-web, build-ai]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & Push API
+        uses: docker/build-push-action@v5
+        with:
+          context: ./apps/api
+          push: true
+          tags: ghcr.io/${{ github.repository }}/api:latest,ghcr.io/${{ github.repository }}/api:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & Push Web
+        uses: docker/build-push-action@v5
+        with:
+          context: ./apps/web
+          push: true
+          tags: ghcr.io/${{ github.repository }}/web:latest,ghcr.io/${{ github.repository }}/web:${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL || 'https://hunar-api.onrender.com/api/v1' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & Push AI Service
+        uses: docker/build-push-action@v5
+        with:
+          context: ./apps/ai-service
+          push: true
+          tags: ghcr.io/${{ github.repository }}/ai-service:latest,ghcr.io/${{ github.repository }}/ai-service:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

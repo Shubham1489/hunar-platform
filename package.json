@@ -1,0 +1,48 @@
+{
+  "name": "hunar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hunar — AI-Powered Blue-Collar Job Platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "clean": "turbo clean && rimraf node_modules",
+
+    "db:migrate": "npm run prisma:migrate --workspace=apps/api",
+    "db:seed": "npm run prisma:seed --workspace=apps/api",
+    "db:studio": "npm run prisma:studio --workspace=apps/api",
+    "db:generate": "npm run prisma:generate --workspace=apps/api",
+
+    "docker:up": "docker compose -f infra/docker-compose.yml up -d",
+    "docker:down": "docker compose -f infra/docker-compose.yml down",
+
+    "prod:build": "docker compose -f docker-compose.prod.yml build",
+    "prod:up": "docker compose -f docker-compose.prod.yml up -d",
+    "prod:down": "docker compose -f docker-compose.prod.yml down",
+    "prod:logs": "docker compose -f docker-compose.prod.yml logs -f",
+    "prod:migrate": "docker compose -f docker-compose.prod.yml run --rm migrate",
+    "prod:restart": "docker compose -f docker-compose.prod.yml restart",
+    "prod:status": "docker compose -f docker-compose.prod.yml ps",
+
+    "health": "curl -s http://localhost:3001/health && echo '' && curl -s http://localhost:8000/health",
+
+    "deploy:validate": "turbo build && echo 'All services built successfully!'",
+    "deploy:web": "cd apps/web && npx vercel --prod",
+    "deploy:check": "curl -sf https://hunar-api.onrender.com/health && echo ' API OK' && curl -sf https://hunar-ai.onrender.com/health && echo ' AI OK'"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "rimraf": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "npm@10.0.0"
+}
+

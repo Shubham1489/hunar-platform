@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b6c4ff",
+                        "on-surface-variant": "#444651",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d6dade",
+                        "surface-container-high": "#e4e9ed",
+                        "primary-fixed": "#dce1ff",
+                        "on-secondary-container": "#5c2400",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface": "#f6fafe",
+                        "secondary-fixed-dim": "#ffb690",
+                        "surface-variant": "#dfe3e7",
+                        "outline-variant": "#c5c5d3",
+                        "inverse-surface": "#2c3134",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#4ebdb0",
+                        "inverse-on-surface": "#edf1f5",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "surface-container-highest": "#dfe3e7",
+                        "on-tertiary-fixed": "#00201d",
+                        "secondary-fixed": "#ffdbca",
+                        "surface-tint": "#4059aa",
+                        "on-surface": "#171c1f",
+                        "secondary-container": "#fd761a",
+                        "tertiary-container": "#004942",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#1e3a8a",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-secondary-fixed": "#341100",
+                        "surface-container": "#eaeef2",
+                        "outline": "#757682",
+                        "on-primary-fixed": "#00164e",
+                        "tertiary": "#00312c",
+                        "on-background": "#171c1f",
+                        "on-secondary-fixed-variant": "#783200",
+                        "surface-container-low": "#f0f4f8",
+                        "on-primary-container": "#90a8ff",
+                        "primary": "#00236f",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "tertiary-fixed": "#89f5e7",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f6fafe",
+                        "background": "#f6fafe",
+                        "secondary": "#9d4300"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 12px 32px rgba(23, 28, 31, 0.06);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+        }
+        .mesh-bg {
+            background-color: #f6fafe;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 35, 111, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(157, 67, 0, 0.03) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface mesh-bg min-h-screen flex items-center justify-center p-6">
+<!-- Main Container -->
+<div class="w-full max-w-md">
+<!-- Header / Logo -->
+<div class="mb-12 text-center">
+<h1 class="font-headline text-4xl font-extrabold tracking-tight text-primary">Hunar</h1>
+</div>
+<!-- Lockscreen Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 ambient-shadow relative overflow-visible border border-outline-variant/10">
+<!-- User Avatar & Identity -->
+<div class="flex flex-col items-center -mt-20 mb-8">
+<div class="relative">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface-container-lowest ambient-shadow">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional portrait of Johnathan Doe smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDYXVhnjP7nPm63vphdXg44c99MvORGoZUgZ3vbGSOzFj8KBcqOd8UpgIyxa1QH3SfW6PP_9gzzBB8mw-nYx-A57BXyP0pAbrxd7ishsHzpvXmzUycwS5atCeVUeeyp7fyhzkDVfIFL0f4QbinJMO0ZN4uURJGrOv9PxZ4GTjsht8iKp_qCy-Zjuj9SBBIIoTmX9HWbMdaGeLfEzccWV0G_VL1Zzgt3ZoODKWHKq917FyuRYAEzzV2eIulabtRip1m-M0wK2Ags7E"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-tertiary-fixed p-1 rounded-full border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[14px] font-bold text-on-tertiary-fixed-variant" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+</div>
+<div class="mt-4 text-center">
+<h2 class="font-headline text-2xl font-bold text-on-background">Johnathan Doe</h2>
+<div class="flex items-center justify-center gap-2 mt-1">
+<span class="material-symbols-outlined text-sm text-secondary" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="text-xs font-semibold uppercase tracking-widest text-on-surface-variant">Session Locked</span>
+</div>
+</div>
+</div>
+<!-- Form Fields -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant px-1" for="password">Password</label>
+<div class="relative group">
+<input class="w-full h-14 bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all duration-300 text-on-surface placeholder:text-outline/50" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full signature-gradient text-on-primary h-14 rounded-full font-headline font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-[0.98] ambient-shadow" type="submit">
+                    Unlock
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<!-- Status Indicator (Subtle) -->
+<div class="mt-8 pt-6 border-t border-outline-variant/10 flex justify-center items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-xs text-on-surface-variant">System Secure</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-xs text-on-surface-variant">Active Sync</span>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="mt-8 text-center space-y-4">
+<a class="inline-block text-sm font-medium text-on-surface-variant hover:text-primary transition-colors underline decoration-outline-variant/30 underline-offset-4" href="#">
+                Not you? Return to login
+            </a>
+<div class="pt-8 flex justify-center gap-8 opacity-40">
+<span class="text-[10px] font-bold tracking-widest uppercase">Privacy Policy</span>
+<span class="text-[10px] font-bold tracking-widest uppercase">Terms of Service</span>
+<span class="text-[10px] font-bold tracking-widest uppercase">Support</span>
+</div>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+</div>
+</body></html>

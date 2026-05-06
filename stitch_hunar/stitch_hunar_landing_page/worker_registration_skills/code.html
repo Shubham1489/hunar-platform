@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-background": "#171c1f",
+              "surface-container-highest": "#dfe3e7",
+              "background": "#f6fafe",
+              "on-error-container": "#93000a",
+              "surface-variant": "#dfe3e7",
+              "secondary-fixed-dim": "#ffb690",
+              "tertiary": "#00312c",
+              "surface-container-low": "#f0f4f8",
+              "inverse-primary": "#b6c4ff",
+              "primary": "#00236f",
+              "secondary-container": "#fd761a",
+              "on-tertiary-container": "#4ebdb0",
+              "on-secondary-fixed-variant": "#783200",
+              "on-secondary": "#ffffff",
+              "on-primary-fixed": "#00164e",
+              "inverse-surface": "#2c3134",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#341100",
+              "inverse-on-surface": "#edf1f5",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary-fixed": "#00201d",
+              "surface-tint": "#4059aa",
+              "on-primary-container": "#90a8ff",
+              "on-secondary-container": "#5c2400",
+              "on-surface-variant": "#444651",
+              "on-primary-fixed-variant": "#264191",
+              "outline-variant": "#c5c5d3",
+              "surface-container-high": "#e4e9ed",
+              "secondary": "#9d4300",
+              "error-container": "#ffdad6",
+              "outline": "#757682",
+              "surface-container": "#eaeef2",
+              "on-tertiary": "#ffffff",
+              "primary-fixed-dim": "#b6c4ff",
+              "tertiary-container": "#004942",
+              "surface": "#f6fafe",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#005049",
+              "secondary-fixed": "#ffdbca",
+              "tertiary-fixed": "#89f5e7",
+              "on-primary": "#ffffff",
+              "surface-dim": "#d6dade",
+              "surface-bright": "#f6fafe",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "on-error": "#ffffff",
+              "primary-container": "#1e3a8a",
+              "on-surface": "#171c1f"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation Bar (Shared Component) -->
+<nav class="bg-surface-container-lowest px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<span class="font-headline text-2xl font-extrabold text-primary tracking-tight">Hunar</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary font-medium" href="#">Jobs</a>
+<a class="text-on-surface-variant hover:text-primary font-medium" href="#">Training</a>
+<a class="text-on-surface-variant hover:text-primary font-medium" href="#">Help</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2.5 rounded-xl font-semibold text-primary hover:bg-surface-container-low transition-colors">Sign In</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User Avatar" data-alt="Close up professional headshot of a person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwh3oV8s6CeKVi1tE-x4p8v3WXzLYiMYtP4dyUPyPsQ9io76IN5yH3vX3vOrlBKCIl4ZEKV8LxSUQuzMzA_MRmhjqb9UXtsSmvMKuZnoSzG7tp6bD9mFdvzaGCdaBAL_TLbjWVYhxBCNTHBNpiOcTQmwV5KXGEY4YK88DVUbwtwXy11eVVoNjGVbX1oem_va99-1yxyGROWXN6nmwbQ9iZHTUXog1Ex8pB34Q1b6nzjD2odqHIuDL7PgAdfOTxqgMAV04JMjvbMeY"/>
+</div>
+</div>
+</nav>
+<!-- Progress Bar Section (Shared Component - Modified Progress) -->
+<div class="max-w-3xl mx-auto w-full px-6 pt-12">
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<span class="text-sm font-semibold text-primary tracking-wide">Registration Progress</span>
+<span class="text-xs text-on-surface-variant font-medium">Step 2 of 4</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 50%;"></div>
+</div>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow max-w-3xl mx-auto w-full px-6 py-12">
+<!-- Hero Header -->
+<header class="mb-12">
+<span class="text-secondary font-semibold tracking-widest text-[0.65rem] uppercase mb-2 block">Career Profile</span>
+<h1 class="font-headline text-4xl font-bold text-on-background tracking-tight mb-4">Your Expertise &amp; <span class="text-primary italic">Craft</span></h1>
+<p class="text-on-surface-variant text-lg max-w-xl">Help us match you with the right opportunities by detailing your professional skills and tenure.</p>
+</header>
+<!-- Form Section -->
+<div class="space-y-10">
+<!-- Skill Selection: Bento-ish Grid Chips -->
+<section>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="construction">construction</span>
+<h2 class="font-headline text-xl font-bold">Primary Trade</h2>
+</div>
+<div class="flex flex-wrap gap-3">
+<!-- Selectable Chip: Active State -->
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-on-primary shadow-lg shadow-primary/10 transition-all border-2 border-transparent">
+<span class="material-symbols-outlined text-sm" data-icon="electric_bolt" data-weight="fill">electric_bolt</span>
+<span class="font-medium">Electrician</span>
+</button>
+<!-- Selectable Chip: Inactive State -->
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all border-2 border-transparent">
+<span class="material-symbols-outlined text-sm" data-icon="plumbing">plumbing</span>
+<span class="font-medium">Plumber</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all border-2 border-transparent">
+<span class="material-symbols-outlined text-sm" data-icon="ac_unit">ac_unit</span>
+<span class="font-medium">AC Repair</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all border-2 border-transparent">
+<span class="material-symbols-outlined text-sm" data-icon="carpenter">carpenter</span>
+<span class="font-medium">Carpenter</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all border-2 border-transparent">
+<span class="material-symbols-outlined text-sm" data-icon="format_paint">format_paint</span>
+<span class="font-medium">Painter</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all border-2 border-transparent">
+<span class="material-symbols-outlined text-sm" data-icon="architecture">architecture</span>
+<span class="font-medium">Masonry</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all border-2 border-transparent">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span class="font-medium">Other Trade</span>
+</button>
+</div>
+</section>
+<!-- Experience Slider Section -->
+<section class="bg-surface-container-low p-8 rounded-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary" data-icon="history">history</span>
+<h2 class="font-headline text-xl font-bold">Years of Experience</h2>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex justify-between items-baseline">
+<span class="text-4xl font-headline font-extrabold text-primary">5<span class="text-xl font-medium text-on-surface-variant ml-1">Years</span></span>
+<span class="text-sm font-semibold text-secondary bg-secondary-fixed px-3 py-1 rounded-full uppercase tracking-tighter">Mid-Level Professional</span>
+</div>
+<div class="relative w-full h-12 flex items-center">
+<div class="absolute w-full h-2 bg-surface-container-highest rounded-full"></div>
+<div class="absolute h-2 bg-primary rounded-full" style="width: 45%;"></div>
+<input class="absolute w-full h-2 appearance-none bg-transparent cursor-pointer [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-8 [&amp;::-webkit-slider-thumb]:h-8 [&amp;::-webkit-slider-thumb]:bg-on-primary [&amp;::-webkit-slider-thumb]:border-4 [&amp;::-webkit-slider-thumb]:border-primary [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:shadow-xl" max="20" min="0" type="range" value="5"/>
+</div>
+<div class="flex justify-between text-xs font-bold text-outline uppercase tracking-widest">
+<span>Newcomer</span>
+<span>Expert</span>
+</div>
+</div>
+</section>
+<!-- Secondary Skills - Extra Innovation -->
+<section>
+<h3 class="font-headline text-md font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="verified">verified</span>
+                    Specialized Certifications
+                </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-lowest rounded-xl flex items-center justify-between group cursor-pointer hover:bg-primary transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container">
+<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="safety_check">safety_check</span>
+</div>
+<span class="font-medium group-hover:text-on-primary">Safety &amp; OSHA 10</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-on-primary" data-icon="add_circle">add_circle</span>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl flex items-center justify-between group cursor-pointer hover:bg-primary transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container">
+<span class="material-symbols-outlined text-primary group-hover:text-on-primary" data-icon="engineering">engineering</span>
+</div>
+<span class="font-medium group-hover:text-on-primary">Project Management</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-on-primary" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Navigation Actions -->
+<footer class="mt-20 flex flex-col-reverse md:flex-row items-center justify-between gap-6">
+<button class="w-full md:w-auto px-8 py-4 rounded-xl font-bold text-primary flex items-center justify-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                Back
+            </button>
+<button class="w-full md:w-auto px-12 py-4 rounded-xl font-bold text-on-primary bg-primary shadow-xl shadow-primary/20 flex items-center justify-center gap-2 hover:translate-y-[-2px] transition-all">
+                Next Step
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</footer>
+</main>
+<!-- Bottom Navigation Bar (Shared Component - Shell) -->
+<nav class="bg-surface-container-lowest border-t border-outline-variant/20 px-6 py-3 sticky bottom-0 z-50 flex items-center justify-around md:hidden">
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[0.65rem] font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+<span class="text-[0.65rem] font-medium">My Jobs</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="person" data-weight="fill">person</span>
+<span class="text-[0.65rem] font-bold">Profile</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[0.65rem] font-medium">Settings</span>
+</div>
+</nav>
+</body></html>

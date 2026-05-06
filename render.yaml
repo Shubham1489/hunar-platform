@@ -1,0 +1,71 @@
+# ──────────────────────────────────────────────
+# Render Blueprint — One-Click Deploy
+# https://render.com/docs/blueprint-spec
+# Deploy: https://render.com/deploy → paste repo URL
+# ──────────────────────────────────────────────
+
+services:
+  # ─── Fastify REST API ────────────────────────
+  - type: web
+    name: hunar-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: ./apps/api
+    region: singapore  # Closest to India
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3001"
+      - key: DATABASE_URL
+        sync: false  # User must set manually
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_ACCESS_EXPIRY
+        value: "24h"
+      - key: JWT_REFRESH_EXPIRY
+        value: "30d"
+      - key: SMS_PROVIDER
+        value: console
+      - key: CORS_ORIGINS
+        sync: false  # Set after deploying web
+      - key: AI_SERVICE_URL
+        fromService:
+          name: hunar-ai
+          type: web
+          property: host
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: PLATFORM_COMMISSION_RATE
+        value: "0.10"
+      - key: OTP_EXPIRY_MINUTES
+        value: "10"
+      - key: OTP_MAX_ATTEMPTS
+        value: "3"
+      - key: RATE_LIMIT_AUTH
+        value: "100"
+      - key: RATE_LIMIT_UNAUTH
+        value: "20"
+
+  # ─── FastAPI AI Service ──────────────────────
+  - type: web
+    name: hunar-ai
+    runtime: docker
+    dockerfilePath: ./apps/ai-service/Dockerfile
+    dockerContext: ./apps/ai-service
+    region: singapore
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: AI_SERVICE_PORT
+        value: "8000"

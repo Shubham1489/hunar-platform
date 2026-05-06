@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#89f5e7",
+              "secondary-fixed-dim": "#ffb690",
+              "primary-fixed": "#dce1ff",
+              "outline-variant": "#c5c5d3",
+              "secondary-container": "#fd761a",
+              "surface-container-lowest": "#ffffff",
+              "on-surface": "#171c1f",
+              "outline": "#757682",
+              "on-error": "#ffffff",
+              "surface-container": "#eaeef2",
+              "on-tertiary": "#ffffff",
+              "surface-container-high": "#e4e9ed",
+              "error-container": "#ffdad6",
+              "on-primary-fixed": "#00164e",
+              "surface-container-low": "#f0f4f8",
+              "background": "#f6fafe",
+              "tertiary": "#00312c",
+              "on-secondary-fixed-variant": "#783200",
+              "on-primary-fixed-variant": "#264191",
+              "primary-container": "#1e3a8a",
+              "surface-bright": "#f6fafe",
+              "secondary-fixed": "#ffdbca",
+              "on-primary-container": "#90a8ff",
+              "on-surface-variant": "#444651",
+              "surface-dim": "#d6dade",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-secondary-fixed": "#341100",
+              "surface": "#f6fafe",
+              "secondary": "#9d4300",
+              "on-error-container": "#93000a",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed-variant": "#005049",
+              "on-tertiary-container": "#4ebdb0",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "inverse-surface": "#2c3134",
+              "on-background": "#171c1f",
+              "primary": "#00236f",
+              "inverse-on-surface": "#edf1f5",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary-container": "#5c2400",
+              "on-primary": "#ffffff",
+              "surface-variant": "#dfe3e7",
+              "inverse-primary": "#b6c4ff",
+              "surface-tint": "#4059aa",
+              "surface-container-highest": "#dfe3e7",
+              "tertiary-container": "#004942",
+              "on-secondary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .ambient-glow {
+            box-shadow: 0px 12px 32px rgba(0, 35, 111, 0.08);
+        }
+        .premium-bg {
+            background: radial-gradient(circle at top right, #1e40af, transparent),
+                        radial-gradient(circle at bottom left, #1e3a8a, transparent),
+                        linear-gradient(135deg, #f0f4f8 0%, #dce1ff 100%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="premium-bg text-on-surface min-h-screen flex flex-col">
+<main class="flex-grow flex items-center justify-center px-4 py-12 relative z-10">
+<div class="max-w-md w-full">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl rounded-[2rem] p-10 md:p-12 text-center ambient-glow relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-primary-container"></div>
+<div class="mb-10 flex justify-center">
+<div class="relative w-48 h-48">
+<div class="absolute inset-0 bg-primary-fixed opacity-20 rounded-full scale-110"></div>
+<div class="relative z-10 w-full h-full flex items-center justify-center">
+<span class="material-symbols-outlined text-8xl text-primary" style="font-variation-settings: 'FILL' 1;">
+                                check_circle
+                            </span>
+</div>
+<div class="absolute -top-2 -right-2 bg-secondary p-3 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-white text-xl">waves</span>
+</div>
+</div>
+</div>
+<div class="space-y-4 mb-10">
+<h1 class="font-headline text-display-lg text-primary font-extrabold tracking-tight leading-tight">
+                        You are logged out
+                    </h1>
+<p class="text-on-surface-variant text-body-md leading-relaxed px-4">
+                        Thank you for using Hunar. Your session has ended safely.
+                    </p>
+</div>
+<div class="space-y-4">
+<a class="block w-full py-4 px-8 bg-primary text-on-primary font-headline font-bold rounded-full hover:bg-primary-container transition-all duration-300 shadow-lg shadow-primary/20" href="#">
+                        Sign In Again
+                    </a>
+<a class="inline-block text-primary font-headline font-semibold text-label-md hover:underline decoration-2 underline-offset-4 transition-all" href="#">
+                        Back to Explore
+                    </a>
+</div>
+<div class="mt-12 pt-8 border-t border-outline-variant/20">
+<p class="text-[0.75rem] text-outline font-medium tracking-wider">
+                        SECURE LOGOUT COMPLETED
+                    </p>
+</div>
+</div>
+<div class="mt-8 text-center flex flex-col items-center gap-4">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-xl">shield_person</span>
+<span class="text-sm font-semibold font-headline">Hunar Identity Protection</span>
+</div>
+<div class="flex gap-6 text-primary/70 text-sm">
+<a class="hover:text-primary transition-colors font-medium" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors font-medium" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed top-8 left-8 hidden lg:block z-20">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white">work</span>
+</div>
+<span class="font-headline font-bold text-2xl text-primary tracking-tight">Hunar</span>
+</div>
+</div>
+</body></html>

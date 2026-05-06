@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registration - Skills &amp; Experience</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#f6fafe",
+              "on-primary-fixed": "#00164e",
+              "on-tertiary-container": "#4ebdb0",
+              "on-surface-variant": "#444651",
+              "secondary-container": "#fd761a",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#264191",
+              "surface-dim": "#d6dade",
+              "inverse-on-surface": "#edf1f5",
+              "surface-variant": "#dfe3e7",
+              "surface-container": "#eaeef2",
+              "inverse-surface": "#2c3134",
+              "tertiary-container": "#004942",
+              "primary-container": "#1e3a8a",
+              "on-background": "#171c1f",
+              "tertiary": "#00312c",
+              "on-error": "#ffffff",
+              "surface-tint": "#4059aa",
+              "on-surface": "#171c1f",
+              "surface": "#f6fafe",
+              "primary-fixed": "#dce1ff",
+              "secondary-fixed-dim": "#ffb690",
+              "surface-container-low": "#f0f4f8",
+              "on-primary-container": "#90a8ff",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "secondary": "#9d4300",
+              "on-secondary-container": "#5c2400",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#dfe3e7",
+              "on-secondary-fixed": "#341100",
+              "secondary-fixed": "#ffdbca",
+              "inverse-primary": "#b6c4ff",
+              "on-tertiary-fixed-variant": "#005049",
+              "outline": "#757682",
+              "primary": "#00236f",
+              "on-secondary-fixed-variant": "#783200",
+              "tertiary-fixed": "#89f5e7",
+              "surface-container-high": "#e4e9ed",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c5c5d3",
+              "background": "#f6fafe",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+        }
+        .bg-mesh {
+            background-color: #f6fafe;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 35, 111, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(157, 67, 0, 0.05) 0px, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-mesh font-body text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation (Shell component rendered from JSON logic) -->
+<header class="sticky top-0 z-50 px-4 py-4 flex items-center justify-between glass-panel">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors" data-icon="arrow_back">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline font-bold text-lg text-on-surface">Register</h1>
+</div>
+<div class="text-xs font-label font-semibold text-primary/60 tracking-wider">STEP 2 OF 3</div>
+</header>
+<!-- Progress Tracker (JSON Logic Mapping) -->
+<div class="px-6 mt-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-label font-bold text-on-surface-variant uppercase tracking-widest">Registration Progress</span>
+<span class="text-sm font-bold text-primary">50%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full signature-gradient rounded-full" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-6 pt-8 pb-32">
+<section class="mb-10">
+<h2 class="font-headline text-3xl font-extrabold text-on-primary-fixed mb-2 leading-tight">Expertise &amp; Craft</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-[280px]">Help us match you with the right opportunities by detailing your professional background.</p>
+</section>
+<!-- Form Sections using Tonal Layering (No Borders Rule) -->
+<div class="space-y-6">
+<!-- Trade Selection -->
+<div class="bg-surface-container-low p-6 rounded-xl">
+<label class="block text-xs font-label font-bold text-primary uppercase tracking-widest mb-4">Primary Trade</label>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-start p-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow group">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="bolt">bolt</span>
+<span class="text-sm font-bold font-headline text-on-surface">Electrician</span>
+</button>
+<button class="flex flex-col items-start p-4 bg-primary text-on-primary rounded-xl shadow-lg ring-4 ring-primary/10">
+<span class="material-symbols-outlined mb-2" data-icon="plumbing">plumbing</span>
+<span class="text-sm font-bold font-headline">Plumber</span>
+</button>
+<button class="flex flex-col items-start p-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="format_paint">format_paint</span>
+<span class="text-sm font-bold font-headline text-on-surface">Painter</span>
+</button>
+<button class="flex flex-col items-start p-4 bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="carpenter">carpenter</span>
+<span class="text-sm font-bold font-headline text-on-surface">Carpenter</span>
+</button>
+</div>
+</div>
+<!-- Years of Experience -->
+<div class="bg-surface-container-low p-6 rounded-xl">
+<label class="block text-xs font-label font-bold text-primary uppercase tracking-widest mb-4">Years of Experience</label>
+<div class="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest text-on-surface-variant font-bold whitespace-nowrap">1-2 yrs</button>
+<button class="px-6 py-3 rounded-full signature-gradient text-on-primary font-bold whitespace-nowrap shadow-lg">3-5 yrs</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest text-on-surface-variant font-bold whitespace-nowrap">5-10 yrs</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest text-on-surface-variant font-bold whitespace-nowrap">10+ yrs</button>
+</div>
+</div>
+<!-- Skill Tags (Bento-style layout) -->
+<div class="bg-surface-container-low p-6 rounded-xl">
+<div class="flex justify-between items-center mb-4">
+<label class="text-xs font-label font-bold text-primary uppercase tracking-widest">Specializations</label>
+<span class="text-[10px] font-bold text-tertiary-container bg-tertiary-fixed px-2 py-0.5 rounded">SUGGESTED</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="px-4 py-2 bg-surface-container-lowest rounded-lg flex items-center gap-2 group cursor-pointer">
+<span class="text-xs font-medium text-on-surface">Pipe Fitting</span>
+<span class="material-symbols-outlined text-xs text-outline group-hover:text-primary" data-icon="add">add</span>
+</div>
+<div class="px-4 py-2 bg-primary-container text-on-primary-container rounded-lg flex items-center gap-2">
+<span class="text-xs font-bold">HVAC Repair</span>
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+</div>
+<div class="px-4 py-2 bg-surface-container-lowest rounded-lg flex items-center gap-2 group cursor-pointer">
+<span class="text-xs font-medium text-on-surface">Gas Safety</span>
+<span class="material-symbols-outlined text-xs text-outline group-hover:text-primary" data-icon="add">add</span>
+</div>
+<div class="px-4 py-2 bg-primary-container text-on-primary-container rounded-lg flex items-center gap-2">
+<span class="text-xs font-bold">Blueprint Reading</span>
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+</div>
+<div class="px-4 py-2 bg-surface-container-lowest rounded-lg flex items-center gap-2 group cursor-pointer border-2 border-dashed border-outline-variant">
+<span class="text-xs font-bold text-primary">Add custom...</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Area (PushToBottom & ButtonGroup mapping) -->
+<div class="fixed bottom-0 left-0 right-0 p-6 glass-panel border-t border-surface-container-highest">
+<div class="flex flex-col gap-3 max-w-md mx-auto">
+<!-- Primary Action -->
+<button class="w-full h-[52px] signature-gradient text-on-primary font-headline font-bold rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+                Continue
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Secondary Action -->
+<button class="w-full h-[52px] bg-transparent text-primary font-headline font-bold rounded-xl flex items-center justify-center">
+                Back
+            </button>
+</div>
+</div>
+<!-- Hidden spacer for scroll clearance -->
+<div class="h-32"></div>
+</body></html>

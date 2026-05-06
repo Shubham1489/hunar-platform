@@ -1,0 +1,434 @@
+// ──────────────────────────────────────────────────────────────────────────────
+// Hunar — Prisma Schema
+// PostgreSQL 15 with pgvector extension
+// From docs 10 (Database Schema) and 11 (Database Models)
+// ──────────────────────────────────────────────────────────────────────────────
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector"), uuidOssp(map: "uuid-ossp")]
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ENUMS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+enum Role {
+  WORKER
+  EMPLOYER
+  CUSTOMER
+  ADMIN
+}
+
+enum WorkerMode {
+  HIRER
+  FREELANCER
+  BOTH
+}
+
+enum SkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  EXPERT
+}
+
+enum JobStatus {
+  DRAFT
+  OPEN
+  PAUSED
+  CLOSED
+  FILLED
+}
+
+enum JobType {
+  PERMANENT
+  CONTRACT
+  ONEDAY
+}
+
+enum SalaryType {
+  HOURLY
+  DAILY
+  MONTHLY
+}
+
+enum ApplicationStatus {
+  APPLIED
+  SHORTLISTED
+  HIRED
+  REJECTED
+}
+
+enum ServiceRequestStatus {
+  OPEN
+  MATCHED
+  BOOKED
+  COMPLETED
+  CANCELLED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  DISPUTED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  UPI
+  CARD
+  NETBANKING
+  WALLET
+  CASH
+}
+
+enum PaymentStatus {
+  PENDING
+  HELD
+  RELEASED
+  FAILED
+  REFUNDED
+}
+
+enum PaymentReferenceType {
+  BOOKING
+  JOB
+}
+
+enum NotificationType {
+  JOB_APPLIED
+  JOB_SHORTLISTED
+  JOB_HIRED
+  JOB_REJECTED
+  BOOKING_CONFIRMED
+  BOOKING_STARTED
+  OTP_CONFIRMED
+  PAYMENT_RELEASED
+  RATING_RECEIVED
+  DISPUTE_RAISED
+  DISPUTE_RESOLVED
+  DIRECT_OFFER
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// AUTH & USERS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+model User {
+  id            String   @id @default(uuid()) @db.Uuid
+  phone         String   @unique @db.VarChar(15)
+  name          String?  @db.VarChar(200)
+  email         String?  @db.VarChar(255)
+  role          Role
+  avatarUrl     String?  @db.Text
+  isVerified    Boolean  @default(false)
+  isActive      Boolean  @default(true)
+  fcmToken      String?  @db.Text
+  preferredLang String   @default("en") @db.VarChar(5)
+  createdAt     DateTime @default(now()) @db.Timestamptz()
+  updatedAt     DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  workerProfile   WorkerProfile?
+  employerProfile EmployerProfile?
+  customerProfile CustomerProfile?
+  notifications   Notification[]
+  ratingsGiven    Rating[]  @relation("RaterRatings")
+  ratingsReceived Rating[]  @relation("RateeRatings")
+  paymentsMade    Payment[] @relation("PayerPayments")
+  paymentsReceived Payment[] @relation("PayeePayments")
+
+  @@index([phone])
+  @@map("users")
+}
+
+model OtpCode {
+  id        String   @id @default(uuid()) @db.Uuid
+  phone     String   @db.VarChar(15)
+  code      String   @db.VarChar(128) // Stored hashed (SHA-256)
+  expiresAt DateTime @db.Timestamptz()
+  used      Boolean  @default(false)
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now()) @db.Timestamptz()
+
+  @@index([phone, used])
+  @@map("otp_codes")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// WORKER PROFILE
+// ═══════════════════════════════════════════════════════════════════════════════
+
+model WorkerProfile {
+  id              String     @id @db.Uuid
+  user            User       @relation(fields: [id], references: [id], onDelete: Cascade)
+  mode            WorkerMode @default(BOTH)
+  experienceYears Int        @default(0) @db.SmallInt
+  dailyRate       Decimal?   @db.Decimal(10, 2)
+  hourlyRate      Decimal?   @db.Decimal(10, 2)
+  city            String?    @db.VarChar(100)
+  lat             Decimal?   @db.Decimal(9, 6)
+  lng             Decimal?   @db.Decimal(9, 6)
+  bio             String?    @db.Text
+  isAvailable     Boolean    @default(true)
+  ratingAvg       Decimal    @default(0) @db.Decimal(3, 2)
+  ratingCount     Int        @default(0)
+  createdAt       DateTime   @default(now()) @db.Timestamptz()
+  updatedAt       DateTime   @updatedAt @db.Timestamptz()
+
+  // Relations
+  skills       WorkerSkill[]
+  applications JobApplication[]
+  bookings     Booking[]
+
+  @@index([city, isAvailable])
+  @@map("worker_profiles")
+}
+
+model Skill {
+  id       String   @id @default(uuid()) @db.Uuid
+  nameEn   String   @unique @db.VarChar(100)
+  nameHi   String?  @db.VarChar(200)
+  category String   @db.VarChar(100)
+  aliases  String[] @db.Text
+
+  // Relations
+  workerSkills WorkerSkill[]
+
+  @@index([category])
+  @@map("skills")
+}
+
+model WorkerSkill {
+  id       String     @id @default(uuid()) @db.Uuid
+  workerId String     @db.Uuid
+  skillId  String     @db.Uuid
+  level    SkillLevel @default(INTERMEDIATE)
+  years    Int        @default(0) @db.SmallInt
+
+  worker WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  skill  Skill         @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([workerId, skillId])
+  @@index([workerId, skillId])
+  @@map("worker_skills")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// EMPLOYER & JOBS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+model EmployerProfile {
+  id          String   @id @db.Uuid
+  user        User     @relation(fields: [id], references: [id], onDelete: Cascade)
+  companyName String   @db.VarChar(200)
+  gstNumber   String?  @db.VarChar(20)
+  industry    String?  @db.VarChar(100)
+  city        String?  @db.VarChar(100)
+  lat         Decimal? @db.Decimal(9, 6)
+  lng         Decimal? @db.Decimal(9, 6)
+  website     String?  @db.Text
+  logoUrl     String?  @db.Text
+  createdAt   DateTime @default(now()) @db.Timestamptz()
+  updatedAt   DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  jobPostings JobPosting[]
+
+  @@map("employer_profiles")
+}
+
+model JobPosting {
+  id             String     @id @default(uuid()) @db.Uuid
+  employerId     String     @db.Uuid
+  title          String     @db.VarChar(200)
+  description    String     @db.Text
+  skillsRequired String[]   @db.Text
+  experienceMin  Int        @default(0) @db.SmallInt
+  experienceMax  Int?       @db.SmallInt
+  salaryMin      Decimal?   @db.Decimal(10, 2)
+  salaryMax      Decimal?   @db.Decimal(10, 2)
+  salaryType     SalaryType @default(DAILY)
+  jobType        JobType    @default(CONTRACT)
+  city           String?    @db.VarChar(100)
+  lat            Decimal?   @db.Decimal(9, 6)
+  lng            Decimal?   @db.Decimal(9, 6)
+  status         JobStatus  @default(OPEN)
+  openings       Int        @default(1) @db.SmallInt
+  createdAt      DateTime   @default(now()) @db.Timestamptz()
+  updatedAt      DateTime   @updatedAt @db.Timestamptz()
+
+  // Relations
+  employer     EmployerProfile  @relation(fields: [employerId], references: [id], onDelete: Cascade)
+  applications JobApplication[]
+
+  @@index([status, city])
+  @@index([employerId, status])
+  @@map("job_postings")
+}
+
+model JobApplication {
+  id           String            @id @default(uuid()) @db.Uuid
+  jobId        String            @db.Uuid
+  workerId     String            @db.Uuid
+  status       ApplicationStatus @default(APPLIED)
+  aiMatchScore Decimal?          @db.Decimal(5, 2)
+  employerNote String?           @db.Text
+  appliedAt    DateTime          @default(now()) @db.Timestamptz()
+  updatedAt    DateTime          @updatedAt @db.Timestamptz()
+
+  // Relations
+  job    JobPosting    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  worker WorkerProfile @relation(fields: [workerId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, workerId])
+  @@index([jobId, status])
+  @@index([workerId, status])
+  @@map("job_applications")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CUSTOMER & BOOKINGS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+model CustomerProfile {
+  id         String   @id @db.Uuid
+  user       User     @relation(fields: [id], references: [id], onDelete: Cascade)
+  defaultCity String? @db.VarChar(100)
+  defaultLat Decimal? @db.Decimal(9, 6)
+  defaultLng Decimal? @db.Decimal(9, 6)
+  createdAt  DateTime @default(now()) @db.Timestamptz()
+  updatedAt  DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  serviceRequests ServiceRequest[]
+  bookings        Booking[]
+
+  @@map("customer_profiles")
+}
+
+model ServiceRequest {
+  id          String               @id @default(uuid()) @db.Uuid
+  customerId  String               @db.Uuid
+  serviceType String               @db.VarChar(100)
+  description String?              @db.Text
+  city        String?              @db.VarChar(100)
+  lat         Decimal?             @db.Decimal(9, 6)
+  lng         Decimal?             @db.Decimal(9, 6)
+  scheduledAt DateTime?            @db.Timestamptz()
+  status      ServiceRequestStatus @default(OPEN)
+  createdAt   DateTime             @default(now()) @db.Timestamptz()
+  updatedAt   DateTime             @updatedAt @db.Timestamptz()
+
+  // Relations
+  customer CustomerProfile @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  booking  Booking?
+
+  @@index([customerId, status])
+  @@map("service_requests")
+}
+
+model Booking {
+  id               String        @id @default(uuid()) @db.Uuid
+  serviceRequestId String        @unique @db.Uuid
+  customerId       String        @db.Uuid
+  workerId         String        @db.Uuid
+  status           BookingStatus @default(PENDING)
+  totalAmount      Decimal       @db.Decimal(10, 2)
+  platformFee      Decimal       @default(0) @db.Decimal(10, 2)
+  otpCode          String?       @db.VarChar(128) // Stored hashed
+  otpVerified      Boolean       @default(false)
+  otpExpiresAt     DateTime?     @db.Timestamptz()
+  confirmedAt      DateTime?     @db.Timestamptz()
+  completedAt      DateTime?     @db.Timestamptz()
+  createdAt        DateTime      @default(now()) @db.Timestamptz()
+  updatedAt        DateTime      @updatedAt @db.Timestamptz()
+
+  // Relations
+  serviceRequest ServiceRequest  @relation(fields: [serviceRequestId], references: [id])
+  customer       CustomerProfile @relation(fields: [customerId], references: [id])
+  worker         WorkerProfile   @relation(fields: [workerId], references: [id])
+  payment        Payment?
+  rating         Rating?
+
+  @@index([customerId, status])
+  @@index([workerId, status])
+  @@map("bookings")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PAYMENTS & RATINGS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+model Payment {
+  id                 String               @id @default(uuid()) @db.Uuid
+  referenceType      PaymentReferenceType @default(BOOKING)
+  referenceId        String               @db.Uuid
+  bookingId          String?              @unique @db.Uuid
+  payerId            String               @db.Uuid
+  payeeId            String               @db.Uuid
+  amount             Decimal              @db.Decimal(10, 2)
+  platformFee        Decimal              @default(0) @db.Decimal(10, 2)
+  method             PaymentMethod
+  status             PaymentStatus        @default(PENDING)
+  razorpayOrderId    String?              @db.VarChar(100)
+  razorpayPaymentId  String?              @db.VarChar(100)
+  createdAt          DateTime             @default(now()) @db.Timestamptz()
+  updatedAt          DateTime             @updatedAt @db.Timestamptz()
+
+  // Relations
+  booking Booking? @relation(fields: [bookingId], references: [id])
+  payer   User     @relation("PayerPayments", fields: [payerId], references: [id])
+  payee   User     @relation("PayeePayments", fields: [payeeId], references: [id])
+
+  @@map("payments")
+}
+
+model Rating {
+  id         String   @id @default(uuid()) @db.Uuid
+  bookingId  String   @unique @db.Uuid
+  raterId    String   @db.Uuid
+  rateeId    String   @db.Uuid
+  score      Int      @db.SmallInt // CHECK constraint enforced at app level: 1-5
+  review     String?  @db.Text
+  isReported Boolean  @default(false)
+  createdAt  DateTime @default(now()) @db.Timestamptz()
+  updatedAt  DateTime @updatedAt @db.Timestamptz()
+
+  // Relations
+  booking Booking @relation(fields: [bookingId], references: [id])
+  rater   User    @relation("RaterRatings", fields: [raterId], references: [id])
+  ratee   User    @relation("RateeRatings", fields: [rateeId], references: [id])
+
+  @@index([rateeId])
+  @@map("ratings")
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// NOTIFICATIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+model Notification {
+  id        String           @id @default(uuid()) @db.Uuid
+  userId    String           @db.Uuid
+  type      NotificationType
+  title     String           @db.VarChar(500)
+  body      String           @db.Text
+  data      Json?
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now()) @db.Timestamptz()
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}

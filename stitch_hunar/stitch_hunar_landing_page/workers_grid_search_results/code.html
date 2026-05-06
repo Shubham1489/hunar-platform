@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EliteTalent AI - Candidates Grid</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "surface-variant": "#dfe3e7",
+              "surface-bright": "#f6fafe",
+              "surface-dim": "#d6dade",
+              "inverse-surface": "#2c3134",
+              "surface-container-low": "#f0f4f8",
+              "secondary-fixed": "#ffdbca",
+              "secondary-fixed-dim": "#ffb690",
+              "tertiary-container": "#004942",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#90a8ff",
+              "surface-container-highest": "#dfe3e7",
+              "on-primary-fixed": "#00164e",
+              "on-error": "#ffffff",
+              "surface-tint": "#4059aa",
+              "secondary": "#9d4300",
+              "outline-variant": "#c5c5d3",
+              "on-secondary": "#ffffff",
+              "on-background": "#171c1f",
+              "on-tertiary-fixed-variant": "#005049",
+              "on-primary": "#ffffff",
+              "primary": "#00236f",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "tertiary-fixed": "#89f5e7",
+              "primary-fixed": "#dce1ff",
+              "on-primary-fixed-variant": "#264191",
+              "background": "#f6fafe",
+              "outline": "#757682",
+              "on-surface-variant": "#444651",
+              "on-secondary-fixed-variant": "#783200",
+              "surface-container-high": "#e4e9ed",
+              "inverse-primary": "#b6c4ff",
+              "inverse-on-surface": "#edf1f5",
+              "on-surface": "#171c1f",
+              "tertiary": "#00312c",
+              "on-secondary-container": "#5c2400",
+              "secondary-container": "#fd761a",
+              "on-tertiary-container": "#4ebdb0",
+              "error-container": "#ffdad6",
+              "surface-container": "#eaeef2",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-tertiary-fixed": "#00201d",
+              "surface": "#f6fafe",
+              "primary-container": "#1e3a8a",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#341100"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-nav {
+        background: rgba(246, 250, 254, 0.7);
+        backdrop-filter: blur(12px);
+      }
+      .hero-gradient {
+        background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+      }
+      .card-shadow {
+        box-shadow: 0px 12px 32px rgba(23, 28, 31, 0.06);
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f6fafe;
+        color: #171c1f;
+      }
+      h1, h2, h3, h4 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-background">
+<!-- TopNavBar -->
+<nav class="glass-nav sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-extrabold font-headline tracking-tight text-primary">EliteTalent AI</span>
+<div class="hidden lg:flex items-center gap-8">
+<a class="text-on-surface font-medium hover:text-primary transition-colors" href="#">Browse Jobs</a>
+<a class="text-primary font-bold border-b-2 border-primary" href="#">Find Talent</a>
+<a class="text-on-surface font-medium hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-on-surface font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-xl font-bold hover:opacity-90 transition-all shadow-lg">Post a Job</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User Avatar Profile Image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAENn3GYNMWVW0ZHEstf5-iWXGfdoVqNLZXhSdLSuw7FLRqEOmryFANerdGBHbQYFrVVTw29lc-dI59SXfDKTn9eCLiLH_wQdXdYg-z4SSy6wZ0zkoJuk4WyI3HuQZd6FfcUuiQjL3J5Vb4Y_DsUHp7DmbUi6rGIG9949NCUzQOvFgV7-JTLHJsHzT6hrxdArU0FoGB5pEmCmXbNxU9Vqz9bw5TEAnQlou51zcgl9eDjs6knyz4EQCoKcruGQdsoFfGrwre-lmDg3w"/>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<!-- Hero Section & Search -->
+<div class="mb-16">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-10">
+<div class="max-w-2xl">
+<span class="text-secondary font-bold tracking-widest text-xs uppercase mb-3 block">Expert Artisans</span>
+<h1 class="text-5xl font-extrabold font-headline leading-tight text-primary">Discover skilled talent for your next project.</h1>
+</div>
+<p class="text-on-surface-variant max-w-sm mb-2">Connect with verified professionals across 25+ trades, powered by AI matching.</p>
+</div>
+<div class="relative bg-surface-container-lowest p-2 rounded-full shadow-xl flex items-center gap-2 max-w-4xl mx-auto border border-outline-variant/10">
+<div class="flex-1 flex items-center pl-6 gap-3">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-background placeholder:text-outline py-4" placeholder="Search by trade, skill or name..." type="text"/>
+</div>
+<div class="h-8 w-[1px] bg-surface-container-highest"></div>
+<div class="flex items-center px-4 gap-2">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<input class="w-32 bg-transparent border-none focus:ring-0 text-on-background placeholder:text-outline py-4" placeholder="Location" type="text"/>
+</div>
+<button class="hero-gradient text-on-primary px-10 py-4 rounded-full font-bold shadow-lg hover:brightness-110 transition-all">Search Workers</button>
+</div>
+</div>
+<div class="flex gap-8 items-start">
+<!-- Sidebar Filters -->
+<aside class="hidden xl:block w-72 shrink-0 bg-surface-container-low rounded-xl p-8 sticky top-28">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-xl font-bold text-primary">Filters</h3>
+<p class="text-xs text-on-surface-variant">Refine your search</p>
+</div>
+<button class="text-primary text-sm font-semibold hover:underline">Reset All</button>
+</div>
+<div class="space-y-8">
+<div>
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">category</span>
+<span class="font-bold">Categories</span>
+</div>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded border border-outline group-hover:border-primary flex items-center justify-center transition-colors"></div>
+<span class="text-sm font-medium">Electricians</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xs">check</span>
+</div>
+<span class="text-sm font-bold text-primary">Plumbers</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded border border-outline group-hover:border-primary flex items-center justify-center transition-colors"></div>
+<span class="text-sm font-medium">Carpenters</span>
+</label>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-4 text-on-surface">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-bold">Salary Range</span>
+</div>
+<div class="bg-surface-container-highest h-1.5 rounded-full relative">
+<div class="absolute left-1/4 right-1/4 h-full bg-primary rounded-full"></div>
+<div class="absolute left-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md"></div>
+<div class="absolute right-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md"></div>
+</div>
+<div class="flex justify-between mt-3 text-xs font-bold text-on-surface-variant">
+<span>$20/hr</span>
+<span>$150/hr</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-4 text-on-surface">
+<span class="material-symbols-outlined">work</span>
+<span class="font-bold">Job Type</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-highest px-3 py-1.5 rounded text-xs font-bold">Contract</span>
+<span class="bg-primary text-on-primary px-3 py-1.5 rounded text-xs font-bold">Full-time</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Grid Content -->
+<div class="flex-1">
+<div class="flex justify-between items-center mb-8">
+<p class="font-medium text-on-surface-variant">Showing <span class="text-primary font-bold">1,240</span> verified experts</p>
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-on-surface">Sort by:</span>
+<select class="bg-transparent border-none text-sm font-bold text-primary focus:ring-0 cursor-pointer">
+<option>Highest Rated</option>
+<option>Price: Low to High</option>
+<option>Recently Active</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Worker Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl card-shadow hover:-translate-y-1 transition-all duration-300 relative group">
+<div class="absolute top-4 right-4 text-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Portrait of a male professional electrician" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmh5SY6V9pXNLFAzCpYhoON5pxiAkpcdNysPGsz64GwMYkL7S178AYyIANxct3NuVMXlRjdi2KB_KPdJLM-Sw96sXHEoCht1ULd8u-AfYwaAXp5fBci51nwgR-zy5u5EiYzrtcwem4ogzAZqD8Dr8XPCKDGOj5W9pYqaPzmXIypM1C8qov5xVeJk53K-JoJoPj868kH-yxUyNQO6Qwa3rpdFnS4OisYcofCjICGXB-TuMych4Xzae1cf9zlTa1N5E1z8DuF1-MNlw"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-tertiary-fixed rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary-fixed font-bold">check</span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mb-0.5">Marcus Chen</h3>
+<p class="text-sm font-semibold text-secondary">Master Electrician</p>
+</div>
+</div>
+<div class="flex gap-2 mb-6">
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-base">location_on</span>
+<span class="text-xs font-bold">New York, NY</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase font-bold text-outline tracking-widest">Rate</p>
+<p class="text-lg font-extrabold text-primary">$85<span class="text-sm font-medium text-on-surface-variant">/hr</span></p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-high text-primary hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:brightness-110 shadow-md">Hire</button>
+</div>
+</div>
+</div>
+<!-- Worker Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl card-shadow hover:-translate-y-1 transition-all duration-300 relative group">
+<div class="flex items-center gap-4 mb-6">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Female plumbing specialist professional portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuq7HjRfyTlaZ3_9nRZHBdIAcyP6bJuMYqJ1CYiCCUk_AT6P7j-QF4BQmJ2KpUO8GYhly93zgtm0RpQGfbhnnXOXLoGXGqhQM5pRCeU5kDLnjJQr48M-s9V5RRIxZ-Y04N-tModnJARO4zMxvLDFB8DjcSBjGHXiMYn9_cW7EZDhVYQXQ8Kt3ugdxbtg4WnaVUobHt0zPHdM89LS4d5ECXq1ZIwdRySepB_UyF0cjmkHSZdOZuYFYQnGYO0t_KIXdLl03nIY0RJ5w"/>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mb-0.5">Elena Rodriguez</h3>
+<p class="text-sm font-semibold text-secondary">Industrial Plumber</p>
+</div>
+</div>
+<div class="flex gap-2 mb-6">
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">5.0</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-base">location_on</span>
+<span class="text-xs font-bold">Chicago, IL</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase font-bold text-outline tracking-widest">Rate</p>
+<p class="text-lg font-extrabold text-primary">$92<span class="text-sm font-medium text-on-surface-variant">/hr</span></p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-high text-primary hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:brightness-110 shadow-md">Hire</button>
+</div>
+</div>
+</div>
+<!-- Worker Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl card-shadow hover:-translate-y-1 transition-all duration-300 relative group">
+<div class="flex items-center gap-4 mb-6">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Experienced male carpenter and woodworker" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrjQ73fIQXp9A9owDL0bKF7TqvacK2Mzl9zuGgWyhXBhuTcCFy3zxOe51PVZ2-E346DZHzZTxazXkTDkfRrNkqNFj-pNGMZAI3lRZ6B50HdH53-vn1kUzGbDUKmYaPnYbl7cXaVgrChRo5htp0HM84rATOPTtut7vUaTWep2A78HkJm0XvsHk-xvGA8zCCCAwiWojP-7WN7nAJbzaGDLRp2C5IK2Y1yJntkmpH56gOTtWsGGaqJPCX6lVDXyVKp4xJJASV30Gq8z0"/>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mb-0.5">James Wilson</h3>
+<p class="text-sm font-semibold text-secondary">Finish Carpenter</p>
+</div>
+</div>
+<div class="flex gap-2 mb-6">
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.8</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-base">location_on</span>
+<span class="text-xs font-bold">Austin, TX</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase font-bold text-outline tracking-widest">Rate</p>
+<p class="text-lg font-extrabold text-primary">$70<span class="text-sm font-medium text-on-surface-variant">/hr</span></p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-high text-primary hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:brightness-110 shadow-md">Hire</button>
+</div>
+</div>
+</div>
+<!-- Worker Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl card-shadow hover:-translate-y-1 transition-all duration-300 relative group">
+<div class="flex items-center gap-4 mb-6">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Professional female welder working on site" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq0HvSMPyclwtPwx0iscm7wa9tbW9V1l1YdIcMKnQQowMPAUehpL0mTD2v8iGywJI3Y4inVWp40Sqb6ujSmkIx66vsUNLGcq3W-yyovhtR370H1oUvcI7X75RxIe67OQzPHEloAxqP1DHTHthoso5Vd2Z0Iry9VaY7RliiuvpY6rgspTvhmQOhKhXOwbScwLgnaOSepvRcG7wF55CaJNDY5J-U2RgCCdZvc0NgScsEeb8DT9Q_0ZMP8OEAzSEDiEFcC8BMdakCFMM"/>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mb-0.5">Sarah O'Connor</h3>
+<p class="text-sm font-semibold text-secondary">TIG Welder</p>
+</div>
+</div>
+<div class="flex gap-2 mb-6">
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-base">location_on</span>
+<span class="text-xs font-bold">Seattle, WA</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase font-bold text-outline tracking-widest">Rate</p>
+<p class="text-lg font-extrabold text-primary">$95<span class="text-sm font-medium text-on-surface-variant">/hr</span></p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-high text-primary hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:brightness-110 shadow-md">Hire</button>
+</div>
+</div>
+</div>
+<!-- Worker Card 5 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl card-shadow hover:-translate-y-1 transition-all duration-300 relative group">
+<div class="flex items-center gap-4 mb-6">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Senior male painter and interior decorator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7etZsMmVQWYyYv4tqNNroyHKbuF2KQhVy8MUDEEQ9Ge4fHyoek1cfmmA1i0PNTvrBL7Ib4X_WvmzoeznFfoB9lkMMPyuIIShAOpkIav8ylZsajB_rT14eHtYKapeEyxMHlVxf3InCmk_5hwHyV3tfI6yuMls7QnVvW_kKCtOd8gxQ9iLt6sbDqEZ3iAh8WVsOM1TsF_L3J55Z-zgemBr-YdYQQtG7xC3sDuIlNOwIQrOeTXfZ5lHXmFNC8YAvVyK62VEH307v0GQ"/>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mb-0.5">David Miller</h3>
+<p class="text-sm font-semibold text-secondary">Interior Decorator</p>
+</div>
+</div>
+<div class="flex gap-2 mb-6">
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.7</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-base">location_on</span>
+<span class="text-xs font-bold">Denver, CO</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase font-bold text-outline tracking-widest">Rate</p>
+<p class="text-lg font-extrabold text-primary">$60<span class="text-sm font-medium text-on-surface-variant">/hr</span></p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-high text-primary hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:brightness-110 shadow-md">Hire</button>
+</div>
+</div>
+</div>
+<!-- Worker Card 6 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl card-shadow hover:-translate-y-1 transition-all duration-300 relative group">
+<div class="flex items-center gap-4 mb-6">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female HVAC technician" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLG4uDyFVMf6SySpu3o4DYybxV9YtOvOxA-mPuWMiua-qTdVKFOFi_HIASw1dffiwEwoAg21UAO3PsGbMtubMorMdccE697xQ0xjzb96SEE83ij51xfIB6Zas2qInl1_t7aWCei9KzoxhuXAKKWKiZPO8iNPrSw0KDae7UsXKK-pE92IPQ84-eXndTStcqVwruCcnllUprugTTjD-e1NNXbGsiyVPGquMGi1E3akkFdzarFFG4wxu8b_ghomZHX-dzL3YFQN1z0fY"/>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-bold text-primary mb-0.5">Maya Patel</h3>
+<p class="text-sm font-semibold text-secondary">HVAC Specialist</p>
+</div>
+</div>
+<div class="flex gap-2 mb-6">
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+<div class="bg-surface-container-low px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-base">location_on</span>
+<span class="text-xs font-bold">Atlanta, GA</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase font-bold text-outline tracking-widest">Rate</p>
+<p class="text-lg font-extrabold text-primary">$110<span class="text-sm font-medium text-on-surface-variant">/hr</span></p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-high text-primary hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold hover:brightness-110 shadow-md">Hire</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center items-center gap-2">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-outline hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary font-bold">1</button>
+<button class="w-10 h-10 rounded-full text-on-surface font-bold hover:bg-surface-container-high">2</button>
+<button class="w-10 h-10 rounded-full text-on-surface font-bold hover:bg-surface-container-high">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="w-10 h-10 rounded-full text-on-surface font-bold hover:bg-surface-container-high">12</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-outline hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="fixed bottom-0 left-0 right-0 lg:hidden bg-surface-container-lowest border-t border-outline-variant/10 px-6 py-3 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="text-[10px] font-bold">Explore</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-outline">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="text-[10px] font-bold">Saved</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-outline">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-[10px] font-bold">Messages</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-outline">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-24 bg-primary text-on-primary py-16">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<span class="text-2xl font-extrabold font-headline tracking-tight mb-6 block">EliteTalent AI</span>
+<p class="text-primary-fixed-dim text-sm leading-relaxed">Revolutionizing how blue-collar experts connect with high-value opportunities through AI-driven matching and verification.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-white uppercase tracking-widest text-xs">For Businesses</h4>
+<ul class="space-y-4 text-sm text-primary-fixed-dim">
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Post a Project</a></li>
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Candidate Search</a></li>
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Enterprise Solutions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-white uppercase tracking-widest text-xs">For Artisans</h4>
+<ul class="space-y-4 text-sm text-primary-fixed-dim">
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Create Profile</a></li>
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Browse Gigs</a></li>
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Premium Benefits</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-white uppercase tracking-widest text-xs">Support</h4>
+<ul class="space-y-4 text-sm text-primary-fixed-dim">
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Safety Guidelines</a></li>
+<li><a class="hover:text-tertiary-fixed transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-primary-container flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-xs text-primary-fixed-dim">© 2024 EliteTalent AI. All rights reserved.</p>
+<div class="flex gap-8 text-xs font-bold text-primary-fixed-dim">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

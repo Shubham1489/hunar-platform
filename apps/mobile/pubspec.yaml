@@ -1,0 +1,73 @@
+name: hunar_mobile
+description: "Hunar — AI-Powered Blue-Collar Job Platform"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_riverpod: any
+  riverpod_annotation: any
+
+  # HTTP & Networking
+  dio: any
+  retrofit: any
+
+  # Navigation
+  go_router: any
+
+  # Local Storage
+  hive: any
+  hive_flutter: any
+  flutter_secure_storage: any
+
+  # UI
+  google_fonts: any
+  lucide_icons_flutter: any
+  shimmer: any
+  cached_network_image: any
+  fl_chart: any
+
+  # Voice
+  speech_to_text: any
+  permission_handler: any
+
+  # Payments
+  razorpay_flutter: any
+
+  # Maps
+  google_maps_flutter: any
+  geolocator: any
+  geocoding: any
+
+  # Utilities
+  intl: any
+  url_launcher: any
+  share_plus: any
+  image_picker: any
+  path_provider: any
+
+  # Serialization
+  json_annotation: any
+  freezed_annotation: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
+  build_runner: any
+  json_serializable: any
+  freezed: any
+  riverpod_generator: any
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/

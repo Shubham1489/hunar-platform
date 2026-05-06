@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar Employer - Post a Job</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#341100",
+                        "on-surface-variant": "#444651",
+                        "on-secondary-container": "#5c2400",
+                        "primary-fixed": "#dce1ff",
+                        "tertiary": "#00312c",
+                        "primary-container": "#1e3a8a",
+                        "surface": "#f6fafe",
+                        "secondary-container": "#fd761a",
+                        "inverse-on-surface": "#edf1f5",
+                        "tertiary-container": "#004942",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "surface-tint": "#4059aa",
+                        "on-surface": "#171c1f",
+                        "on-background": "#171c1f",
+                        "inverse-surface": "#2c3134",
+                        "inverse-primary": "#b6c4ff",
+                        "background": "#f6fafe",
+                        "outline": "#757682",
+                        "tertiary-fixed": "#89f5e7",
+                        "surface-dim": "#d6dade",
+                        "surface-container-highest": "#dfe3e7",
+                        "surface-variant": "#dfe3e7",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "surface-bright": "#f6fafe",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-primary-container": "#90a8ff",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "on-primary-fixed": "#00164e",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e4e9ed",
+                        "outline-variant": "#c5c5d3",
+                        "surface-container": "#eaeef2",
+                        "surface-container-low": "#f0f4f8",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#00201d",
+                        "on-secondary-fixed-variant": "#783200",
+                        "secondary-fixed": "#ffdbca",
+                        "on-tertiary-container": "#4ebdb0",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary": "#00236f",
+                        "error-container": "#ffdad6",
+                        "secondary": "#9d4300",
+                        "on-tertiary": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #171c1f;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f0f4f8;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dfe3e7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface min-h-screen">
+<!-- Exclusion Protocol: Hiding BottomNavBar and SideNavBar for focused linear flow -->
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-50 glass-effect border-b border-outline-variant/20 px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-8">
+<span class="text-xl font-extrabold text-primary font-headline tracking-tight">Hunar Employer</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary font-semibold relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-primary" href="#">My Jobs</a>
+<a class="text-on-surface font-medium hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-on-surface font-medium hover:text-primary transition-colors" href="#">Candidates</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden border-2 border-surface-container-highest">
+<img alt="Employer Profile" class="object-cover w-full h-full" data-alt="Professional portrait of a hiring manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYGcWOKNqR_B_jRZzpvk2UpL8CrmeNKVuXHrBu-vOlUtAGtB-9h-i6oRkTLcyaSP2ybJUCm3Ewdk6QF9o9Dt6dhFTPhc67fHB_eVgenTZqCmWNAbjSg75zU7ampyQmCf0daKb7rRzcvJC90FDpx_YoMrMDAdudF4XsrgC-_duddx18Wq8hvG1NZTnZIRJFWy9EtV4i56bw_XjrfbHFrn94VPz_Jh9bXVUKs5CJ_x01RW4taAZnqEKP8qv55TNxVfUZKctRw4vsLWw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-4xl mx-auto px-6 py-12">
+<!-- Header & Progress Section -->
+<div class="mb-12">
+<div class="flex items-end justify-between mb-4">
+<div>
+<span class="text-secondary font-bold text-xs uppercase tracking-widest font-label mb-2 block">Create New Listing</span>
+<h1 class="text-4xl font-extrabold text-on-surface font-headline leading-tight">Post Your Opportunity</h1>
+</div>
+<div class="text-right hidden sm:block">
+<span class="text-sm font-medium text-on-surface-variant block">Step 1 of 3</span>
+<span class="text-lg font-bold text-primary">Job Details</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="relative w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-gradient-to-r from-primary to-primary-container rounded-full transition-all duration-700" style="width: 33%"></div>
+</div>
+<div class="mt-3 flex justify-between items-center">
+<p class="text-sm text-on-surface-variant italic">Next: Requirements</p>
+<span class="sm:hidden text-sm font-bold text-primary">Step 1 of 3: Job Details</span>
+</div>
+</div>
+<!-- Form Layout: Asymmetric Bento Style -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Main Form Card -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-8 rounded-xl shadow-[0px_12px_32px_rgba(23,28,31,0.04)]">
+<form class="space-y-8">
+<!-- Job Title -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface flex items-center gap-2" for="job-title">
+                            Job Title
+                            <span class="text-error">*</span>
+</label>
+<div class="relative group">
+<input class="w-full px-5 py-4 bg-surface rounded-xl border-none ring-1 ring-outline-variant/30 focus:ring-2 focus:ring-primary transition-all text-on-surface placeholder:text-outline/50" id="job-title" placeholder="e.g., Senior Electrician" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Category -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface" for="category">Category</label>
+<div class="relative">
+<select class="w-full appearance-none px-5 py-4 bg-surface rounded-xl border-none ring-1 ring-outline-variant/30 focus:ring-2 focus:ring-primary transition-all text-on-surface pr-12" id="category">
+<option disabled="" selected="" value="">Select industry</option>
+<option>Construction &amp; Engineering</option>
+<option>Electrical Services</option>
+<option>Manufacturing</option>
+<option>Logistics &amp; Transport</option>
+<option>Maintenance &amp; Repair</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+<!-- Job Type -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface" for="job-type">Job Type</label>
+<div class="relative">
+<select class="w-full appearance-none px-5 py-4 bg-surface rounded-xl border-none ring-1 ring-outline-variant/30 focus:ring-2 focus:ring-primary transition-all text-on-surface pr-12" id="job-type">
+<option>Full-time</option>
+<option>Part-time</option>
+<option>Contract</option>
+<option>Freelance</option>
+<option>Apprenticeship</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Work Location -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface" for="location">Work Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">location_on</span>
+<input class="w-full pl-12 pr-5 py-4 bg-surface rounded-xl border-none ring-1 ring-outline-variant/30 focus:ring-2 focus:ring-primary transition-all text-on-surface" id="location" placeholder="City or Region" type="text"/>
+</div>
+</div>
+<!-- Rich Text Editor Placeholder -->
+<div class="space-y-2">
+<label class="text-sm font-bold text-on-surface">Job Description</label>
+<div class="rounded-xl ring-1 ring-outline-variant/30 overflow-hidden bg-surface">
+<div class="bg-surface-container-high px-4 py-2 border-b border-outline-variant/20 flex gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" type="button">format_bold</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" type="button">format_italic</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" type="button">format_list_bulleted</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary" type="button">link</button>
+</div>
+<textarea class="w-full p-5 bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline/50 resize-none" placeholder="Describe the role, responsibilities, and team culture..." rows="8"></textarea>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="pt-6 flex flex-col sm:flex-row gap-4 justify-between items-center">
+<button class="text-primary font-bold hover:underline order-2 sm:order-1 px-4 py-2" type="button">Save as Draft</button>
+<button class="w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-xl shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2 order-1 sm:order-2" type="submit">
+                            Next: Requirements
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Side Helper Content (Editorial Tension) -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Advice Card -->
+<div class="bg-primary p-8 rounded-xl text-on-primary relative overflow-hidden group">
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-primary-container/30 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+<span class="material-symbols-outlined text-4xl mb-4 opacity-80">lightbulb</span>
+<h3 class="text-xl font-bold mb-3 font-headline">Hiring Tip</h3>
+<p class="text-on-primary/80 text-sm leading-relaxed mb-6">
+                        Jobs with clear, bulleted responsibilities and specific location details receive <span class="text-secondary-fixed font-bold">45% more qualified applicants</span>.
+                    </p>
+<div class="bg-on-primary/10 h-1 w-full rounded-full">
+<div class="bg-secondary-fixed h-full w-2/3 rounded-full"></div>
+</div>
+</div>
+<!-- Preview Micro-Component -->
+<div class="bg-surface-container-high p-6 rounded-xl border border-outline-variant/20">
+<h4 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4">Quick Preview</h4>
+<div class="bg-surface-container-lowest p-4 rounded-lg shadow-sm">
+<div class="flex items-center gap-3 mb-3">
+<div class="h-8 w-8 rounded-md bg-secondary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container text-sm">construction</span>
+</div>
+<div class="h-2 w-24 bg-surface-container-high rounded-full"></div>
+</div>
+<div class="space-y-2">
+<div class="h-3 w-3/4 bg-surface-container-high rounded-full"></div>
+<div class="h-3 w-1/2 bg-surface-container-high rounded-full opacity-60"></div>
+</div>
+</div>
+<p class="text-[10px] text-center mt-4 text-on-surface-variant italic">Live preview updates as you type</p>
+</div>
+<!-- Trusted Badge -->
+<div class="flex items-center gap-4 px-4">
+<div class="flex -space-x-2">
+<img alt="Reviewer" class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a professional worker" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUjBUD_N9mUnwxy5eGLZYZhLxjIXjKED-p5JRThV4whwx5z-pMy3ZEb59AlsYheCIvt8Jz3W004efgscbpWVnkIpx7wBv6OEw2P9g2Z3wKeUC2aYKlUkMTrZD6Y5OwbNQuWqTpFVLdL-IyjZYyNIvc76Z1HohXzmU1KQG8Q8vVwuxlA07pf0zY9y_yjkj8pMdnpAD0RS0Av_kP_KlzsDiaYDJznVwS-bHsYHezizOPJbBupPz2K_FhxgVGifnvy9TBmlVWkrzQYV4"/>
+<img alt="Reviewer" class="w-8 h-8 rounded-full border-2 border-surface object-cover" data-alt="Portrait of a corporate executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuQ2Ek7o6JUdj1cufn6ih2rJCfNXrLGZHsEYDebMPmYTpmCKoz2IP4oTjptVxyCc3mf7ePf1aOh10h4esn1Cdb_bDkT1sypyIvRJ0kACET900kJphkb63U8N3AvJYeZ7jesqLTFPQDZeHatZbBAmw6PyKdvdj3w_U_7NaDvco2SCVG32kC0wgBLfJV1CXo-YMxANiJF1KuVRCe4GJ0G7brKbg8QPqZP_llJVOoiW6pYNY5PLmeNPIJfxhk-h5UEUDldbO0dK54kQ0"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container-highest flex items-center justify-center text-[10px] font-bold">+12k</div>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">Employers trust Hunar</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed top-0 right-0 -z-10 opacity-5 pointer-events-none">
+<svg height="600" viewbox="0 0 200 200" width="600" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.7,-76.4C58.3,-69.2,70.1,-57.4,78.2,-43.3C86.3,-29.2,90.7,-14.6,89.5,-0.7C88.3,13.2,81.5,26.4,72.4,38.5C63.3,50.6,51.9,61.6,38.8,69.5C25.7,77.4,10.9,82.2,-3.5,88.2C-17.9,94.3,-35.8,101.5,-50,96C-64.2,90.5,-74.6,72.2,-81.2,55.1C-87.8,38,-90.6,22,-89.6,6.6C-88.6,-8.8,-83.8,-23.6,-75.4,-37C-67,-50.4,-55,-62.4,-41.2,-69.5C-27.4,-76.6,-13.7,-78.8,0.8,-80.1C15.3,-81.4,31.1,-83.6,44.7,-76.4Z" fill="#00236f" transform="translate(100 100)"></path>
+</svg>
+</div>
+</body></html>

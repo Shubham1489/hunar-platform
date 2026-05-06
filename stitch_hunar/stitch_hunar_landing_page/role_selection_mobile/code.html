@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-bright": "#f6fafe",
+              "on-primary-fixed": "#00164e",
+              "on-tertiary-container": "#4ebdb0",
+              "on-surface-variant": "#444651",
+              "secondary-container": "#fd761a",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#264191",
+              "surface-dim": "#d6dade",
+              "inverse-on-surface": "#edf1f5",
+              "surface-variant": "#dfe3e7",
+              "surface-container": "#eaeef2",
+              "inverse-surface": "#2c3134",
+              "tertiary-container": "#004942",
+              "primary-container": "#1e3a8a",
+              "on-background": "#171c1f",
+              "tertiary": "#00312c",
+              "on-error": "#ffffff",
+              "surface-tint": "#4059aa",
+              "on-surface": "#171c1f",
+              "surface": "#f6fafe",
+              "primary-fixed": "#dce1ff",
+              "secondary-fixed-dim": "#ffb690",
+              "surface-container-low": "#f0f4f8",
+              "on-primary-container": "#90a8ff",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "secondary": "#9d4300",
+              "on-secondary-container": "#5c2400",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-highest": "#dfe3e7",
+              "on-secondary-fixed": "#341100",
+              "secondary-fixed": "#ffdbca",
+              "inverse-primary": "#b6c4ff",
+              "on-tertiary-fixed-variant": "#005049",
+              "outline": "#757682",
+              "primary": "#00236f",
+              "on-secondary-fixed-variant": "#783200",
+              "tertiary-fixed": "#89f5e7",
+              "surface-container-high": "#e4e9ed",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#c5c5d3",
+              "background": "#f6fafe",
+              "error-container": "#ffdad6"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f6fafe;
+      }
+      h1, h2, h3 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+      }
+      .signature-gradient {
+        background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+      }
+      .asymmetric-blob {
+        position: absolute;
+        width: 150%;
+        height: 400px;
+        top: -150px;
+        left: -25%;
+        background: radial-gradient(circle, rgba(0,35,111,0.08) 0%, rgba(246,250,254,0) 70%);
+        z-index: -1;
+        transform: rotate(-5deg);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface bg-surface min-h-screen flex flex-col">
+<!-- Top Navigation Header -->
+<header class="px-6 py-4 flex items-center justify-between sticky top-0 z-50 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-container hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="text-on-surface text-lg font-bold font-headline">Register</h1>
+</div>
+<div class="w-12 h-12 flex items-center justify-center">
+<div class="w-8 h-8 rounded-lg signature-gradient flex items-center justify-center text-on-primary font-black text-sm">H</div>
+</div>
+</header>
+<main class="flex-grow px-6 pb-32 relative overflow-hidden">
+<div class="asymmetric-blob"></div>
+<!-- Progress Section -->
+<div class="mt-4 mb-8">
+<div class="flex justify-between items-end mb-2">
+<span class="text-label-md font-semibold text-secondary uppercase tracking-wider text-xs">Registration Progress</span>
+<span class="text-on-surface-variant text-sm font-medium">Step 1 of 3</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full signature-gradient rounded-full" style="width: 33%"></div>
+</div>
+</div>
+<!-- Hero Content -->
+<div class="mb-10">
+<h2 class="text-display-sm text-4xl font-extrabold text-on-surface mb-2 tracking-tight leading-tight">Join Hunar</h2>
+<p class="text-body-md text-on-surface-variant max-w-[280px]">Select your path to start building your professional future today.</p>
+</div>
+<!-- Role Selection Cards (Asymmetric Grid/Bento Style) -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Worker Role -->
+<label class="relative group cursor-pointer">
+<input checked="" class="peer hidden" name="role" type="radio"/>
+<div class="p-6 rounded-xl bg-surface-container-lowest peer-checked:ring-2 peer-checked:ring-primary transition-all duration-300 shadow-[0px_12px_32px_rgba(23,28,31,0.06)] flex items-start gap-4">
+<div class="w-14 h-14 rounded-xl bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">engineering</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-title-md font-bold text-on-surface text-lg">Worker</h3>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+<p class="text-body-md text-on-surface-variant text-sm leading-relaxed">Find high-paying local jobs and grow your artisan career.</p>
+</div>
+</div>
+</label>
+<!-- Company Role -->
+<label class="relative group cursor-pointer">
+<input class="peer hidden" name="role" type="radio"/>
+<div class="p-6 rounded-xl bg-surface-container-lowest peer-checked:ring-2 peer-checked:ring-primary transition-all duration-300 shadow-[0px_12px_32px_rgba(23,28,31,0.06)] flex items-start gap-4">
+<div class="w-14 h-14 rounded-xl bg-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">domain</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-title-md font-bold text-on-surface text-lg">Company</h3>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+<p class="text-body-md text-on-surface-variant text-sm leading-relaxed">Hire skilled artisans and manage your workforce efficiently.</p>
+</div>
+</div>
+</label>
+<!-- Customer Role -->
+<label class="relative group cursor-pointer">
+<input class="peer hidden" name="role" type="radio"/>
+<div class="p-6 rounded-xl bg-surface-container-lowest peer-checked:ring-2 peer-checked:ring-primary transition-all duration-300 shadow-[0px_12px_32px_rgba(23,28,31,0.06)] flex items-start gap-4">
+<div class="w-14 h-14 rounded-xl bg-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary-container text-3xl" style="font-variation-settings: 'FILL' 1;">person_search</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-title-md font-bold text-on-surface text-lg">Customer</h3>
+<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+</div>
+<p class="text-body-md text-on-surface-variant text-sm leading-relaxed">Post tasks and find reliable help for your home or project.</p>
+</div>
+</div>
+</label>
+</div>
+<!-- Decoration Element -->
+<div class="mt-10 p-6 rounded-2xl bg-primary-container/10 border border-primary/5 flex items-center gap-4 overflow-hidden relative">
+<div class="relative z-10">
+<span class="text-xs font-bold text-primary uppercase tracking-widest block mb-1">Premium Benefit</span>
+<p class="text-sm font-medium text-on-primary-fixed-variant leading-tight">Verified Hunar profiles get 40% more visibility.</p>
+</div>
+<div class="absolute -right-4 -bottom-4 w-24 h-24 rounded-full signature-gradient opacity-10"></div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="fixed bottom-0 left-0 right-0 p-6 glass-effect border-t border-outline-variant/20 z-50">
+<div class="flex flex-col gap-3">
+<button class="w-full h-[52px] signature-gradient text-on-primary font-bold rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                Continue
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="w-full h-[52px] text-on-surface font-semibold rounded-xl border border-outline-variant/30 hover:bg-surface-container-low transition-colors">
+                Back
+            </button>
+</div>
+</footer>
+<!-- Abstract Shape Decoration -->
+<div class="fixed top-1/2 -right-20 w-64 h-64 rounded-full bg-secondary-container/5 blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed bottom-40 -left-20 w-80 h-80 rounded-full bg-primary-container/5 blur-3xl pointer-events-none -z-10"></div>
+</body></html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#444651",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#89f5e7",
+              "surface-dim": "#d6dade",
+              "on-primary-fixed": "#00164e",
+              "on-secondary-container": "#5c2400",
+              "primary-container": "#1e3a8a",
+              "primary": "#00236f",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#264191",
+              "secondary-fixed-dim": "#ffb690",
+              "tertiary": "#00312c",
+              "surface-container-highest": "#dfe3e7",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary": "#ffffff",
+              "surface": "#f6fafe",
+              "surface-variant": "#dfe3e7",
+              "surface-container-high": "#e4e9ed",
+              "background": "#f6fafe",
+              "surface-container": "#eaeef2",
+              "on-secondary-fixed": "#341100",
+              "secondary-container": "#fd761a",
+              "error": "#ba1a1a",
+              "on-background": "#171c1f",
+              "on-tertiary-fixed-variant": "#005049",
+              "secondary": "#9d4300",
+              "surface-bright": "#f6fafe",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#90a8ff",
+              "primary-fixed-dim": "#b6c4ff",
+              "tertiary-container": "#004942",
+              "outline": "#757682",
+              "on-tertiary-container": "#4ebdb0",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#2c3134",
+              "on-secondary-fixed-variant": "#783200",
+              "inverse-on-surface": "#edf1f5",
+              "inverse-primary": "#b6c4ff",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#ffdbca",
+              "outline-variant": "#c5c5d3",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "on-surface": "#171c1f",
+              "surface-tint": "#4059aa",
+              "surface-container-low": "#f0f4f8"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .signature-gradient {
+        background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f6fafe;
+        color: #171c1f;
+      }
+      h1, h2, h3 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface pb-24">
+<!-- TopAppBar -->
+<nav class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+<span class="text-xl font-extrabold tracking-tight text-primary font-headline">Hunar</span>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-on-surface">notifications</span>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative px-6 pt-8 pb-12 overflow-hidden">
+<div class="relative z-10">
+<span class="inline-block px-3 py-1 mb-4 text-[10px] font-bold tracking-widest uppercase rounded-full bg-secondary-fixed text-on-secondary-fixed">
+                Empowering Skills
+            </span>
+<h1 class="text-4xl font-extrabold leading-[1.1] text-on-background mb-6 tracking-tight">
+                Find the perfect <span class="text-primary italic">artisan</span> for any task
+            </h1>
+<!-- AI Search Input -->
+<div class="relative mt-8">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+<input class="w-full pl-12 pr-4 py-5 bg-surface-container-lowest rounded-full border-none shadow-[0px_12px_32px_rgba(23,28,31,0.06)] focus:ring-2 focus:ring-primary/20 text-body-md placeholder:text-outline/60" placeholder="What service do you need?" type="text"/>
+<button class="absolute right-2 top-2 bottom-2 px-6 bg-primary text-on-primary rounded-full font-semibold text-sm">
+                    Search
+                </button>
+</div>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-primary-fixed/30 blur-3xl -z-0"></div>
+</section>
+<!-- How It Works -->
+<section class="px-6 mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold font-headline">How It Works</h2>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Step 1 -->
+<div class="flex items-center gap-5 p-5 bg-surface-container-low rounded-xl">
+<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-primary-fixed rounded-xl">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">search</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Discover</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Browse verified experts across 50+ professional categories.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex items-center gap-5 p-5 bg-surface-container-low rounded-xl">
+<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-secondary-fixed rounded-xl">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">chat</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Connect</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Instantly chat and get transparent quotes for your project.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex items-center gap-5 p-5 bg-surface-container-low rounded-xl">
+<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-tertiary-fixed rounded-xl">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h3 class="font-bold text-on-surface">Hire</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">Safe payments and guaranteed quality craftsmanship.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Categories -->
+<section class="mb-12">
+<div class="px-6 flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold font-headline">Popular Categories</h2>
+<span class="text-xs font-semibold text-primary">View All</span>
+</div>
+<div class="grid grid-cols-3 gap-3 px-6">
+<!-- Electrician -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-[0px_4px_12px_rgba(23,28,31,0.03)]">
+<div class="w-10 h-10 rounded-full bg-surface-container mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">bolt</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-tight leading-tight">Electrician</span>
+</div>
+<!-- Plumber -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-[0px_4px_12px_rgba(23,28,31,0.03)]">
+<div class="w-10 h-10 rounded-full bg-surface-container mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">plumbing</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-tight leading-tight">Plumber</span>
+</div>
+<!-- AC Repair -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-[0px_4px_12px_rgba(23,28,31,0.03)]">
+<div class="w-10 h-10 rounded-full bg-surface-container mb-3 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">ac_unit</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface uppercase tracking-tight leading-tight">AC Repair</span>
+</div>
+</div>
+</section>
+<!-- Featured Professionals -->
+<section class="mb-12">
+<div class="px-6 flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold font-headline">Featured Artisans</h2>
+</div>
+<div class="flex overflow-x-auto gap-4 px-6 no-scrollbar">
+<!-- Professional Card 1 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_8px_24px_rgba(23,28,31,0.04)]">
+<div class="relative h-32 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional electrician at work in a blue uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2oDUIrz7uJc3h_RPN8JLjVmim_gMZp9icwQnTpC1Ab3pHSiJvwZO1etteC26osUGLVqslf5NT6CIM0Bkju1TpUICKmg16Zp5LPdmkpO8Y0ffM_MDgVzLcP2_HxspajylKLuKAO5tCF1r-qTkcPGrFZX8qJZSuaGUVeRw_7XIMViYcR1wbJ2J-h2y_9xQHCCddqL1-K6xrADMSmqO686QrUC5faQuwUZG20AFgBxao9ptWomDHr8MCk-WVTIdgh5tuyaZ9N8Vi4Ko"/>
+<div class="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 bg-white/90 backdrop-blur rounded-full">
+<span class="material-symbols-outlined text-[12px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[10px] font-bold">4.9</span>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-on-surface text-base">Rahul Sharma</h3>
+<p class="text-xs text-on-surface-variant mb-4">Master Electrician • 8 yrs exp.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-primary">₹500 / hr</span>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface text-[10px] font-bold rounded-full">View Profile</button>
+</div>
+</div>
+</div>
+<!-- Professional Card 2 -->
+<div class="min-w-[280px] bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_8px_24px_rgba(23,28,31,0.04)]">
+<div class="relative h-32 w-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Experienced plumber fixing a kitchen sink faucet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAecZX96H8w2Y-Ev-EoYgdsKcpMFm3YybehAEtV4lt75xl4xlde62kZmHtHIZwH3H4OAmr5Llp-WAUIjhkU6YHD2EFgFa3M9yu6eE00T4rUyotf75psOOnkZ4sIggXCNixkW8ZFKxq5-5vN590KC9KGQGz1yggt13efra-lQ7M7tGZVKKrRbSIXMi7Z1MT5XtQqMBUEGPWqwzppUk36pufb8ii8yoFtWfUnSoJNewOnXHLH1HwtjebY5WmdjH1Lqclo4JiI5NZywnk"/>
+<div class="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 bg-white/90 backdrop-blur rounded-full">
+<span class="material-symbols-outlined text-[12px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[10px] font-bold">4.8</span>
+</div>
+</div>
+<div class="p-4">
+<h3 class="font-bold text-on-surface text-base">Mohammed Ali</h3>
+<p class="text-xs text-on-surface-variant mb-4">Senior Plumber • 12 yrs exp.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-primary">₹450 / hr</span>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface text-[10px] font-bold rounded-full">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-6 mb-20">
+<div class="signature-gradient rounded-[2rem] p-8 text-center relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="text-2xl font-bold text-on-primary mb-3">Ready to start?</h2>
+<p class="text-primary-fixed/80 text-sm mb-8">Join thousands of skilled artisans and employers today on Hunar.</p>
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 bg-secondary text-on-secondary rounded-full font-bold text-sm shadow-xl shadow-secondary/20">
+                        Join as an Employer
+                    </button>
+<button class="w-full py-4 bg-white/10 text-on-primary border border-white/20 backdrop-blur-md rounded-full font-bold text-sm">
+                        Register as Artisan
+                    </button>
+</div>
+</div>
+<!-- Decorative circle -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-secondary-container/20 rounded-full blur-2xl"></div>
+</div>
+</section>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/20 px-6 py-3 flex items-center justify-between z-50">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold text-primary">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-outline">
+<span class="material-symbols-outlined">work</span>
+<span class="text-[10px] font-medium">Jobs</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-outline">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar - Login</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface-variant": "#444651",
+              "on-tertiary-fixed": "#00201d",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#89f5e7",
+              "surface-dim": "#d6dade",
+              "on-primary-fixed": "#00164e",
+              "on-secondary-container": "#5c2400",
+              "primary-container": "#1e3a8a",
+              "primary": "#00236f",
+              "on-primary": "#ffffff",
+              "on-primary-fixed-variant": "#264191",
+              "secondary-fixed-dim": "#ffb690",
+              "tertiary": "#00312c",
+              "surface-container-highest": "#dfe3e7",
+              "primary-fixed": "#dce1ff",
+              "on-tertiary": "#ffffff",
+              "surface": "#f6fafe",
+              "surface-variant": "#dfe3e7",
+              "surface-container-high": "#e4e9ed",
+              "background": "#f6fafe",
+              "surface-container": "#eaeef2",
+              "on-secondary-fixed": "#341100",
+              "secondary-container": "#fd761a",
+              "error": "#ba1a1a",
+              "on-background": "#171c1f",
+              "on-tertiary-fixed-variant": "#005049",
+              "secondary": "#9d4300",
+              "surface-bright": "#f6fafe",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#90a8ff",
+              "primary-fixed-dim": "#b6c4ff",
+              "tertiary-container": "#004942",
+              "outline": "#757682",
+              "on-tertiary-container": "#4ebdb0",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#2c3134",
+              "on-secondary-fixed-variant": "#783200",
+              "inverse-on-surface": "#edf1f5",
+              "inverse-primary": "#b6c4ff",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#ffdbca",
+              "outline-variant": "#c5c5d3",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "on-surface": "#171c1f",
+              "surface-tint": "#4059aa",
+              "surface-container-low": "#f0f4f8"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-background min-h-screen flex flex-col">
+<!-- Linear Process: Hidden NavBars for Focus -->
+<main class="flex-grow relative overflow-hidden flex items-center justify-center p-6">
+<!-- Branded Background Pattern -->
+<div class="absolute inset-0 signature-gradient -z-10">
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary opacity-20 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-0 left-0 w-72 h-72 bg-tertiary opacity-30 blur-[120px] rounded-full"></div>
+</div>
+<!-- Login Container -->
+<div class="w-full max-w-md glass-panel rounded-[2rem] p-8 shadow-[0px_12px_32px_rgba(23,28,31,0.06)] border border-white/20">
+<!-- Branding -->
+<div class="text-center mb-10">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary mb-4 shadow-lg overflow-hidden relative">
+<span class="text-white text-3xl font-headline font-extrabold tracking-tighter">H</span>
+<div class="absolute bottom-0 right-0 w-6 h-6 bg-secondary-container rounded-tl-lg"></div>
+</div>
+<h1 class="text-display-lg font-headline font-extrabold text-primary leading-none mb-2">Hunar</h1>
+<p class="text-label-md uppercase tracking-widest text-outline font-semibold">The Empowered Artisan</p>
+</div>
+<!-- Role Selection (Segmented Control) -->
+<div class="bg-surface-container-low p-1.5 rounded-full flex mb-8">
+<button class="flex-1 py-2.5 px-4 rounded-full text-sm font-semibold transition-all bg-primary text-on-primary shadow-sm">
+                    Worker
+                </button>
+<button class="flex-1 py-2.5 px-4 rounded-full text-sm font-semibold transition-all text-on-surface-variant hover:bg-surface-container">
+                    Employer
+                </button>
+<button class="flex-1 py-2.5 px-4 rounded-full text-sm font-semibold transition-all text-on-surface-variant hover:bg-surface-container">
+                    Customer
+                </button>
+</div>
+<!-- Input Form -->
+<form class="space-y-5">
+<div class="space-y-2">
+<label class="block text-xs font-bold text-primary ml-4 uppercase tracking-wider">Email or Phone</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-full border-0 focus:ring-2 focus:ring-primary/20 placeholder:text-outline/50 transition-all text-on-surface shadow-sm" placeholder="name@example.com" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center px-4">
+<label class="block text-xs font-bold text-primary uppercase tracking-wider">Password</label>
+<a class="text-xs font-bold text-secondary hover:underline transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-full border-0 focus:ring-2 focus:ring-primary/20 placeholder:text-outline/50 transition-all text-on-surface shadow-sm" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary rounded-full font-bold text-lg shadow-[0px_8px_24px_rgba(0,35,111,0.25)] hover:scale-[1.02] active:scale-[0.98] transition-all mt-4" type="submit">
+                    Sign In
+                </button>
+</form>
+<!-- Divider -->
+<div class="relative my-8 flex items-center justify-center">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-surface-container-highest"></div>
+</div>
+<span class="relative px-4 text-xs font-bold text-outline bg-white/0 backdrop-blur-sm uppercase tracking-tighter">or continue with</span>
+</div>
+<!-- Social Login -->
+<button class="w-full flex items-center justify-center gap-3 py-4 bg-surface-container-lowest rounded-full font-semibold text-on-surface border border-surface-container-highest hover:bg-surface transition-all shadow-sm">
+<img alt="Google" class="w-5 h-5" data-alt="Google company logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaMq3c8I0XlkweYltbHfafx0F9o4ngtnVYOr-aMvg4z9MOEs3ig-zcF-qf35zRefrcmNsvuOmCt2etflkWo0fr4odDM4z3eBn6grkqnvOtVSK-Vc9K5Cn06gpBLxVjBOXyqXp82vxIG2JGvEq4HYBXIKbOb9uHo04rLa5S52-tSLGiEOqh2RczTf8Z9v1chx_lGZIgW-SFtJSwI_7PeyloTDyLiDQZmgLTmLx9J5YqJXXWhhWAGcxSKm03n851UmtmegYENeAQTGo"/>
+<span>Sign in with Google</span>
+</button>
+<!-- Footer Link -->
+<p class="text-center mt-8 text-sm text-on-surface-variant font-medium">
+                New to Hunar? 
+                <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+</div>
+<!-- Decorative Floating Elements -->
+<div class="absolute top-20 left-10 w-12 h-12 bg-secondary-fixed opacity-40 rounded-xl rotate-12 -z-10"></div>
+<div class="absolute bottom-20 right-10 w-16 h-16 bg-tertiary-fixed opacity-30 rounded-full -z-10"></div>
+</main>
+<!-- Support Elements -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-40">
+<span class="material-symbols-outlined text-sm">security</span>
+<span class="text-[10px] uppercase font-bold tracking-widest text-on-background">Secure &amp; Verified Environment</span>
+</div>
+</body></html>

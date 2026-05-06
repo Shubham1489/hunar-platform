@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar - Find Skilled Artisans</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#004942",
+              "on-tertiary-fixed": "#00201d",
+              "primary-fixed-dim": "#b6c4ff",
+              "on-surface-variant": "#444651",
+              "inverse-surface": "#2c3134",
+              "surface-variant": "#dfe3e7",
+              "tertiary": "#00312c",
+              "surface-container-low": "#f0f4f8",
+              "surface-dim": "#d6dade",
+              "on-secondary-fixed": "#341100",
+              "surface-container-highest": "#dfe3e7",
+              "secondary-fixed-dim": "#ffb690",
+              "error": "#ba1a1a",
+              "on-secondary-fixed-variant": "#783200",
+              "on-primary-fixed": "#00164e",
+              "on-tertiary": "#ffffff",
+              "surface-bright": "#f6fafe",
+              "on-tertiary-container": "#4ebdb0",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-tint": "#4059aa",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#e4e9ed",
+              "inverse-primary": "#b6c4ff",
+              "on-error-container": "#93000a",
+              "secondary-fixed": "#ffdbca",
+              "primary-container": "#1e3a8a",
+              "on-primary-container": "#90a8ff",
+              "tertiary-fixed": "#89f5e7",
+              "surface": "#f6fafe",
+              "on-error": "#ffffff",
+              "on-surface": "#171c1f",
+              "tertiary-fixed-dim": "#6bd8cb",
+              "on-background": "#171c1f",
+              "primary": "#00236f",
+              "on-secondary": "#ffffff",
+              "primary-fixed": "#dce1ff",
+              "outline-variant": "#c5c5d3",
+              "background": "#f6fafe",
+              "on-secondary-container": "#5c2400",
+              "secondary-container": "#fd761a",
+              "on-primary-fixed-variant": "#264191",
+              "inverse-on-surface": "#edf1f5",
+              "secondary": "#9d4300",
+              "on-tertiary-fixed-variant": "#005049",
+              "surface-container": "#eaeef2",
+              "outline": "#757682"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Inter', sans-serif; }
+      .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .premium-gradient {
+        background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+      }
+      .hide-scrollbar::-webkit-scrollbar { display: none; }
+      .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-background min-h-screen pb-24">
+<!-- Top Navigation & Search Shell -->
+<header class="sticky top-0 z-30 pt-4 pb-2">
+<div class="px-4 mb-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-highest">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline text-2xl font-bold text-primary tracking-tight">Hunar</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-container-highest">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="px-4 mb-4">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-full border-none bg-surface-container-lowest shadow-[0px_12px_32px_rgba(23,28,31,0.06)] focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline" placeholder="Search jobs or workers" type="text"/>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 px-4 overflow-x-auto hide-scrollbar pb-2">
+<button class="flex items-center gap-1.5 px-4 py-2 bg-primary text-on-primary rounded-full text-sm font-medium whitespace-nowrap">
+                Nearby <span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap border border-outline-variant/20">
+                Rating
+            </button>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap border border-outline-variant/20">
+                Price
+            </button>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium whitespace-nowrap border border-outline-variant/20">
+                Verified
+            </button>
+</div>
+</header>
+<main class="px-4 mt-2">
+<!-- Results Summary -->
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-sm font-semibold uppercase tracking-widest text-outline">128 Artisans nearby</h2>
+<span class="material-symbols-outlined text-primary">filter_list</span>
+</div>
+<!-- Artisan Cards Grid -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Artisan Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(23,28,31,0.06)] group">
+<div class="p-6">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Worker Portrait" class="w-16 h-16 rounded-xl object-cover" data-alt="Professional male electrician portrait smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFBbeJtdvlaDELZAbkebyBm6Tw66fBo0ClmB8qFnyQDLwzF7IMsFy6k8weU_u765mJ6IkbPLge51ptN4ktgvfoKBpjspC32FU3IMbAnvMuwN7QG2jtyVUY6eL9G_lq7or4suPutTGRg8L5KVDnb8OOV9ifbbbO-3l85sbG_KGfehvWHG8EutML3yNurI-BBWyRVWhzoIrAO8wMQfW3uFN3jPte4Kpxnu3TNvSa7bf1DdxE-zvf1g9Byae0ZTzGmr043hc03qB6qv8"/>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-tertiary rounded-full flex items-center justify-center border-2 border-white">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline text-lg font-bold text-on-surface leading-tight">Rajesh Kumar</h3>
+<p class="text-sm font-medium text-secondary mb-1">Master Electrician</p>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.9</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-xs">2.5 km away</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase tracking-wider text-outline font-bold">Hourly Rate</p>
+<p class="text-lg font-bold text-on-surface">₹400/hr</p>
+</div>
+<button class="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm transition-transform active:scale-95">
+                            View Profile
+                        </button>
+</div>
+</div>
+</div>
+<!-- Artisan Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(23,28,31,0.06)]">
+<div class="p-6">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Worker Portrait" class="w-16 h-16 rounded-xl object-cover" data-alt="Experienced female plumber with equipment portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnYrlhug-1QhYlLkEomJDYYo8CJHaSqw_1f5r_T_2Q4vrpvYmqgpJoSftdD7R6-yiixOyOCzA-sglU5i7sh42d_rWXk0kbmF1mlw99v1h95zs58nui-MYB7QGEYsEJuZWii0xoUMmBaQ48DaomisagzDF-cE2Q2buNSryv3-KD6J7AInV7OK1GJ7GGfH8X2XdnPpBW1Gsac8yEpoolpBMDy3hgzDT-LpDKTfdKexkRl-0_eBiI9z2OuTEKPmZYZ_1jlpArlbHtrZE"/>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-tertiary rounded-full flex items-center justify-center border-2 border-white">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline text-lg font-bold text-on-surface leading-tight">Anita Sharma</h3>
+<p class="text-sm font-medium text-secondary mb-1">Professional Plumber</p>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.8</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-xs">1.2 km away</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase tracking-wider text-outline font-bold">Hourly Rate</p>
+<p class="text-lg font-bold text-on-surface">₹350/hr</p>
+</div>
+<button class="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm">
+                            View Profile
+                        </button>
+</div>
+</div>
+</div>
+<!-- Premium Feature Banner -->
+<div class="premium-gradient rounded-2xl p-6 text-white relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline text-xl font-bold mb-2">Need a Pro ASAP?</h4>
+<p class="text-white/80 text-sm mb-4">Get matched with verified experts within 15 minutes.</p>
+<button class="bg-white text-primary px-6 py-2 rounded-full text-sm font-bold">
+                        Post Quick Task
+                    </button>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl text-white/10 rotate-12">bolt</span>
+</div>
+<!-- Artisan Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_12px_32px_rgba(23,28,31,0.06)]">
+<div class="p-6">
+<div class="flex items-start gap-4 mb-4">
+<div class="relative">
+<img alt="Worker Portrait" class="w-16 h-16 rounded-xl object-cover" data-alt="Skilled male carpenter working in studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH2x0QOuTc3GHwB5XZKDjQfrtXmT6T9jy2mpCghRI6UpGbYyRvn4Ns7LkjbwEAb3vc0BRFrNHWDUpYkEN-ix-9gjWvLY3Vpi3NriQOiarcbqRIeGaJw-aGzK9cX4m6Bcl6S2SrDc3Hib1i4hmO-Ldjf_7_kjISEMXDS7hev59d4JqpKvM2Q469i9at57KaFwrDRbPyfI5CHUFGvvslZ6SkKYG3LwTEP7esAG2YWlbuN6gDr3hnQ6dEzBjxSQHfPsR04xiEaH8YQxI"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline text-lg font-bold text-on-surface leading-tight">Vikram Singh</h3>
+<p class="text-sm font-medium text-secondary mb-1">Custom Carpenter</p>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">5.0</span>
+</div>
+<div class="flex items-center gap-1 text-outline">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="text-xs">3.8 km away</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div>
+<p class="text-[10px] uppercase tracking-wider text-outline font-bold">Hourly Rate</p>
+<p class="text-lg font-bold text-on-surface">₹550/hr</p>
+</div>
+<button class="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm">
+                            View Profile
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar Shell -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-outline-variant/10 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-outline">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<div class="relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<div class="absolute -top-1 -right-1 w-1.5 h-1.5 bg-secondary rounded-full"></div>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Search</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-outline">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Profile</span>
+</button>
+</nav>
+</body></html>

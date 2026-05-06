@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar - Candidates Grid</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "secondary": "#9d4300",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#e4e9ed",
+                "outline-variant": "#c5c5d3",
+                "on-primary-fixed-variant": "#264191",
+                "tertiary-container": "#004942",
+                "surface": "#f6fafe",
+                "primary-fixed-dim": "#b6c4ff",
+                "on-tertiary": "#ffffff",
+                "surface-container": "#eaeef2",
+                "outline": "#757682",
+                "surface-dim": "#d6dade",
+                "tertiary-fixed": "#89f5e7",
+                "on-primary": "#ffffff",
+                "secondary-fixed": "#ffdbca",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary-fixed-variant": "#005049",
+                "primary-container": "#1e3a8a",
+                "on-surface": "#171c1f",
+                "tertiary-fixed-dim": "#6bd8cb",
+                "on-error": "#ffffff",
+                "surface-bright": "#f6fafe",
+                "surface-variant": "#dfe3e7",
+                "on-error-container": "#93000a",
+                "surface-container-highest": "#dfe3e7",
+                "background": "#f6fafe",
+                "on-background": "#171c1f",
+                "on-tertiary-container": "#4ebdb0",
+                "secondary-container": "#fd761a",
+                "primary": "#00236f",
+                "tertiary": "#00312c",
+                "surface-container-low": "#f0f4f8",
+                "inverse-primary": "#b6c4ff",
+                "secondary-fixed-dim": "#ffb690",
+                "on-secondary-fixed": "#341100",
+                "inverse-on-surface": "#edf1f5",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed": "#00164e",
+                "inverse-surface": "#2c3134",
+                "error": "#ba1a1a",
+                "on-secondary-fixed-variant": "#783200",
+                "on-surface-variant": "#444651",
+                "on-secondary-container": "#5c2400",
+                "on-primary-container": "#90a8ff",
+                "surface-tint": "#4059aa",
+                "primary-fixed": "#dce1ff",
+                "on-tertiary-fixed": "#00201d"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            background: rgba(246, 250, 254, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ambient-glow {
+            box-shadow: 0px 12px 32px rgba(23, 28, 31, 0.06);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6fafe;
+            color: #171c1f;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background">
+<!-- TopNavBar -->
+<nav class="glass-nav sticky top-0 z-50 border-b border-outline-variant/20 px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-extrabold text-primary tracking-tight font-headline">Hunar</span>
+<div class="hidden md:flex gap-6 text-sm font-medium text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Find Jobs</a>
+<a class="text-primary" href="#">Candidates</a>
+<a class="hover:text-primary transition-colors" href="#">Companies</a>
+<a class="hover:text-primary transition-colors" href="#">Post a Job</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-surface-container-high overflow-hidden border-2 border-primary/10">
+<img class="w-full h-full object-cover" data-alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg-giQKkLQAm2ZLMbWG2qGW7f2bgh19Zfsngrdl7sQLFf99FGUDuM1sHbz7rVqjjIvYlgs4cpvNpuShU4Qzza2QnR6OO4uX6jXVVdNLSFkPv5ytSy6Ru-e8qYLx6u3_IsgIHv1N49WgsKIjIFz3peX-i_ouSNyIm3FqX7ZRT4rIT_r1OxxofOlNOxUZqKC_7zsXJtyk5Y3QG1gEG_kBFuOxub_ynKTu7Ru6P11qc7qLvHqMcsX8AnKq0PEsqt6JblDfkt_m3yjUDo"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<!-- Hero & Search Section -->
+<header class="mb-12">
+<div class="max-w-2xl mb-10">
+<p class="text-secondary font-semibold tracking-wider text-xs mb-3 uppercase">Discover Talent</p>
+<h1 class="text-5xl font-extrabold text-on-background mb-4 leading-tight font-headline">Find the perfect professional for your project.</h1>
+<p class="text-on-surface-variant text-lg">Connect with thousands of verified experts across India, ready to start today.</p>
+</div>
+<!-- SearchBar & Filters -->
+<div class="bg-surface-container-lowest p-4 rounded-full ambient-glow flex items-center gap-4 max-w-4xl border border-outline-variant/10">
+<div class="flex-1 flex items-center pl-4 gap-3">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder-outline/60 text-lg" placeholder="Search for jobs, skills, or workers..." type="text"/>
+</div>
+<div class="h-10 w-px bg-outline-variant/30 hidden md:block"></div>
+<div class="hidden md:flex items-center gap-2 px-4 text-on-surface-variant">
+<span class="material-symbols-outlined">location_on</span>
+<span class="text-sm font-medium">Anywhere</span>
+</div>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-sm tracking-wide hover:bg-primary-container transition-all shadow-lg shadow-primary/20">
+                    Search Talent
+                </button>
+</div>
+<!-- Chips -->
+<div class="mt-8 flex items-center gap-3 overflow-x-auto pb-4 no-scrollbar">
+<span class="text-sm font-bold text-on-surface-variant mr-2">Quick filters:</span>
+<button class="px-5 py-2.5 bg-primary text-on-primary rounded-full text-sm font-medium transition-all whitespace-nowrap">Remote</button>
+<button class="px-5 py-2.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest rounded-full text-sm font-medium transition-all whitespace-nowrap">Full-time</button>
+<button class="px-5 py-2.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest rounded-full text-sm font-medium transition-all whitespace-nowrap">Freelance</button>
+<button class="px-5 py-2.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest rounded-full text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2">
+                    Verified Only <span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="px-5 py-2.5 bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest rounded-full text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2">
+                    Urgent <span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+</div>
+</header>
+<div class="flex flex-col lg:flex-row gap-10">
+<!-- SideNavBar (Filters) -->
+<aside class="w-full lg:w-72 flex-shrink-0">
+<div class="bg-surface-container-low p-8 rounded-xl sticky top-28 border border-outline-variant/10">
+<div class="mb-8">
+<h2 class="text-xl font-bold text-on-surface font-headline">Filters</h2>
+<p class="text-sm text-on-surface-variant">Refine Results</p>
+</div>
+<div class="space-y-6">
+<div class="space-y-4">
+<div class="flex items-center gap-3 text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-sm">Categories</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">location_on</span>
+<span class="text-sm">Location</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-sm">Salary</span>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">business_center</span>
+<span class="text-sm">Job Type</span>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/20">
+<p class="text-xs font-bold text-outline uppercase tracking-widest mb-4">Trending Skills</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-highest px-3 py-1 rounded-sm text-[11px] font-bold text-on-surface-variant uppercase">Electrician</span>
+<span class="bg-surface-container-highest px-3 py-1 rounded-sm text-[11px] font-bold text-on-surface-variant uppercase">Plumbing</span>
+<span class="bg-surface-container-highest px-3 py-1 rounded-sm text-[11px] font-bold text-on-surface-variant uppercase">AC Repair</span>
+<span class="bg-surface-container-highest px-3 py-1 rounded-sm text-[11px] font-bold text-on-surface-variant uppercase">HVAC</span>
+<span class="bg-surface-container-highest px-3 py-1 rounded-sm text-[11px] font-bold text-on-surface-variant uppercase">Solar</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content: Candidates Grid -->
+<section class="flex-1">
+<div class="flex justify-between items-center mb-8">
+<p class="text-on-surface-variant font-medium">Showing <span class="text-on-surface font-bold">124</span> top-rated candidates</p>
+<div class="flex items-center gap-2 text-sm font-semibold text-primary cursor-pointer">
+                        Sort by: Relevance
+                        <span class="material-symbols-outlined">sort</span>
+</div>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Candidate Card 1 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl ambient-glow hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10">
+<div class="relative mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Vikram Singh Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuCfEZtx1KyIY93JteFacuhvh-AMnS6XXkXycVwFZygC-574yepD4K_Mx_X_L60D3cYmJYWJLd2KE2AW-c_ZeswuQxqwAd1ju5qI5PYPSuY6HRJEibs4p_d0nS2Ef2jG_NO4H0yJLgxAgZ6CM5xc5M7hv6E243c8Ti7eUyJNWOR7vvhGXOvHirSnbJQ7j5AwbIugUBU37dXnzpQNwiYLO065Y34MHNoEeY8-CyEOALpc3R9G52imkal1qJxqCdhYT2KGmcrjxY9og"/>
+</div>
+<div class="absolute -top-2 -right-2 bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Verified</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1 font-headline">Vikram Singh</h3>
+<p class="text-secondary text-sm font-bold mb-4">Senior Electrician</p>
+<div class="flex items-center gap-1 mb-6">
+<span class="material-symbols-outlined text-yellow-500 text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.9</span>
+<span class="text-xs text-outline font-medium">(128 reviews)</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">location_on</span>
+                                Mumbai, Maharashtra
+                            </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-on-surface font-bold">₹400/hr</span>
+</div>
+</div>
+<button class="w-full py-3 rounded-full bg-primary text-on-primary font-bold text-sm tracking-wide group-hover:bg-secondary transition-colors">
+                            Hire Professional
+                        </button>
+</div>
+<!-- Candidate Card 2 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl ambient-glow hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10">
+<div class="relative mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Amit Patel Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4oBGInwP8Q-FxxfIe5owrrOiCN1PUf0KNHY7EodEq_qMuwBXmkMASS0EJaY0ovPaVRecseQ44z1AItqF-7-walTB2eapmQIO7gNkEzpLP3OQH4q0JMAgAZWKD7J-WoQob00vFI93vMUpGGYSgTZfnnuUJLi2l7zZs7YTZd9HlJnLZl2-ei7E68EWiVRHQYyF7HLNAjnmWurILSDBQrAPNjVQM535VefsdZ8OSO5I-ZbWH877cnjAlWSmigdnlKfEdAELD8cRUYlQ"/>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1 font-headline">Amit Patel</h3>
+<p class="text-secondary text-sm font-bold mb-4">AC Repair Specialist</p>
+<div class="flex items-center gap-1 mb-6">
+<span class="material-symbols-outlined text-yellow-500 text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.8</span>
+<span class="text-xs text-outline font-medium">(94 reviews)</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">location_on</span>
+                                Ahmedabad, Gujarat
+                            </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-on-surface font-bold">₹350/hr</span>
+</div>
+</div>
+<button class="w-full py-3 rounded-full bg-primary text-on-primary font-bold text-sm tracking-wide group-hover:bg-secondary transition-colors">
+                            Hire Professional
+                        </button>
+</div>
+<!-- Candidate Card 3 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl ambient-glow hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10">
+<div class="relative mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Suresh Kumar Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtAMTKghw4WLWoqSzySEH6sBQQpNzdAAE5KFqOHkPyqCIpDdQ9BEOfRxTPrHik7b3P-5OyWzQ-FlBYRsFHha6N_mKOjvMZ1l2nDFYsnxYaQRECRRVummkNOEm9do2JtRpZdO2THw-1qNA2t-ABx4kSJUZbezkgq1hejDr9eGKnZ3CTG9CtxJz73aH5CdFFcxXBTCBGf51TUZuFkbGl8EX6o1SgybTTMXtOcSxYIYkF_bv6ZYmADPmnSdx4g2mr-A6iL1VTG5vxFqU"/>
+</div>
+<div class="absolute -top-2 -right-2 bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Top Rated</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1 font-headline">Suresh Kumar</h3>
+<p class="text-secondary text-sm font-bold mb-4">Master Plumber</p>
+<div class="flex items-center gap-1 mb-6">
+<span class="material-symbols-outlined text-yellow-500 text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">5.0</span>
+<span class="text-xs text-outline font-medium">(210 reviews)</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">location_on</span>
+                                Bangalore, Karnataka
+                            </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-on-surface font-bold">₹500/hr</span>
+</div>
+</div>
+<button class="w-full py-3 rounded-full bg-primary text-on-primary font-bold text-sm tracking-wide group-hover:bg-secondary transition-colors">
+                            Hire Professional
+                        </button>
+</div>
+<!-- Candidate Card 4 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl ambient-glow hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10">
+<div class="relative mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Rajesh Sharma Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnrrJTqR6zBsY3WiuyfgYgJ7APUWaFyyNARolB19Ag8yMVJfY-xIDpDuXBLhfdQqonM2_5YB97bb0ZWVC90Ws9QWoXpT1Hd7wreotL5BnLoiofy6MMxfs142B3s4A3bFFPjjZ_Z16_eQDHcy0BmU9Aa9AmG1AIXAUtgitDaJWcEorr32XaAaRj1T7r-sOgJ5kvlS4sxRzdLfHAcjV2-89QZuwCajEmGSUqqlnEDSXh1wN4snnO8js-oQQ0q8NOktHESBJGO0RP4ls"/>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1 font-headline">Rajesh Sharma</h3>
+<p class="text-secondary text-sm font-bold mb-4">General Maintenance</p>
+<div class="flex items-center gap-1 mb-6">
+<span class="material-symbols-outlined text-yellow-500 text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.7</span>
+<span class="text-xs text-outline font-medium">(56 reviews)</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">location_on</span>
+                                Delhi, NCR
+                            </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-on-surface font-bold">₹300/hr</span>
+</div>
+</div>
+<button class="w-full py-3 rounded-full bg-primary text-on-primary font-bold text-sm tracking-wide group-hover:bg-secondary transition-colors">
+                            Hire Professional
+                        </button>
+</div>
+<!-- Candidate Card 5 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl ambient-glow hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10">
+<div class="relative mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Priya Das Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjs5l6j8Da2ZyCbTLwk2EGSa9KgBZ7wVhDzafdOdWens4L3D0KljPyQxtUB13sr2ar_8yvkF2oIWbMzytAhw56QJxuvMXkQfK_4HZj1ZYcAtQXQBxtutiLp8d7yyGvmilkojen5CN77aLGvgO170p5moGVyPgScKPODhtwEl8J39j7wbpySoW7MKf5Rl9QK12abcVsgWU0BruewnlbIXkSFB5Lhlh_0ZkfFIvCZLC_t0h7_QnQ4BiIDX1ADyCoK_n86N1zo3VF5aQ"/>
+</div>
+<div class="absolute -top-2 -right-2 bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">New</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1 font-headline">Priya Das</h3>
+<p class="text-secondary text-sm font-bold mb-4">Interior Finishing</p>
+<div class="flex items-center gap-1 mb-6">
+<span class="material-symbols-outlined text-yellow-500 text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.9</span>
+<span class="text-xs text-outline font-medium">(12 reviews)</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">location_on</span>
+                                Kolkata, WB
+                            </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-on-surface font-bold">₹450/hr</span>
+</div>
+</div>
+<button class="w-full py-3 rounded-full bg-primary text-on-primary font-bold text-sm tracking-wide group-hover:bg-secondary transition-colors">
+                            Hire Professional
+                        </button>
+</div>
+<!-- Candidate Card 6 -->
+<div class="group bg-surface-container-lowest p-6 rounded-xl ambient-glow hover:-translate-y-1 transition-all duration-300 border border-outline-variant/10">
+<div class="relative mb-6">
+<div class="w-20 h-20 rounded-xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Karan Johar Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSQNwiy48HtjjFc2ANVDNdxYkK-M_h7CGCg1x5-20ZTaTdrwcmVwepgCRrlP9VPHcGartbKuiX7wBBGVlqeIYu3-_WDhCNXnAzEnqTETo3prvRFVmVEO6RMMYIYryiV3jXq-hJFkTDoGLARwZGmuhgf8lPI5IaazgKLd7ER4A4VGz7PaRfomhS750WuS0e0DmRT1wBeimy9PG5aZr2Y4hB3Bzr3mLVK4W0ccXHZ377CjlE3NOaBxgsOr0A72vdHoWPQZwG6ILIQHM"/>
+</div>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-1 font-headline">Karan Mehta</h3>
+<p class="text-secondary text-sm font-bold mb-4">Solar Technician</p>
+<div class="flex items-center gap-1 mb-6">
+<span class="material-symbols-outlined text-yellow-500 text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.6</span>
+<span class="text-xs text-outline font-medium">(32 reviews)</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">location_on</span>
+                                Pune, Maharashtra
+                            </div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-on-surface font-bold">₹550/hr</span>
+</div>
+</div>
+<button class="w-full py-3 rounded-full bg-primary text-on-primary font-bold text-sm tracking-wide group-hover:bg-secondary transition-colors">
+                            Hire Professional
+                        </button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-on-primary font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-all">3</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant/30 text-on-surface-variant hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<div class="fixed bottom-0 left-0 right-0 md:hidden bg-surface-container-lowest border-t border-outline-variant/20 flex items-center justify-around py-3 px-6 z-50">
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+<span class="text-[10px] font-bold">Jobs</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-bold">Candidates</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Account</span>
+</div>
+</div>
+<!-- Footer for Premium Feel -->
+<footer class="bg-surface-container-low border-t border-outline-variant/10 mt-20 pt-16 pb-32 md:pb-16 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+<div>
+<span class="text-3xl font-extrabold text-primary tracking-tight font-headline mb-6 block">Hunar</span>
+<p class="max-w-xs text-on-surface-variant text-sm leading-relaxed">The premium talent network connecting skilled artisans with high-value opportunities. Built for the modern workforce.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+<div class="space-y-4">
+<p class="font-bold text-on-surface uppercase text-xs tracking-widest">Platform</p>
+<ul class="space-y-2 text-sm text-on-surface-variant font-medium">
+<li><a class="hover:text-primary" href="#">Find Talent</a></li>
+<li><a class="hover:text-primary" href="#">Job Board</a></li>
+<li><a class="hover:text-primary" href="#">Success Stories</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<p class="font-bold text-on-surface uppercase text-xs tracking-widest">Company</p>
+<ul class="space-y-2 text-sm text-on-surface-variant font-medium">
+<li><a class="hover:text-primary" href="#">About Us</a></li>
+<li><a class="hover:text-primary" href="#">Contact</a></li>
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto border-t border-outline-variant/20 mt-16 pt-8 flex justify-between items-center text-xs text-outline font-bold uppercase tracking-widest">
+<span>© 2024 Hunar Platform</span>
+<div class="flex gap-6">
+<a href="#">LinkedIn</a>
+<a href="#">Twitter</a>
+</div>
+</div>
+</footer>
+</body></html>

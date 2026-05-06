@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hunar - Job Search Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#004942",
+                        "on-tertiary-fixed": "#00201d",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-surface-variant": "#444651",
+                        "inverse-surface": "#2c3134",
+                        "surface-variant": "#dfe3e7",
+                        "tertiary": "#00312c",
+                        "surface-container-low": "#f0f4f8",
+                        "surface-dim": "#d6dade",
+                        "on-secondary-fixed": "#341100",
+                        "surface-container-highest": "#dfe3e7",
+                        "secondary-fixed-dim": "#ffb690",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#783200",
+                        "on-primary-fixed": "#00164e",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f6fafe",
+                        "on-tertiary-container": "#4ebdb0",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#4059aa",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e4e9ed",
+                        "inverse-primary": "#b6c4ff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffdbca",
+                        "primary-container": "#1e3a8a",
+                        "on-primary-container": "#90a8ff",
+                        "tertiary-fixed": "#89f5e7",
+                        "surface": "#f6fafe",
+                        "on-error": "#ffffff",
+                        "on-surface": "#171c1f",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "on-background": "#171c1f",
+                        "primary": "#00236f",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dce1ff",
+                        "outline-variant": "#c5c5d3",
+                        "background": "#f6fafe",
+                        "on-secondary-container": "#5c2400",
+                        "secondary-container": "#fd761a",
+                        "on-primary-fixed-variant": "#264191",
+                        "inverse-on-surface": "#edf1f5",
+                        "secondary": "#9d4300",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "surface-container": "#eaeef2",
+                        "outline": "#757682"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #00236f 0%, #1e3a8a 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6fafe;
+            color: #171c1f;
+        }
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-24">
+<!-- Top App Bar (Shared Component) -->
+<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-4 py-3">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="menu">menu</span>
+</button>
+<span class="text-xl font-extrabold tracking-tight text-primary font-headline">Hunar</span>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-on-surface" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full border-2 border-surface"></span>
+</button>
+</div>
+</header>
+<main class="px-4">
+<!-- Search & Filter Section (Creative Canvas) -->
+<div class="mt-4 mb-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border-none rounded-full shadow-[0px_12px_32px_rgba(23,28,31,0.06)] focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-outline transition-all" placeholder="Search jobs or workers" type="text"/>
+</div>
+<!-- Chips (Shared Component & Extension) -->
+<div class="flex gap-2 mt-6 overflow-x-auto pb-2 no-scrollbar scroll-smooth">
+<button class="flex-shrink-0 px-5 py-2 bg-primary text-on-primary rounded-full text-sm font-semibold flex items-center gap-1">
+                    Nearby <span class="material-symbols-outlined text-[18px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<button class="flex-shrink-0 px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container-highest transition-colors">
+                    Full-time
+                </button>
+<button class="flex-shrink-0 px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container-highest transition-colors">
+                    Remote
+                </button>
+<button class="flex-shrink-0 px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container-highest transition-colors flex items-center gap-1">
+                    Urgent <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</button>
+<button class="flex-shrink-0 px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container-highest transition-colors">
+                    Salary: High to Low
+                </button>
+</div>
+</div>
+<!-- Section Title (Editorial Tension) -->
+<div class="flex items-baseline justify-between mb-6">
+<h2 class="text-2xl font-bold font-headline text-on-background">Recommended Jobs</h2>
+<span class="text-[10px] font-bold uppercase tracking-widest text-outline">142 RESULTS</span>
+</div>
+<!-- Vertical Job List (Creative Canvas) -->
+<div class="space-y-4">
+<!-- Job Card 1 -->
+<div class="relative group p-6 rounded-xl bg-surface-container-lowest shadow-[0px_4px_24px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0px_12px_32px_rgba(23,28,31,0.06)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="Corporate professional company logo badge" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJx5RTM00XX6s9GwfvcmLWDphmyxhaez6523exUI51KKnDiXK4w11Z4Y6jtWVbWiQA3WjQmHdeTLu1VP8UsSKeaUqxlrzEAVVPSGL1czcLxzS_l3bOCHIU7NfqsLRnGaPAN4AfwwTw4jSR92ANSimSq4tKQdUTONcPZGqXTBQX1WQx6WzoTKFJio_KtxdhfuksPte8wkyEERJv0epmZ6rLPLvZ-AXsWJgcB_ZRkhwcX1SISWtfTMalF6QCfnvcDSn5O1SrrB_Pc7k"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-on-surface leading-tight">Master Electrician</h3>
+<p class="text-sm text-outline font-medium">VoltStream Solutions</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors" data-icon="bookmark">bookmark</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded-lg text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="bolt" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bolt</span> Urgent
+                    </span>
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-lg text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span> Verified
+                    </span>
+<span class="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-lg text-xs font-medium">Full-time</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div>
+<div class="flex items-center gap-1 text-outline mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">Mumbai, MH</span>
+</div>
+<p class="text-primary font-bold text-lg">₹65k - ₹85k<span class="text-xs text-outline font-normal ml-1">/mo</span></p>
+</div>
+<button class="px-6 py-2.5 premium-gradient text-on-primary rounded-xl font-bold text-sm shadow-lg shadow-primary/20">Apply Now</button>
+</div>
+</div>
+<!-- Job Card 2 (Premium Highlight) -->
+<div class="relative group p-6 rounded-xl bg-surface-container-lowest shadow-[0px_4px_24px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0px_12px_32px_rgba(23,28,31,0.06)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="Tech construction company minimalist logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg14PojRp-Pzlrn5R9N_tahHVFURcI1TemSeknqNBY_6aE9cK2A1-NFQtA6tKYk9E0H4BGWDabZE4QM4v0XncBe_nVc9DRVKP1A6ImHuATxCbswcfNjJaiK1YARbKSqTbgSzTvdIuDcGx2dvTfTeRQjuryOtCp5jgz14y7GdWfUcjJGjVH5nDaTn8PlBJ4o4SNbgPPK2wHrdYzbQnvy5gr6HvCOTR5tdFsa-TuT5tRDxuqCkJu7s2QotkwW9iqwlWuv7K658PYnhI"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-on-surface leading-tight">HVAC Specialist</h3>
+<p class="text-sm text-outline font-medium">ArcticFlow Systems</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors" data-icon="bookmark">bookmark</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-lg text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span> Verified
+                    </span>
+<span class="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-lg text-xs font-medium">Contract</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div>
+<div class="flex items-center gap-1 text-outline mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">Bangalore, KA</span>
+</div>
+<p class="text-primary font-bold text-lg">₹70k - ₹95k<span class="text-xs text-outline font-normal ml-1">/mo</span></p>
+</div>
+<button class="px-6 py-2.5 premium-gradient text-on-primary rounded-xl font-bold text-sm shadow-lg shadow-primary/20">Apply Now</button>
+</div>
+</div>
+<!-- Promotional Banner (Asymmetric Layout) -->
+<div class="premium-gradient rounded-2xl p-6 text-on-primary relative overflow-hidden my-8">
+<div class="relative z-10 w-2/3">
+<h4 class="text-xl font-bold font-headline mb-2 leading-tight">Upskill with Hunar Academy</h4>
+<p class="text-on-primary/80 text-xs mb-4">Get certified in HVAC or Solar Installation to earn 2x more.</p>
+<button class="bg-white text-primary px-4 py-2 rounded-lg text-xs font-bold">Browse Courses</button>
+</div>
+<div class="absolute -right-4 -bottom-4 w-32 h-32 opacity-20">
+<span class="material-symbols-outlined text-[120px]" data-icon="school">school</span>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="relative group p-6 rounded-xl bg-surface-container-lowest shadow-[0px_4px_24px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0px_12px_32px_rgba(23,28,31,0.06)] border border-outline-variant/10">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-14 h-14 rounded-xl bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="Industrial construction engineering brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDapqNvNdnMf3wLUUiAOJumFYRhYRgJNjLP21RctmJEyFUsZelRN2lo_4pcsmAu0gakS0HPma7w_e76zDny2Tf2isUclZBSfPYiDYyxTsl9_5oRM7imozotUHMjY7QgFWFA8232osQ3sY1XGh9-VohlA9jiopHBCbNhwvHRohvtFcOdCnV6f2p-M7cY-2OIhwMuc9VYPsGGeOiwGW58heH23-R790dRwG7wq8dgtZr5r9_PcSzGJyZnH8aT28hqkJ3S15UWAO94Tbs"/>
+</div>
+<div>
+<h3 class="text-lg font-bold text-on-surface leading-tight">Civil Site Foreman</h3>
+<p class="text-sm text-outline font-medium">BuildCraft Infra</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors" data-icon="bookmark">bookmark</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-lg text-xs font-medium">On-site</span>
+<span class="px-3 py-1 bg-surface-container-low text-on-surface-variant rounded-lg text-xs font-medium">Immediate Joiner</span>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-surface-container-low">
+<div>
+<div class="flex items-center gap-1 text-outline mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="text-xs">Pune, MH</span>
+</div>
+<p class="text-primary font-bold text-lg">₹55k - ₹75k<span class="text-xs text-outline font-normal ml-1">/mo</span></p>
+</div>
+<button class="px-6 py-2.5 premium-gradient text-on-primary rounded-xl font-bold text-sm shadow-lg shadow-primary/20">Apply Now</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar (Shared Component) -->
+<nav class="fixed bottom-0 left-0 right-0 glass-card border-t border-outline-variant/20 px-6 py-3 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="home">home</span>
+<span class="text-[10px] font-bold text-outline group-hover:text-primary tracking-wide">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="relative">
+<span class="material-symbols-outlined text-primary" data-icon="search" data-weight="fill" style="font-variation-settings: 'FILL' 1;">search</span>
+<div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"></div>
+</div>
+<span class="text-[10px] font-bold text-primary tracking-wide">Search</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="person">person</span>
+<span class="text-[10px] font-bold text-outline group-hover:text-primary tracking-wide">Profile</span>
+</div>
+</nav>
+</body></html>
