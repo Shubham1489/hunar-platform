@@ -1,6 +1,5 @@
 # ──────────────────────────────────────────────
 # Hunar API — Production Dockerfile
-# Builds @hunar/shared → then builds API
 # ──────────────────────────────────────────────
 
 FROM node:20-alpine AS builder
@@ -15,16 +14,16 @@ COPY apps/api/package.json ./package.json
 # 2. Copy shared package source
 COPY packages/shared ./hunar-shared
 
-# 3. Patch @hunar/shared to use local file path
+# 3. Build the shared package (TS → JS in dist/)
+RUN cd hunar-shared && npm install && npx tsc
+
+# 4. Patch shared package.json: point main to compiled JS
+RUN sed -i 's|"main": "src/index.ts"|"main": "dist/index.js"|' hunar-shared/package.json
+
+# 5. Point @hunar/shared to local folder
 RUN sed -i 's|"@hunar/shared": "\*"|"@hunar/shared": "file:./hunar-shared"|' package.json
 
-# 4. Install all dependencies (dev + prod)
-RUN npm install
-
-# 5. Build the shared package first (compiles TS → dist/)
-RUN cd hunar-shared && npx tsc
-
-# 6. Rebuild @hunar/shared link after build so dist/ is picked up
+# 6. Install all dependencies (dev + prod for building)
 RUN npm install
 
 # 7. Copy Prisma schema & generate client
@@ -36,8 +35,8 @@ COPY apps/api/tsconfig.json ./tsconfig.json
 COPY apps/api/src ./src
 RUN npx tsc
 
-# 9. Verify
-RUN test -d dist && echo "✅ API build OK" || (echo "❌ dist/ not found" && exit 1)
+# 9. Verify build
+RUN test -d dist && echo "Build OK"
 
 # ── Stage 2: Production ──────────────────────
 FROM node:20-alpine AS runner
@@ -48,11 +47,17 @@ RUN apk add --no-cache openssl dumb-init wget
 RUN addgroup --system --gid 1001 hunar && \
     adduser --system --uid 1001 hunar
 
-# Copy compiled output + dependencies
+# Copy compiled API
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/package.json ./package.json
+
+# Copy node_modules (contains all runtime deps)
+COPY --from=builder /app/node_modules ./node_modules
+
+# CRITICAL: Copy the built shared package into node_modules
+# (npm file: links use symlinks which break across Docker stages)
+COPY --from=builder /app/hunar-shared ./node_modules/@hunar/shared
 
 USER hunar
 
