@@ -1,40 +1,40 @@
 # ──────────────────────────────────────────────
 # Hunar API — Production Dockerfile
-# Monorepo-aware: copies @hunar/shared package
+# Simple flat build (no workspace magic)
 # ──────────────────────────────────────────────
 
-# Stage 1: Install deps & build
+# Stage 1: Build
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install OpenSSL for Prisma
 RUN apk add --no-cache openssl
 
-# Copy root package files for workspace resolution
-COPY package.json ./
-COPY package-lock.json* ./
+# 1. Copy API package.json and install ALL deps (including typescript)
+COPY apps/api/package.json ./package.json
 
-# Copy shared package (dependency of the API)
-COPY packages/shared ./packages/shared
+# 2. Copy shared package locally so @hunar/shared resolves
+COPY packages/shared ./hunar-shared
 
-# Copy API package
-COPY apps/api/package.json ./apps/api/
-COPY apps/api/prisma ./apps/api/prisma
-COPY apps/api/tsconfig.json ./apps/api/
-COPY apps/api/src ./apps/api/src
+# 3. Patch package.json to point @hunar/shared to local path
+RUN sed -i 's|"@hunar/shared": "\*"|"@hunar/shared": "file:./hunar-shared"|' package.json
 
-# Install dependencies from root (workspace-aware)
-RUN npm install --omit=dev --workspace=apps/api --include-workspace-root || npm install --omit=dev
+# 4. Install all dependencies (dev + prod)
+RUN npm install
 
-# Generate Prisma client
-WORKDIR /app/apps/api
+# 5. Copy Prisma schema & generate client
+COPY apps/api/prisma ./prisma
 RUN npx prisma generate
 
-# Build TypeScript
-RUN npx tsc || true
+# 6. Copy source & build
+COPY apps/api/tsconfig.json ./tsconfig.json
+COPY apps/api/src ./src
+RUN npx tsc
 
-# Stage 2: Production runtime
+# 7. Verify build output exists
+RUN test -d dist && echo "✅ TypeScript build successful" || (echo "❌ Build failed - dist/ not found" && exit 1)
+
+# Stage 2: Production (lean)
 FROM node:20-alpine AS runner
 
 WORKDIR /app
@@ -43,16 +43,11 @@ RUN apk add --no-cache openssl dumb-init wget
 RUN addgroup --system --gid 1001 hunar && \
     adduser --system --uid 1001 hunar
 
-# Copy built artifacts
-COPY --from=builder /app/apps/api/dist ./dist
+# Copy built code + deps
+COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/api/node_modules ./api_modules
-COPY --from=builder /app/apps/api/prisma ./prisma
-COPY --from=builder /app/apps/api/package.json ./package.json
-COPY --from=builder /app/packages/shared ./packages/shared
-
-# Merge node_modules if api has its own
-RUN cp -rn ./api_modules/* ./node_modules/ 2>/dev/null || true && rm -rf ./api_modules
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/package.json ./package.json
 
 USER hunar
 
@@ -64,6 +59,5 @@ ENV PORT=3001
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:3001/health || exit 1
 
-# dumb-init handles PID 1 properly for signal forwarding
 ENTRYPOINT ["dumb-init", "--"]
 CMD ["node", "dist/server.js"]

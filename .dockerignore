@@ -1,0 +1,13 @@
+node_modules
+.git
+.github
+*.md
+stitch_hunar
+apps/web
+apps/mobile
+apps/ai-service
+.env*
+dist
+.next
+.turbo
+*.log
