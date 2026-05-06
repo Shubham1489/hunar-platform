@@ -10,7 +10,7 @@ services:
     name: hunar-api
     runtime: docker
     dockerfilePath: ./apps/api/Dockerfile
-    dockerContext: ./apps/api
+    dockerContext: .
     region: singapore  # Closest to India
     plan: free
     healthCheckPath: /health

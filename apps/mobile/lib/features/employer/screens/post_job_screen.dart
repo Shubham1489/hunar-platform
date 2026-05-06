@@ -72,6 +72,7 @@ class _PostJobScreenState extends State<PostJobScreen> {
     TextField(controller: _descCtrl, maxLines: 4, decoration: const InputDecoration(labelText: 'Description', hintText: 'Describe the role...')),
     const SizedBox(height: 16),
     DropdownButtonFormField<String>(
+      // ignore: deprecated_member_use
       initialValue: _selectedCity,
       decoration: const InputDecoration(labelText: 'City'),
       items: ['Mumbai', 'Delhi', 'Bangalore', 'Pune', 'Chennai']

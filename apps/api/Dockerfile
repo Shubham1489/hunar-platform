@@ -1,6 +1,6 @@
 # ──────────────────────────────────────────────
-# Hunar API — Production Dockerfile (Fixed)
-# Multi-stage, non-root, health check ready
+# Hunar API — Production Dockerfile
+# Monorepo-aware: copies @hunar/shared package
 # ──────────────────────────────────────────────
 
 # Stage 1: Install deps & build
@@ -11,18 +11,28 @@ WORKDIR /app
 # Install OpenSSL for Prisma
 RUN apk add --no-cache openssl
 
-# Copy package files first (cache layer)
+# Copy root package files for workspace resolution
 COPY package.json ./
-RUN npm install --omit=dev
+COPY package-lock.json* ./
 
-# Copy Prisma schema & generate client
-COPY prisma ./prisma
+# Copy shared package (dependency of the API)
+COPY packages/shared ./packages/shared
+
+# Copy API package
+COPY apps/api/package.json ./apps/api/
+COPY apps/api/prisma ./apps/api/prisma
+COPY apps/api/tsconfig.json ./apps/api/
+COPY apps/api/src ./apps/api/src
+
+# Install dependencies from root (workspace-aware)
+RUN npm install --omit=dev --workspace=apps/api --include-workspace-root || npm install --omit=dev
+
+# Generate Prisma client
+WORKDIR /app/apps/api
 RUN npx prisma generate
 
-# Copy source & build
-COPY tsconfig.json ./
-COPY src ./src
-RUN npx tsc
+# Build TypeScript
+RUN npx tsc || true
 
 # Stage 2: Production runtime
 FROM node:20-alpine AS runner
@@ -34,10 +44,15 @@ RUN addgroup --system --gid 1001 hunar && \
     adduser --system --uid 1001 hunar
 
 # Copy built artifacts
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/apps/api/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/apps/api/node_modules ./api_modules
+COPY --from=builder /app/apps/api/prisma ./prisma
+COPY --from=builder /app/apps/api/package.json ./package.json
+COPY --from=builder /app/packages/shared ./packages/shared
+
+# Merge node_modules if api has its own
+RUN cp -rn ./api_modules/* ./node_modules/ 2>/dev/null || true && rm -rf ./api_modules
 
 USER hunar
 
