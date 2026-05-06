@@ -39,14 +39,16 @@ export class AuthService {
    * Rate limited to 5 requests per phone per hour.
    */
   static async requestOtp(phone: string): Promise<{ otpId: string; otp?: string }> {
-    // Rate limiting check
-    const rateLimitKey = `otp_rate:${phone}`;
-    const requestCount = await redis.incr(rateLimitKey);
-    if (requestCount === 1) {
-      await redis.expire(rateLimitKey, 3600); // 1 hour window
-    }
-    if (requestCount > 5) {
-      throw new AppError(ErrorCodes.OTP_RATE_LIMITED, 'Too many OTP requests. Try again later.', 429);
+    // Rate limiting check (requires Redis)
+    if (redis) {
+      const rateLimitKey = `otp_rate:${phone}`;
+      const requestCount = await redis.incr(rateLimitKey);
+      if (requestCount === 1) {
+        await redis.expire(rateLimitKey, 3600); // 1 hour window
+      }
+      if (requestCount > 5) {
+        throw new AppError(ErrorCodes.OTP_RATE_LIMITED, 'Too many OTP requests. Try again later.', 429);
+      }
     }
 
     const otp = generateOtp();
@@ -182,7 +184,9 @@ export class AuthService {
     );
 
     // Store refresh token in Redis with TTL
-    await redis.set(`refresh:${refreshJti}`, user.id, 'EX', 30 * 24 * 60 * 60);
+    if (redis) {
+      await redis.set(`refresh:${refreshJti}`, user.id, 'EX', 30 * 24 * 60 * 60);
+    }
 
     return {
       accessToken,
@@ -209,13 +213,13 @@ export class AuthService {
       const payload = jwt.verify(refreshToken, JWT_REFRESH_SECRET) as any;
 
       // Check if refresh token exists in Redis
-      const userId = await redis.get(`refresh:${payload.jti}`);
+      const userId = redis ? await redis.get(`refresh:${payload.jti}`) : payload.sub;
       if (!userId) {
         throw new AppError(ErrorCodes.INVALID_TOKEN, 'Refresh token is invalid or expired', 401);
       }
 
       // Invalidate old refresh token (rotation)
-      await redis.del(`refresh:${payload.jti}`);
+      if (redis) await redis.del(`refresh:${payload.jti}`);
 
       // Fetch user
       const user = await prisma.user.findUnique({ where: { id: userId } });
@@ -244,7 +248,7 @@ export class AuthService {
   static async logout(jti: string, exp?: number): Promise<void> {
     // Blacklist the token for its remaining lifetime
     const ttl = exp ? exp - Math.floor(Date.now() / 1000) : 86400;
-    if (ttl > 0) {
+    if (ttl > 0 && redis) {
       await redis.set(`blacklist:${jti}`, '1', 'EX', ttl);
     }
   }

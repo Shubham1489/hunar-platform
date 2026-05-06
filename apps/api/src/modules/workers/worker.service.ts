@@ -48,7 +48,7 @@ export class WorkerService {
     });
 
     // Invalidate recommendation cache
-    await redis.del(`rec:${workerId}:*`);
+    if (redis) await redis.del(`rec:${workerId}:*`);
 
     return worker;
   }
@@ -222,7 +222,7 @@ export class WorkerService {
   static async getRecommendations(workerId: string) {
     // Check Redis cache
     const cacheKey = `rec:${workerId}`;
-    const cached = await redis.get(cacheKey);
+    const cached = redis ? await redis.get(cacheKey) : null;
     if (cached) return JSON.parse(cached);
 
     // Try AI service
@@ -236,7 +236,7 @@ export class WorkerService {
 
       if (response.ok) {
         const recommendations = await response.json();
-        await redis.set(cacheKey, JSON.stringify(recommendations), 'EX', 3600);
+        if (redis) await redis.set(cacheKey, JSON.stringify(recommendations), 'EX', 3600);
         return recommendations;
       }
     } catch (err) {
@@ -276,7 +276,7 @@ export class WorkerService {
       return { ...job, matchScore };
     }).sort((a, b) => b.matchScore - a.matchScore);
 
-    await redis.set(cacheKey, JSON.stringify(rankedJobs), 'EX', 3600);
+    if (redis) await redis.set(cacheKey, JSON.stringify(rankedJobs), 'EX', 3600);
     return rankedJobs;
   }
 }

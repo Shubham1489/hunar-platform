@@ -55,7 +55,7 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
     const payload = jwt.verify(token, JWT_SECRET) as JwtPayload;
 
     // Check if token is blacklisted (logged out / revoked)
-    const isBlacklisted = await redis.get(`blacklist:${payload.jti}`);
+    const isBlacklisted = redis ? await redis.get(`blacklist:${payload.jti}`) : null;
     if (isBlacklisted) {
       return reply.status(401).send({
         success: false,

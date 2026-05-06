@@ -57,7 +57,7 @@ async function buildServer() {
   await app.register(rateLimit, {
     max: parseInt(process.env.RATE_LIMIT_AUTH || '100', 10),
     timeWindow: '1 minute',
-    redis,
+    ...(redis ? { redis } : {}),
   });
 
   // ─── Swagger / OpenAPI ───────────────────────
@@ -92,7 +92,7 @@ async function buildServer() {
     timestamp: new Date().toISOString(),
     services: {
       database: await prisma.$queryRaw`SELECT 1`.then(() => 'connected').catch(() => 'disconnected'),
-      redis: await redis.ping().then(() => 'connected').catch(() => 'disconnected'),
+      redis: redis ? await redis.ping().then(() => 'connected').catch(() => 'disconnected') : 'not configured',
     },
   }));
 
