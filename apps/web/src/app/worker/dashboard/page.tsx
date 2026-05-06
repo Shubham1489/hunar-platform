@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import {
   Briefcase, DollarSign, Star, MapPin, Clock, TrendingUp,
@@ -77,12 +77,11 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 export default function WorkerDashboard() {
-  const [greeting, setGreeting] = useState('Good morning');
-
-  useEffect(() => {
+  const getGreeting = () => {
     const hour = new Date().getHours();
-    setGreeting(hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening');
-  }, []);
+    return hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  };
+  const [greeting] = useState(getGreeting);
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--surface-1)' }}>
