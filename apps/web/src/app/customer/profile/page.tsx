@@ -4,8 +4,7 @@ import { useState } from 'react';
 import Sidebar from '@/components/Sidebar';
 import {
   Activity, Grid3X3, Calendar, Search, User, Settings,
-  MapPin, Phone, Mail, Edit3, Shield, CheckCircle,
-  Star, Save, Bell, Globe, Moon, Sun, Lock, Trash2,
+  MapPin, Phone, Edit3, Star, Save,
 } from 'lucide-react';
 
 const CUSTOMER_NAV = [
