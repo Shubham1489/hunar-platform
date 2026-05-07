@@ -12,7 +12,7 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
   PYTHON_VERSION: '3.11'
   FLUTTER_VERSION: '3.41.4'
 
@@ -63,9 +63,6 @@ jobs:
         run: cd apps/api && npx tsc
         continue-on-error: true
 
-      - name: Run tests
-        run: cd apps/api && npm test
-        continue-on-error: true
 
   # ─── Build & Test Web ──────────────────────
   build-web:

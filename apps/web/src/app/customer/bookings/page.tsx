@@ -4,8 +4,8 @@ import { useState } from 'react';
 import Sidebar from '@/components/Sidebar';
 import {
   Activity, Grid3X3, Calendar, Search, User, Settings,
-  MapPin, Clock, Star, Phone, CheckCircle, XCircle,
-  MessageSquare, AlertCircle, Shield, Key,
+  Clock, Star, Phone, CheckCircle, XCircle,
+  AlertCircle, Shield, Key,
 } from 'lucide-react';
 
 const CUSTOMER_NAV = [
@@ -36,7 +36,6 @@ const STATUS_CONFIG: Record<string, { bg: string; color: string; icon: any; labe
 export default function BookingsPage() {
   const [filter, setFilter] = useState('ALL');
   const [otpModal, setOtpModal] = useState<string | null>(null);
-  const [otp, setOtp] = useState('');
   const [ratingModal, setRatingModal] = useState<string | null>(null);
   const [ratingValue, setRatingValue] = useState(5);
   const [ratingReview, setRatingReview] = useState('');

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
-  ArrowLeft, Star, MapPin, Shield, Clock, Phone, Calendar,
-  CheckCircle, CreditCard, Sparkles, MessageSquare, Award,
+  ArrowLeft, Star, MapPin, Shield,
+  CheckCircle, CreditCard,
 } from 'lucide-react';
 
 const WORKERS_DB: Record<string, any> = {

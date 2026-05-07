@@ -54,10 +54,48 @@ async function buildServer() {
     credentials: true,
   });
 
+  // ─── Health Check (registered BEFORE rate-limit) ──
+  // Lightweight endpoint for Render / load-balancer health probes.
+  // Must respond fast and never depend on external services.
+  app.get('/health', async () => ({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+  }));
+
+  // Detailed health check for diagnostics (not used by Render)
+  app.get('/health/detailed', async () => {
+    const withTimeout = <T>(promise: Promise<T>, ms: number): Promise<T> =>
+      Promise.race([
+        promise,
+        new Promise<T>((_, reject) => setTimeout(() => reject(new Error('timeout')), ms)),
+      ]);
+
+    return {
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      services: {
+        database: await withTimeout(prisma.$queryRaw`SELECT 1`, 3000).then(() => 'connected').catch(() => 'disconnected'),
+        redis: redis ? await withTimeout(redis.ping(), 3000).then(() => 'connected').catch(() => 'disconnected') : 'not configured',
+      },
+    };
+  });
+
+  // Rate limiting — only use Redis store if redis is connected
+  // Passing a broken redis client to rate-limit hangs ALL requests
+  let rateLimitRedis: typeof redis = null;
+  if (redis) {
+    try {
+      await redis.ping();
+      rateLimitRedis = redis;
+    } catch {
+      console.warn('⚠️  Redis not reachable — rate limiting will use in-memory store');
+    }
+  }
+
   await app.register(rateLimit, {
     max: parseInt(process.env.RATE_LIMIT_AUTH || '100', 10),
     timeWindow: '1 minute',
-    ...(redis ? { redis } : {}),
+    ...(rateLimitRedis ? { redis: rateLimitRedis } : {}),
   });
 
   // ─── Swagger / OpenAPI ───────────────────────
@@ -86,15 +124,7 @@ async function buildServer() {
     uiConfig: { docExpansion: 'list', deepLinking: true },
   });
 
-  // ─── Health Check ────────────────────────────
-  app.get('/health', async () => ({
-    status: 'ok',
-    timestamp: new Date().toISOString(),
-    services: {
-      database: await prisma.$queryRaw`SELECT 1`.then(() => 'connected').catch(() => 'disconnected'),
-      redis: redis ? await redis.ping().then(() => 'connected').catch(() => 'disconnected') : 'not configured',
-    },
-  }));
+  // (Health check routes registered above, before rate-limit)
 
   // ─── API Routes (versioned under /api/v1) ────
   await app.register(async (api) => {
