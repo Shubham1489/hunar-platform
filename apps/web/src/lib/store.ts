@@ -100,6 +100,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         error: err.response?.data?.message || 'Invalid OTP',
         isLoading: false,
       });
+      throw err;
     }
   },
 

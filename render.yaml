@@ -21,6 +21,8 @@ services:
         value: "3001"
       - key: DATABASE_URL
         sync: false  # User must set manually
+      - key: DIRECT_URL
+        sync: false  # Supabase session-mode URL for Prisma migrations
       - key: REDIS_URL
         sync: false
       - key: JWT_ACCESS_SECRET

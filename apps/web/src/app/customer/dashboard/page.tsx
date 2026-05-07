@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import Link from 'next/link';
 import {
   Home, Search, Calendar, Star, MapPin, Bell,
@@ -7,6 +8,9 @@ import {
   Zap, Wrench, Paintbrush, Wind, ChefHat,
   Hammer, Shield, Truck, ArrowRight, CheckCircle,
 } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { useApiData } from '@/hooks/useApiData';
+import { customerAPI } from '@/lib/api';
 
 const SERVICE_CATEGORIES = [
   { icon: Zap, name: 'Electrician', color: '#F59E0B' },
@@ -19,7 +23,7 @@ const SERVICE_CATEGORIES = [
   { icon: Truck, name: 'Moving', color: '#F97316' },
 ];
 
-const ACTIVE_BOOKINGS = [
+const FALLBACK_BOOKINGS = [
   {
     id: '1', service: 'AC Servicing', worker: 'Vikram Singh', workerRating: 4.8,
     status: 'IN_PROGRESS', date: 'Today, 2:00 PM', amount: '₹800',
@@ -30,13 +34,39 @@ const ACTIVE_BOOKINGS = [
   },
 ];
 
-const RECENT_WORKERS = [
+const FALLBACK_WORKERS = [
   { name: 'Vikram Singh', skill: 'AC Technician', rating: 4.8, rate: '₹800/day', distance: '2.3 km' },
   { name: 'Deepak Verma', skill: 'Electrician', rating: 4.9, rate: '₹900/day', distance: '3.1 km' },
   { name: 'Sita Devi', skill: 'Cook', rating: 4.7, rate: '₹500/day', distance: '1.5 km' },
 ];
 
 export default function CustomerDashboard() {
+  const { user, isLoading: authLoading, logout } = useAuth('CUSTOMER');
+
+  // Fetch bookings from API
+  const fetchBookings = useCallback(() => customerAPI.getBookings(), []);
+  const { data: bookingsData } = useApiData(fetchBookings, {
+    fallback: FALLBACK_BOOKINGS,
+    skip: authLoading,
+  });
+
+  const displayName = user?.name || 'Customer';
+  const firstName = displayName.split(' ')[0];
+  const initial = displayName[0]?.toUpperCase() || 'C';
+  const bookings = Array.isArray(bookingsData) ? bookingsData : FALLBACK_BOOKINGS;
+  const nearbyWorkers = FALLBACK_WORKERS; // Location-based search not yet implemented
+
+  if (authLoading) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface-1)' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ width: 48, height: 48, borderRadius: 12, background: 'linear-gradient(135deg, #0D9488, #5EEAD4)', margin: '0 auto 16px', animation: 'pulse 1.5s infinite' }} />
+          <p style={{ color: 'var(--text-tertiary)' }}>Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--surface-1)' }}>
       {/* Sidebar */}
@@ -47,10 +77,10 @@ export default function CustomerDashboard() {
         </div>
 
         <div style={{ background: 'linear-gradient(135deg, #0D9488, #5EEAD4)', borderRadius: 16, padding: 20, marginBottom: 24, color: 'white' }}>
-          <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>Aisha Patel</p>
-          <p style={{ fontSize: 12, opacity: 0.8 }}>Homeowner</p>
+          <p style={{ fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{displayName}</p>
+          <p style={{ fontSize: 12, opacity: 0.8 }}>Customer</p>
           <p style={{ fontSize: 12, opacity: 0.7, marginTop: 8, display: 'flex', alignItems: 'center', gap: 4 }}>
-            <MapPin size={12} /> Indiranagar, Bangalore
+            <MapPin size={12} /> {user?.phone || 'India'}
           </p>
         </div>
 
@@ -75,7 +105,7 @@ export default function CustomerDashboard() {
           ))}
         </nav>
 
-        <button className="btn btn-ghost" style={{ justifyContent: 'flex-start', color: 'var(--error)', gap: 12 }}>
+        <button onClick={() => logout()} className="btn btn-ghost" style={{ justifyContent: 'flex-start', color: 'var(--error)', gap: 12 }}>
           <LogOut size={18} /> Logout
         </button>
       </aside>
@@ -84,7 +114,7 @@ export default function CustomerDashboard() {
       <main style={{ flex: 1, padding: 32, overflow: 'auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
           <div>
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, marginBottom: 4 }}>Hello, Aisha 👋</h1>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, marginBottom: 4 }}>Hello, {firstName} 👋</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: 15 }}>What can we help you with today?</p>
           </div>
           <button style={{ position: 'relative', background: 'white', border: 'none', width: 44, height: 44, borderRadius: 12, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-sm)' }}>
@@ -145,27 +175,32 @@ export default function CustomerDashboard() {
               <Calendar size={20} color="var(--tertiary)" /> Active Bookings
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {ACTIVE_BOOKINGS.map(b => (
+              {bookings.map((b: any) => (
                 <div key={b.id} className="card" style={{ padding: 20 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                    <h3 style={{ fontWeight: 700, fontSize: 15 }}>{b.service}</h3>
+                    <h3 style={{ fontWeight: 700, fontSize: 15 }}>{b.service || b.serviceRequest?.serviceType || 'Booking'}</h3>
                     <span style={{
                       padding: '4px 12px', borderRadius: 999, fontSize: 12, fontWeight: 600,
                       background: b.status === 'IN_PROGRESS' ? 'rgba(59,130,246,0.1)' : 'rgba(245,158,11,0.1)',
                       color: b.status === 'IN_PROGRESS' ? '#2563EB' : '#B45309',
-                    }}>{b.status.replace('_', ' ')}</span>
+                    }}>{(b.status || '').replace('_', ' ')}</span>
                   </div>
                   <p style={{ color: 'var(--text-secondary)', fontSize: 13, marginBottom: 8 }}>
-                    {b.worker} • <Star size={11} fill="#F59E0B" color="#F59E0B" style={{ display: 'inline', verticalAlign: 'middle' }} /> {b.workerRating}
+                    {b.worker || b.workerProfile?.user?.name || 'Worker'} • <Star size={11} fill="#F59E0B" color="#F59E0B" style={{ display: 'inline', verticalAlign: 'middle' }} /> {b.workerRating || b.workerProfile?.ratingAvg || '—'}
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: 13, color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                      <Clock size={12} /> {b.date}
+                      <Clock size={12} /> {b.date || new Date(b.createdAt).toLocaleDateString() || '—'}
                     </span>
-                    <span style={{ fontWeight: 700, color: 'var(--primary)', fontSize: 15 }}>{b.amount}</span>
+                    <span style={{ fontWeight: 700, color: 'var(--primary)', fontSize: 15 }}>{b.amount || `₹${b.totalAmount || 0}`}</span>
                   </div>
                 </div>
               ))}
+              {bookings.length === 0 && (
+                <div className="card" style={{ padding: 32, textAlign: 'center' }}>
+                  <p style={{ color: 'var(--text-tertiary)', fontSize: 14 }}>No active bookings. Find a professional above!</p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -175,7 +210,7 @@ export default function CustomerDashboard() {
               <MapPin size={20} color="var(--secondary)" /> Nearby Professionals
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {RECENT_WORKERS.map(w => (
+              {nearbyWorkers.map((w: any) => (
                 <div key={w.name} className="card" style={{ padding: 20, display: 'flex', gap: 14, alignItems: 'center' }}>
                   <div style={{ width: 48, height: 48, borderRadius: 14, background: 'linear-gradient(135deg, var(--surface-2), var(--surface-3))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 700, flexShrink: 0 }}>
                     {w.name[0]}

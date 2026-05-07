@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import {
   Briefcase, DollarSign, Star, MapPin, Clock, TrendingUp,
@@ -8,12 +8,15 @@ import {
   ArrowUpRight, Activity, Calendar, Zap, CheckCircle,
   Sparkles, Filter, Wrench, BarChart3, Wallet,
 } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { useApiData } from '@/hooks/useApiData';
+import { workerAPI, jobAPI } from '@/lib/api';
 
-// Mock data
-const MOCK_EARNINGS = { total: 45200, pending: 8500, thisMonth: 18500, lastMonth: 14200 };
-const MOCK_STATS = { jobsCompleted: 47, activeApplications: 3, rating: 4.8, reviewCount: 42 };
+// Fallback data — used when API is unavailable or user has no data yet
+const FALLBACK_EARNINGS = { total: 0, pending: 0, thisMonth: 0, lastMonth: 0 };
+const FALLBACK_STATS = { jobsCompleted: 0, activeApplications: 0, rating: 0, reviewCount: 0 };
 
-const MOCK_RECOMMENDATIONS = [
+const FALLBACK_RECOMMENDATIONS = [
   {
     id: '1', title: 'Smart Home Wiring — 3BHK Apartment', company: 'TechHome Solutions',
     city: 'Noida', salary: '₹1,200/day', matchScore: 95, skills: ['Smart Home', 'Wiring', 'Electrician'],
@@ -36,7 +39,7 @@ const MOCK_RECOMMENDATIONS = [
   },
 ];
 
-const MOCK_APPLICATIONS = [
+const FALLBACK_APPLICATIONS = [
   { id: '1', title: 'Factory Electrician', company: 'IndiaForge Ltd', status: 'SHORTLISTED', date: '2d ago' },
   { id: '2', title: 'Building Rewiring', company: 'HomeServe India', status: 'APPLIED', date: '3d ago' },
   { id: '3', title: 'Mall Maintenance', company: 'FacilityPro', status: 'HIRED', date: '5d ago' },
@@ -77,11 +80,60 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 export default function WorkerDashboard() {
+  const { user, isLoading: authLoading, logout } = useAuth('WORKER');
+
+  // Fetch worker profile from API
+  const fetchProfile = useCallback(() => workerAPI.getProfile(), []);
+  const { data: profile } = useApiData(fetchProfile, {
+    fallback: { user: { name: 'Worker' }, ratingAvg: 0, ratingCount: 0, jobsCompleted: 0 },
+    skip: authLoading,
+  });
+
+  // Fetch earnings
+  const fetchEarnings = useCallback(() => workerAPI.getEarnings(), []);
+  const { data: earnings } = useApiData(fetchEarnings, {
+    fallback: FALLBACK_EARNINGS,
+    skip: authLoading,
+  });
+
+  // Fetch applications
+  const fetchApps = useCallback(() => workerAPI.getApplications(), []);
+  const { data: applications } = useApiData(fetchApps, {
+    fallback: FALLBACK_APPLICATIONS,
+    skip: authLoading,
+  });
+
+  const displayName = user?.name || profile?.user?.name || 'Worker';
+  const firstName = displayName.split(' ')[0];
+  const initial = displayName[0]?.toUpperCase() || 'W';
+  const rating = profile?.ratingAvg || FALLBACK_STATS.rating;
+  const reviewCount = profile?.ratingCount || FALLBACK_STATS.reviewCount;
+  const jobsCompleted = profile?.jobsCompleted || FALLBACK_STATS.jobsCompleted;
+
+  const stats = {
+    ...FALLBACK_EARNINGS,
+    ...(typeof earnings === 'object' && earnings !== null ? earnings : {}),
+  };
+
+  const appsList = Array.isArray(applications) ? applications : FALLBACK_APPLICATIONS;
+  const recommendations = FALLBACK_RECOMMENDATIONS; // AI recommendations fetched separately
+
   const getGreeting = () => {
     const hour = new Date().getHours();
     return hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
   };
   const [greeting] = useState(getGreeting);
+
+  if (authLoading) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface-1)' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ width: 48, height: 48, borderRadius: 12, background: 'linear-gradient(135deg, #1E3A8A, #3B82F6)', margin: '0 auto 16px', animation: 'pulse 1.5s infinite' }} />
+          <p style={{ color: 'var(--text-tertiary)' }}>Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--surface-1)' }}>
@@ -114,22 +166,22 @@ export default function WorkerDashboard() {
               background: 'rgba(255,255,255,0.2)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 20, fontWeight: 700,
-            }}>R</div>
+            }}>{initial}</div>
             <div>
-              <p style={{ fontWeight: 700, fontSize: 15 }}>Ramesh Kumar</p>
-              <p style={{ fontSize: 12, opacity: 0.7 }}>Master Electrician</p>
+              <p style={{ fontWeight: 700, fontSize: 15 }}>{displayName}</p>
+              <p style={{ fontSize: 12, opacity: 0.7 }}>{user?.role || 'Worker'}</p>
             </div>
           </div>
           <div style={{ display: 'flex', gap: 16 }}>
             <div>
               <p style={{ fontSize: 11, opacity: 0.6 }}>Rating</p>
               <p style={{ fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
-                <Star size={13} fill="gold" color="gold" /> 4.8
+                <Star size={13} fill="gold" color="gold" /> {rating || '—'}
               </p>
             </div>
             <div>
               <p style={{ fontSize: 11, opacity: 0.6 }}>Jobs</p>
-              <p style={{ fontSize: 14, fontWeight: 700 }}>47</p>
+              <p style={{ fontSize: 14, fontWeight: 700 }}>{jobsCompleted}</p>
             </div>
           </div>
         </div>
@@ -151,7 +203,7 @@ export default function WorkerDashboard() {
           ))}
         </nav>
 
-        <button className="btn btn-ghost" style={{
+        <button onClick={() => logout()} className="btn btn-ghost" style={{
           justifyContent: 'flex-start', color: 'var(--error)', gap: 12,
         }}>
           <LogOut size={18} /> Logout
@@ -167,10 +219,10 @@ export default function WorkerDashboard() {
         }}>
           <div>
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 800, marginBottom: 4 }}>
-              {greeting}, Ramesh 👋
+              {greeting}, {firstName} 👋
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: 15 }}>
-              You have <span style={{ color: 'var(--primary)', fontWeight: 600 }}>3 new matches</span> today
+              You have <span style={{ color: 'var(--primary)', fontWeight: 600 }}>{recommendations.length} new matches</span> today
             </p>
           </div>
 
@@ -197,24 +249,24 @@ export default function WorkerDashboard() {
         }} className="stagger-children">
           {[
             {
-              label: 'Total Earnings', value: `₹${MOCK_EARNINGS.total.toLocaleString()}`,
+              label: 'Total Earnings', value: `₹${(stats.total || 0).toLocaleString()}`,
               icon: Wallet, color: '#10B981', bg: 'rgba(16,185,129,0.1)',
-              change: '+24%', changeColor: '#059669',
+              change: stats.total ? '+24%' : 'No earnings yet', changeColor: '#059669',
             },
             {
-              label: 'This Month', value: `₹${MOCK_EARNINGS.thisMonth.toLocaleString()}`,
+              label: 'This Month', value: `₹${(stats.thisMonth || 0).toLocaleString()}`,
               icon: TrendingUp, color: '#3B82F6', bg: 'rgba(59,130,246,0.1)',
-              change: '+18%', changeColor: '#2563EB',
+              change: stats.thisMonth ? '+18%' : '—', changeColor: '#2563EB',
             },
             {
-              label: 'Jobs Completed', value: MOCK_STATS.jobsCompleted.toString(),
+              label: 'Jobs Completed', value: jobsCompleted.toString(),
               icon: CheckCircle, color: '#F97316', bg: 'rgba(249,115,22,0.1)',
-              change: '3 this week',
+              change: jobsCompleted ? `${jobsCompleted} total` : 'No jobs yet',
             },
             {
-              label: 'Rating', value: MOCK_STATS.rating.toString(),
+              label: 'Rating', value: rating ? rating.toString() : '—',
               icon: Star, color: '#F59E0B', bg: 'rgba(245,158,11,0.1)',
-              change: `${MOCK_STATS.reviewCount} reviews`,
+              change: reviewCount ? `${reviewCount} reviews` : 'No reviews yet',
             },
           ].map(({ label, value, icon: Icon, color, bg, change, changeColor }) => (
             <div key={label} className="card" style={{ padding: 24 }}>
@@ -265,7 +317,7 @@ export default function WorkerDashboard() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {MOCK_RECOMMENDATIONS.map((job) => (
+              {recommendations.map((job) => (
                 <div key={job.id} className="card" style={{
                   padding: 20, cursor: 'pointer',
                   display: 'flex', gap: 16, alignItems: 'flex-start',
@@ -376,7 +428,7 @@ export default function WorkerDashboard() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {MOCK_APPLICATIONS.map((app) => (
+                {appsList.map((app: any) => (
                   <div key={app.id} style={{
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     padding: '10px 0',
